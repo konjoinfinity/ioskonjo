@@ -1,9 +1,10 @@
-import { StyleSheet, SectionList, Text, View, TouchableHighlight, Alert } from 'react-native';
-import { Component, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
+import { useState } from 'react';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 export default function TabTwoScreen() {
-    const [list, setlist] = useState(Array(20)
+    const [list, setlist] = useState(Array(5)
     .fill("")
     .map((_, i) => ({ key: `${i}`, text: `item #${i}` })));
 
@@ -14,22 +15,28 @@ export default function TabTwoScreen() {
       setlist(filteredArray)
     }
   return (
-    <SwipeListView
-    disableRightSwipe={true}
+    <View style={{display: "flex", flexDirection: "column"}}>
+      <SwipeListView
             data={list}
             renderItem={ (data, rowMap) => (
                 <View style={styles.rowFront}>
-                    <Text>I am {data.item.text} in a SwipeListView</Text>
+                    <Text>Item {data.item.text}</Text>
                 </View>
             )}
             renderHiddenItem={ (data, rowMap) => (
+              <View style={{display: "flex", flexDirection:"row"}}>
+              <TouchableHighlight onPress={() => deleteItem(data.item.key)}
+                    style={styles.rowBack2}>
+              <Text style={{paddingLeft: 15, color: "white", width: "50%"}}>Edit</Text></TouchableHighlight>
                     <TouchableHighlight onPress={() => deleteItem(data.item.key)}
                     style={styles.rowBack}>
-                      <Text style={{paddingRight: 20}}>Delete</Text></TouchableHighlight>
+                      <Text style={{paddingRight: 15, color: "white", width: "50%"}}>Delete</Text></TouchableHighlight>
+                      </View>
             )}
             leftOpenValue={100}
-            rightOpenValue={-100}
+            rightOpenValue={-120}
         />
+</View>
   );
             }
 
@@ -49,10 +56,7 @@ const styles = StyleSheet.create({
      backgroundColor: 'rgba(247,247,247,1.0)',
    },
    item: {
-     color: "black",
      padding: 10,
-     backgroundColor: "red"
-
    },
    rowFront: {
     backgroundColor: '#eeeeee',
@@ -66,5 +70,14 @@ rowBack: {
   flex: 1,
   flexDirection: 'row',
   justifyContent: "flex-end",
+  padding: 30
 },
+rowBack2: {
+  backgroundColor: "#FECB2E",
+  alignItems: 'center',
+  flex: 1,
+  flexDirection: 'row',
+  justifyContent: "flex-start",
+  padding: 30
+}
 });
