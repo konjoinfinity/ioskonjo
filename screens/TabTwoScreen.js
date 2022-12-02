@@ -2,8 +2,11 @@ import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-na
 import { useState } from 'react';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import Dialog from "react-native-dialog";
 
 export default function TabTwoScreen() {
+  const [visible, setVisible] = useState(false);
+  const [text, setText] = useState("");
     const [list, setlist] = useState(Array(5)
     .fill("")
     .map((_, i) => ({ key: `${i}`, text: `item #${i}` })));
@@ -14,8 +17,39 @@ export default function TabTwoScreen() {
       alert(`Deleted" ${todel}`)
       setlist(filteredArray)
     }
+
+    const editItem = (toedit) => {
+      var toEdit = list.filter(item => {
+        return (item.key == toedit)})
+      // alert(`Deleted" ${todel}`)
+      // setlist(filteredArray)
+      console.log(toEdit[0].text)
+      setVisible(true)
+      setText(toEdit)
+    }
+
+    const handleCancel = () => {
+      setVisible(false);
+    };
+  
+    const handleSubmit = () => {
+      // The user has pressed the "Delete" button, so here you can do your own logic.
+      // ...Your logic
+      setVisible(false);
+    };
+
   return (
-    <View style={{display: "flex", flexDirection: "column"}}>
+    <View>
+      <Dialog.Container visible={visible}>
+      <Dialog.Title>Account delete</Dialog.Title>
+      <Dialog.Description>
+        Do you want to delete this account? You cannot undo this action.
+      </Dialog.Description>
+      <Dialog.Input label={text[0].text}>
+      </Dialog.Input>
+      <Dialog.Button label="Cancel" onPress={handleCancel} />
+        <Dialog.Button label="Submit" onPress={handleSubmit} />
+    </Dialog.Container>
       <SwipeListView
             data={list}
             renderItem={ (data, rowMap) => (
@@ -25,7 +59,7 @@ export default function TabTwoScreen() {
             )}
             renderHiddenItem={ (data, rowMap) => (
               <View style={{display: "flex", flexDirection:"row"}}>
-              <TouchableHighlight onPress={() => deleteItem(data.item.key)}
+              <TouchableHighlight onPress={() => editItem(data.item.key)}
                     style={styles.rowBack2}>
               <Text style={{paddingLeft: 15, color: "white", width: "50%"}}>Edit</Text></TouchableHighlight>
                     <TouchableHighlight onPress={() => deleteItem(data.item.key)}
