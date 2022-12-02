@@ -7,7 +7,8 @@ import Dialog from "react-native-dialog";
 export default function TabTwoScreen() {
   const [visible, setVisible] = useState(false);
   const [text, setText] = useState("");
-    const [list, setlist] = useState(Array(5)
+  const [textref, setTextref] = useState("");
+    var [list, setlist] = useState(Array(5)
     .fill("")
     .map((_, i) => ({ key: `${i}`, text: `item #${i}` })));
 
@@ -19,22 +20,27 @@ export default function TabTwoScreen() {
     }
 
     const editItem = (toedit) => {
-      var toEdit = list.filter(item => {
-        return (item.key == toedit)})
+      
       // alert(`Deleted" ${todel}`)
       // setlist(filteredArray)
       console.log(toEdit[0].text)
       setVisible(true)
       setText(toEdit)
+      setTextref(toEdit)
     }
 
     const handleCancel = () => {
       setVisible(false);
     };
+
+    const handleEdit = (edit) => {
+      setText(edit)
+      console.log(text)
+    };
   
     const handleSubmit = () => {
-      // The user has pressed the "Delete" button, so here you can do your own logic.
-      // ...Your logic
+      // list[textref[0].key] = 
+      
       setVisible(false);
     };
 
@@ -45,7 +51,7 @@ export default function TabTwoScreen() {
       <Dialog.Description>
         Do you want to delete this account? You cannot undo this action.
       </Dialog.Description>
-      <Dialog.Input label={text[0].text}>
+      <Dialog.Input id="edit" onChangeText={handleEdit} defaultValue={text !== "" ? (text[0].text) : ("")}>
       </Dialog.Input>
       <Dialog.Button label="Cancel" onPress={handleCancel} />
         <Dialog.Button label="Submit" onPress={handleSubmit} />
