@@ -43,12 +43,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 >
   <View style={{ flex: 3, flexDirection: 'row' }}>
     <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Avatar
         size={145}
         source={{
