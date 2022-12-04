@@ -4,6 +4,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import Dialog from "react-native-dialog";
 import { Button } from '@rneui/themed';
+import * as Haptics from 'expo-haptics';
 
 export default function TabTwoScreen() {
   const [visible, setVisible] = useState(false);
@@ -13,13 +14,15 @@ export default function TabTwoScreen() {
     var [list, setlist] = useState(Array(5).fill("").map((_, i) => ({ key: `${i}`, text: `Item #${i}` })));
 
     const deleteItem = (todel) => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
       var filteredArray = list.filter(item => {
         return (item.key !== todel)})
-      alert(`Deleted" ${todel}`)
+      alert(`Deleted ${todel}`)
       setlist(filteredArray)
     }
 
     const editItem = (toedit) => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
       var toEdit = list.filter(item => {
         return (item.key == toedit)})
       setVisible(true)
@@ -28,10 +31,12 @@ export default function TabTwoScreen() {
     }
 
     const addItem = () => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
       setVisible1(true)
     }
 
     const handleCancel = (which) => {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
       which == "edit" ? setVisible(false) : setVisible1(false)
     };
 
@@ -41,16 +46,15 @@ export default function TabTwoScreen() {
   
     const handleSubmit = (which) => {
       if (which == "edit") {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
       list[textref[0].key] = {"key": `${textref[0].key}`, "text": `${text}`}
       setVisible(false);
       } else {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
         list.push({"key": `${list.length}`, "text": `${text}`})
         setVisible1(false)
       }
-      
     };
-
-  
 
   return (
     <SafeAreaView>
