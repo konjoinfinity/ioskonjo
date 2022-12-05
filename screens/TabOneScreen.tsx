@@ -6,12 +6,7 @@ import { Button, Avatar } from "react-native-elements"
 
 interface Props {
   id: number;
-  color: [
-    number,
-    number,
-    number,
-    number
-  ],
+  color: string,
   emoji: string,
   element: {
     symbol: string,
@@ -51,12 +46,12 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     marginHorizontal: 10,
     height: 250,
     marginBottom: 10,
-    backgroundColor: `cmyk(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
+    backgroundColor: `${color}`
   }}
 >
-  <View style={{ flex: 3, flexDirection: 'column' }}>
+  <View style={{ flex: 3, flexDirection: 'column', backgroundColor: `${color}`  }}>
     <View
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor: `${color}`}}>
      <Text style={{fontSize: 60}}>{emoji}</Text>
     </View>
     <View
@@ -64,6 +59,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: `${color}`
       }}
     >
       <View
@@ -71,6 +67,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           flex: 1,
           marginTop: 10,
           justifyContent: 'center',
+          backgroundColor: `${color}`
         }}
       >
         <Text
