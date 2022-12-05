@@ -5,20 +5,31 @@ import { RootTabScreenProps } from '../types';
 import { Button, Avatar } from "react-native-elements"
 
 interface Props {
-  name: string;
-  avatar: string;
+  id: number;
+  color: [
+    number,
+    number,
+    number,
+    number
+  ],
+  emoji: string,
+  element: {
+    symbol: string,
+    name: string,
+    atomicNumber: number
+  };
 }
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
-  const [users, setUsers] = useState([]);
+  const [colors, setColors] = useState([]);
 
   const getData = async () => {
-    await fetch("https://638bd25dd2fc4a058a4e6502.mockapi.io/user", {
+    await fetch("https://638bd25dd2fc4a058a4e6502.mockapi.io/color", {
       method: "GET"
     })
       .then(res => res.json())
       .then(res => {
-        setUsers(res);
+        setColors(res);
       }).catch(error => {
         console.log(String(error))
       });
@@ -28,9 +39,10 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     getData();
   }, []);
 
-  function Users({ name, avatar }: Props) {
+  function Colors({ id, color, emoji, element }: Props) {
     return (
   <View
+  key={id}
   style={{
     flex: 1,
     flexDirection: 'column',
@@ -39,20 +51,13 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     marginHorizontal: 10,
     height: 250,
     marginBottom: 10,
+    backgroundColor: `cmyk(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
   }}
 >
-  <View style={{ flex: 3, flexDirection: 'row' }}>
+  <View style={{ flex: 3, flexDirection: 'column' }}>
     <View
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Avatar
-        size={145}
-        source={{
-          uri: `${avatar}`,
-        }}
-        activeOpacity={0.7}
-        avatarStyle={{ borderRadius: 145 / 2 }}
-        overlayContainerStyle={{ backgroundColor: 'transparent' }}
-      />
+     <Text style={{fontSize: 60}}>{emoji}</Text>
     </View>
     <View
       style={{
@@ -70,18 +75,16 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       >
         <Text
           style={{
-            fontSize: 25,
+            fontSize: 30,
             color: "white",
-            marginLeft: -15,
           }}
         >
-          {name}
+          {element.atomicNumber} - {element.name} - {element.symbol} 
         </Text>
       </View>
     </View>
   </View>
   <View style={{display: "flex", alignItems: "flex-end", justifyContent: "flex-end", width: "60%"}}>
-  <Button title={"Profile"}></Button>
   </View>
   <View
     style={{
@@ -100,9 +103,9 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
   return (
     <View style={styles.container}>
       <ScrollView>
-        {users.length !== 0 ? (
-          users.map(({name, avatar}) => (
-          <Users name={name} avatar={avatar} key={name} />
+        {colors.length !== 0 ? (
+          colors.map(({id, color, emoji, element }) => (
+          <Colors color={color} emoji={emoji} element={element} id={id} key={id} />
           ))
           ):("")}
         </ScrollView>
