@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Image, ScrollView } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
-import { Button, Avatar } from "react-native-elements"
 
 interface Props {
   name: string;
-  avatar: string;
-  genre: string;
-  lyrics: string;
+  geolocation: string;
+  latitude: string;
+  longitude: string;
+  image: string;
 }
 
 export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
-  const [songs, setSongs] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   const getData = async () => {
-    await fetch("https://638bd25dd2fc4a058a4e6502.mockapi.io/song", {
+    await fetch("https://638bd25dd2fc4a058a4e6502.mockapi.io/locaiton", {
       method: "GET"
     })
       .then(res => res.json())
       .then(res => {
-        setSongs(res);
+        setLocations(res);
       }).catch(error => {
         console.log(String(error))
       });
@@ -30,7 +30,7 @@ export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabOn
     getData();
   }, []);
 
-  function Songs({ name, avatar, genre, lyrics}: Props) {
+  function Songs({ name, geolocation, latitude, longitude, image}: Props) {
     return (
   <View
   style={{
@@ -44,18 +44,6 @@ export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabOn
   }}
 >
   <View style={{ flex: 3, flexDirection: 'row' }}>
-    <View
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Avatar
-        size={100}
-        source={{
-          uri: `${avatar}`,
-        }}
-        activeOpacity={0.7}
-        avatarStyle={{ borderRadius: 145 / 2 }}
-        overlayContainerStyle={{ backgroundColor: 'transparent' }}
-      />
-    </View>
     <View
       style={{
         flex: 1,
@@ -82,22 +70,15 @@ export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabOn
       </View>
     </View>
   </View>
-  <View style={{display: "flex", alignItems: "flex-end", justifyContent: "flex-end", width: "60%"}}>
-  <Text
-          style={{
-            fontSize: 20,
-            color: "white",
-          }}
-        >
-          {genre}
-        </Text>
+  <View style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+  <Image source={{uri: image}} style={{height: 100, width: 100, margin: 20}} />
         <Text
           style={{
             fontSize: 20,
             color: "white",
           }}
         >
-          {lyrics}
+          {latitude}   {longitude}
         </Text>
   </View>
   <View
@@ -117,9 +98,9 @@ export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabOn
   return (
     <View style={styles.container}>
       <ScrollView>
-        {songs.length !== 0 ? (
-          songs.map(({name, avatar, genre, lyrics, id}) => (
-          <Songs name={name} avatar={avatar} genre={genre} lyrics={lyrics} key={lyrics} />
+        {locations.length !== 0 ? (
+          locations.map(({name, geolocation, latitude, longitude, image, id}) => (
+          <Songs name={name} geolocation={geolocation} latitude={latitude} longitude={longitude} image={image} key={name} />
           ))
           ):("")}
         </ScrollView>
