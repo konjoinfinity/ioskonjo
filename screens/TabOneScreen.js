@@ -13,6 +13,7 @@ class Card extends React.Component {
 
     render() {
         return (
+            // add global component for all screens
             <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"space-between", alignItems:"center", marginBottom: Dimensions.get('window').height * 0.1}}>
                 <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>#88</Text> 
@@ -144,6 +145,8 @@ class Home extends React.Component {
 }
 export default Home;
 
+
+// add global style component for all screens
 const styles = StyleSheet.create({
     card: {
         marginTop: Dimensions.get('window').height * 0.03,
