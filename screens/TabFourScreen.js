@@ -52,6 +52,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.handleRefresh()
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
     }
 
     handleRefresh() {
@@ -62,42 +63,42 @@ class Home extends React.Component {
                 kind: 'Good Snow ❄️',
                 title: 'Groomed',
                 desc: '"Farmed" snow that is rolled, smoothed, tilled, manicured into a consistent surface.',
-                backgroundColor: "#6A9ED0"
+                backgroundColor: "#C8C8C8"
             },
             {
                 key: 1,
                 kind: 'Good Snow ❄️',
                 title: 'Windbuff',
                 desc: 'Fine snow that is redistributed by the wind and consolidated.',
-                backgroundColor: "#6A9ED0"
+                backgroundColor: "#C8C8C8"
             },
             {
                 key: 2,
                 kind: 'Marginal Snow ❅',
                 title: 'Crud',
                 desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
-                backgroundColor: "#B5C4D7"
+                backgroundColor: "#C8C8C8"
             },
             {
                 key: 3,
                 kind: 'Marginal Snow ❅',
                 title: 'Mashed Potatoes',
                 desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
-                backgroundColor: "#B5C4D7"
+                backgroundColor: "#A5A5A5"
             },
             {
                 key: 4,
                 kind: 'Tricky Snow ❆',
                 title: 'Breakable Crust',
                 desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
-                backgroundColor: "#DBD4CA"
+                backgroundColor: "#A5A5A5"
             },
             {
                 key: 5,
                 kind: 'Tricky Snow ❆',
                 title: 'Bulletproof',
                 desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-                backgroundColor: "#DBD4CA"
+                backgroundColor: "#A5A5A5"
             },
         ];
         this.setState({ cards: cards })

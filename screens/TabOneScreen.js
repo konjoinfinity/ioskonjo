@@ -52,6 +52,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.handleRefresh()
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
     }
 
     handleRefresh() {
