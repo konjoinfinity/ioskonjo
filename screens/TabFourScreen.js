@@ -53,6 +53,8 @@ class Home extends React.Component {
     componentDidMount() {
         this.handleRefresh()
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+        LogBox.ignoreLogs(['Animated.event']);
+        LogBox.ignoreLogs(['componentWillReceiveProps']);
     }
 
     handleRefresh() {

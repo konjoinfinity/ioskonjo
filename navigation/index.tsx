@@ -83,31 +83,77 @@ function BottomTabNavigator() {
               />
             </Pressable>
           ),
+          headerTitle: "Periodic Table of Snow"
         })}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
           title: 'Ok Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
-        }}
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerTitle: "Periodic Table of Snow"
+  })}
       />
       <BottomTab.Screen
         name="TabThree"
         component={TabThreeScreen}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
           title: 'Bad Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-3" color={color} />,
-        }}
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerTitle: "Periodic Table of Snow"
+        })}
       />
       <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
           title: 'Unusual Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-1" color={color} />,
-        }}
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerTitle: "Periodic Table of Snow"
+        })}
       />
     </BottomTab.Navigator>
   );
@@ -116,23 +162,10 @@ function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
 function Icon(props: {
   name: React.ComponentProps<typeof Fontisto>['name'];
   color: string;
 }) {
   return <Fontisto size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-function MIcon(props: {
-  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
-  color: string;
-}) {
-  return <MaterialCommunityIcons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
