@@ -14,12 +14,14 @@ class Card extends React.Component {
     render() {
         return (
             <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
-                <View style={{ alignSelf: "flex-start", width: Dimensions.get('window').width * 0.8, padding: 25 }}>
-                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.05, textAlign: "left", padding: 5, fontStyle: "italic", marginBottom: 50 }}>{this.props.kind}</Text>
-                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.04, textAlign: "left", fontWeight: "bold", padding: 5, marginBottom: 10 }}>{this.props.title}</Text>
-                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.03, textAlign: "left", padding: 5 }}>{this.props.desc}</Text>
-                </View>
+            <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"space-between", alignItems:"center", marginBottom: Dimensions.get('window').height * 0.1}}>
+            <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>#88</Text> 
+            <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>CR</Text>
             </View>
+                <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 5, fontStyle: "italic", marginBottom: Dimensions.get('window').height * 0.1 }}>{this.props.kind}</Text>
+                <Text style={{ fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", padding: 5, marginBottom: 10 }}>{this.props.title}</Text>
+                <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 5 }}>{this.props.desc}</Text>
+        </View>
         )
     }
 }
@@ -142,11 +144,10 @@ export default Home;
 const styles = StyleSheet.create({
     card: {
         marginTop: Dimensions.get('window').height * 0.03,
-        justifyContent: 'center',
-        alignItems: 'center',
         height: Dimensions.get('window').height * 0.75,
         width: Dimensions.get('window').width * 0.75,
         borderRadius: 15,
+        padding: 15
     },
     noMoreCardsText: {
         fontSize: 22,
