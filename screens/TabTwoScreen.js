@@ -1,149 +1,151 @@
-import { StyleSheet, Text, View, TouchableHighlight, SafeAreaView } from 'react-native';
-import { useState, useEffect } from 'react';
-import { SwipeListView } from 'react-native-swipe-list-view';
-import Ionicon from 'react-native-vector-icons/Ionicons';
-import Dialog from "react-native-dialog";
-import { Button } from '@rneui/themed';
+import React, { Component } from 'react';
+import {
+    View, Text, TouchableOpacity, StyleSheet, Dimensions, LogBox
+} from 'react-native';
+import 'react-native-gesture-handler';
+import SwipeCards from 'react-native-swipe-cards'
 import * as Haptics from 'expo-haptics';
 
-export default function TabTwoScreen() {
-  const [visible, setVisible] = useState(false);
-  const [visible1, setVisible1] = useState(false);
-  const [text, setText] = useState("");
-  const [textref, setTextref] = useState("");
-    var [list, setlist] = useState(Array(5).fill("").map((_, i) => ({ key: `${i}`, text: `Item #${i}` })));
-
-    const deleteItem = (todel) => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      var filteredArray = list.filter(item => {
-        return (item.key !== todel)})
-      alert(`Deleted ${todel}`)
-      setlist(filteredArray)
+class Card extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    const editItem = (toedit) => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
-      var toEdit = list.filter(item => {
-        return (item.key == toedit)})
-      setVisible(true)
-      setText(toEdit)
-      setTextref(toEdit)
-    }
-
-    const addItem = () => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-      setVisible1(true)
-    }
-
-    const handleCancel = (which) => {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
-      which == "edit" ? setVisible(false) : setVisible1(false)
-    };
-
-    const handleInput = (input) => {
-      setText(input)
-    };
-  
-    const handleSubmit = (which) => {
-      if (which == "edit") {
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
-      list[textref[0].key] = {"key": `${textref[0].key}`, "text": `${text}`}
-      setVisible(false);
-      } else {
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
-        list.push({"key": `${list.length}`, "text": `${text}`})
-        setVisible1(false)
-      }
-    };
-
-  return (
-    <SafeAreaView>
-      <Dialog.Container visible={visible}>
-      <Dialog.Title>Edit</Dialog.Title>
-      <Dialog.Description>
-        Modify Note
-      </Dialog.Description>
-      <Dialog.Input id="input" onChangeText={handleInput} defaultValue={text !== "" ? (text[0].text) : ("")}>
-      </Dialog.Input>
-      <Dialog.Button label="Cancel" onPress={()=>handleCancel("edit")} />
-        <Dialog.Button label="Submit" onPress={()=>handleSubmit("edit")} />
-    </Dialog.Container>
-    <Dialog.Container visible={visible1}>
-      <Dialog.Title>Add</Dialog.Title>
-      <Dialog.Description>
-        Add Note
-      </Dialog.Description>
-      <Dialog.Input id="input" onChangeText={handleInput} defaultValue={""}>
-      </Dialog.Input>
-      <Dialog.Button label="Cancel" onPress={handleCancel} />
-        <Dialog.Button label="Submit" onPress={()=>handleSubmit("add")} />
-    </Dialog.Container>
-      <SwipeListView
-            style={{maxHeight: "90%"}}
-            data={list}
-            renderItem={ (data, rowMap) => (
-                <View style={styles.rowFront}>
-                    <Text>{data.item.text}</Text>
+    render() {
+        return (
+            <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
+                <View style={{ alignSelf: "flex-start", width: Dimensions.get('window').width * 0.8, padding: 25 }}>
+                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.05, textAlign: "left", padding: 5, fontStyle: "italic", marginBottom: 50 }}>{this.props.kind}</Text>
+                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.04, textAlign: "left", fontWeight: "bold", padding: 5, marginBottom: 10 }}>{this.props.title}</Text>
+                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.03, textAlign: "left", padding: 5 }}>{this.props.desc}</Text>
                 </View>
-            )}
-            renderHiddenItem={ (data, rowMap) => (
-              <View style={{display: "flex", flexDirection:"row"}}>
-              <TouchableHighlight onPress={() => {editItem(data.item.key); rowMap[data.item.key].closeRow()}}
-                    style={styles.rowBack2}>
-              <Text style={{paddingLeft: 15, color: "white", width: "50%"}}>Edit</Text></TouchableHighlight>
-                    <TouchableHighlight onPress={() => deleteItem(data.item.key)}
-                    style={styles.rowBack}>
-                      <Text style={{paddingRight: 15, color: "white", width: "50%"}}>Delete</Text></TouchableHighlight>
-                      </View>
-            )}
-            
-            leftOpenValue={100}
-            rightOpenValue={-120}
-        />
-<Button raised={true} title='Add New' color={"success"} onPress={addItem}><Ionicon color={"white"} size={40} name="add-outline"></Ionicon></Button>
-</SafeAreaView>
-  );
-            }
+            </View>
+        )
+    }
+}
 
+class NoMoreCards extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View>
+                <TouchableOpacity style={{ backgroundColor: "#81c784", borderRadius: 15, padding: 10, margin: 20 }} onPress={this.props.handleRefresh}>
+                    <Text style={{ color: "white", fontSize: 22, textAlign: "center" }}>Refresh</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
+
+
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            cards: []
+        };
+        this.handleRefresh = this.handleRefresh.bind(this);
+    }
+
+    componentDidMount() {
+        this.handleRefresh()
+    }
+
+    handleRefresh() {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        var cards = [
+            {
+                key: 0,
+                kind: 'Good Snow ❄️',
+                title: 'Groomed',
+                desc: '"Farmed" snow that is rolled, smoothed, tilled, manicured into a consistent surface.',
+                backgroundColor: "#6A9ED0"
+            },
+            {
+                key: 1,
+                kind: 'Good Snow ❄️',
+                title: 'Windbuff',
+                desc: 'Fine snow that is redistributed by the wind and consolidated.',
+                backgroundColor: "#6A9ED0"
+            },
+            {
+                key: 2,
+                kind: 'Marginal Snow ❅',
+                title: 'Crud',
+                desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
+                backgroundColor: "#B5C4D7"
+            },
+            {
+                key: 3,
+                kind: 'Marginal Snow ❅',
+                title: 'Mashed Potatoes',
+                desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
+                backgroundColor: "#B5C4D7"
+            },
+            {
+                key: 4,
+                kind: 'Tricky Snow ❆',
+                title: 'Breakable Crust',
+                desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
+                backgroundColor: "#DBD4CA"
+            },
+            {
+                key: 5,
+                kind: 'Tricky Snow ❆',
+                title: 'Bulletproof',
+                desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
+                backgroundColor: "#DBD4CA"
+            },
+        ];
+        this.setState({ cards: cards })
+    }
+
+    handleYup(card) {
+        console.log(`Join for ${card.text}`)
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+    handleNope(card) {
+        console.log(`Nope for ${card.text}`)
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+    handleMaybe(card) {
+        console.log(`Maybe for ${card.text}`)
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <SwipeCards
+                    cards={this.state.cards}
+                    renderCard={(cardData) => <Card {...cardData} />}
+                    renderNoMoreCards={() => <NoMoreCards handleRefresh={this.handleRefresh} />}
+                    stack={true}
+                    handleYup={this.handleYup}
+                    handleNope={this.handleNope}
+                    handleMaybe={this.handleMaybe}
+                    hasMaybeAction={true}
+                    smoothTransition={false}
+                />
+            </View>
+        );
+    }
+}
+export default Home;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22
-   },
-   sectionHeader: {
-     paddingTop: 2,
-     paddingLeft: 10,
-     paddingRight: 10,
-     paddingBottom: 2,
-     fontSize: 14,
-     fontWeight: 'bold',
-     backgroundColor: 'rgba(247,247,247,1.0)',
-   },
-   item: {
-     padding: 10,
-   },
-   rowFront: {
-    backgroundColor: '#eeeeee',
-    flex: 1,
-    flexDirection: "column",
-    padding: 30,
-    alignItems: "center"
-},
-rowBack: {
-  backgroundColor: "#FC3D39",
-  alignItems: 'center',
-  flex: 1,
-  flexDirection: 'row',
-  justifyContent: "flex-end",
-  padding: 30
-},
-rowBack2: {
-  backgroundColor: "#FECB2E",
-  alignItems: 'center',
-  flex: 1,
-  flexDirection: 'row',
-  justifyContent: "flex-start",
-  padding: 30
-}
-});
+    card: {
+        marginTop: Dimensions.get('window').height * 0.03,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: Dimensions.get('window').height * 0.75,
+        width: Dimensions.get('window').width * 0.75,
+        borderRadius: 15,
+    },
+    noMoreCardsText: {
+        fontSize: 22,
+    }
+})

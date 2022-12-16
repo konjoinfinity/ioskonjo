@@ -15,7 +15,7 @@ class Card extends React.Component {
         return (
             <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
                 <View style={{ alignSelf: "flex-start", width: Dimensions.get('window').width * 0.8, padding: 25 }}>
-                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.05, textAlign: "left", padding: 5, fontStyle: "italic", marginBottom: 50 }}>{this.props.kind}</Text>
+                    <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.04, textAlign: "left", padding: 5, fontStyle: "italic", marginBottom: 50 }}>{this.props.kind}</Text>
                     <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.04, textAlign: "left", fontWeight: "bold", padding: 5, marginBottom: 10 }}>{this.props.title}</Text>
                     <Text style={{ flexDirection: "row", alignContent: "flex-start", fontSize: Dimensions.get('window').height * 0.03, textAlign: "left", padding: 5 }}>{this.props.desc}</Text>
                 </View>
@@ -59,46 +59,49 @@ class Home extends React.Component {
         var cards = [
             {
                 key: 0,
-                kind: 'Good Snow ❄️',
+                kind: 'Exquisite Snow ❄️',
                 title: 'Groomed',
                 desc: '"Farmed" snow that is rolled, smoothed, tilled, manicured into a consistent surface.',
-                backgroundColor: "#6A9ED0"
+                backgroundColor: "#5B9BD5"
             },
             {
                 key: 1,
-                kind: 'Good Snow ❄️',
+                kind: 'Exquisite Snow ❄️',
                 title: 'Windbuff',
                 desc: 'Fine snow that is redistributed by the wind and consolidated.',
-                backgroundColor: "#6A9ED0"
+                backgroundColor: "#5B9BD5"
             },
             {
                 key: 2,
-                kind: 'Marginal Snow ❅',
-                title: 'Crud',
-                desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
-                backgroundColor: "#B5C4D7"
+                kind: 'Exquisite Snow ❄️',
+                title: 'Groomed',
+                desc: '"Farmed" snow that is rolled, smoothed, tilled, manicured into a consistent surface.',
+                backgroundColor: "#5B9BD5"
             },
             {
                 key: 3,
-                kind: 'Marginal Snow ❅',
-                title: 'Mashed Potatoes',
-                desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
-                backgroundColor: "#B5C4D7"
+                kind: 'Ideal Snow ❄️',
+                title: 'Windbuff',
+                desc: 'Fine snow that is redistributed by the wind and consolidated.',
+                backgroundColor: "#8EAADB"
             },
+            ,
             {
                 key: 4,
-                kind: 'Tricky Snow ❆',
-                title: 'Breakable Crust',
-                desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
-                backgroundColor: "#DBD4CA"
+                kind: 'Ideal Snow ❄️',
+                title: 'Windbuff',
+                desc: 'Fine snow that is redistributed by the wind and consolidated.',
+                backgroundColor: "#8EAADB"
             },
+            ,
             {
                 key: 5,
-                kind: 'Tricky Snow ❆',
-                title: 'Bulletproof',
-                desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-                backgroundColor: "#DBD4CA"
+                kind: 'Ideal Snow ❄️',
+                title: 'Windbuff',
+                desc: 'Fine snow that is redistributed by the wind and consolidated.',
+                backgroundColor: "#8EAADB"
             },
+            
         ];
         this.setState({ cards: cards })
     }

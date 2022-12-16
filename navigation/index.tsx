@@ -3,13 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
-
+import { ColorSchemeName, Pressable, Text } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
@@ -68,8 +67,8 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Konjo',
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          title: 'Best Snow',
+          tabBarIcon: ({ color }) => <Icon name="snowflake-4" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -90,24 +89,24 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'To Do',
-          tabBarIcon: ({ color }) => <TabBarIcon name="check" color={color} />,
+          title: 'Ok Snow',
+          tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabThree"
         component={TabThreeScreen}
         options={{
-          title: 'How To',
-          tabBarIcon: ({ color }) => <TabBarIcon name="question" color={color} />,
+          title: 'Bad Snow',
+          tabBarIcon: ({ color }) => <Icon name="snowflake-3" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
         options={{
-          title: 'Four',
-          tabBarIcon: ({ color }) => <TabBarIcon name="question" color={color} />,
+          title: 'Unusual Snow',
+          tabBarIcon: ({ color }) => <Icon name="snowflake-1" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -123,3 +122,17 @@ function TabBarIcon(props: {
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+function Icon(props: {
+  name: React.ComponentProps<typeof Fontisto>['name'];
+  color: string;
+}) {
+  return <Fontisto size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+function MIcon(props: {
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+  color: string;
+}) {
+  return <MaterialCommunityIcons size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
