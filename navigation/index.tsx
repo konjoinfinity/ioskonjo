@@ -76,7 +76,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
-          title: 'Ok Snow',
+          title: 'Good Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
           headerTitle: "Periodic Table of Snow"
   })}
