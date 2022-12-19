@@ -104,8 +104,8 @@ export default function Home({navigation}) {
             key: 9,
             anum: "10",
             acronymn: "DE",
-            kind: 'Deep',
-            title: 'Exquisite Snow ❄️',
+            kind: 'Exquisite Snow ❄️',
+            title: 'Deep',
             desc: "Extremely deep snow, often knee/waist/chest; Not only in ski movies.",
             backgroundColor: "#5B9BD5"
         },
@@ -496,97 +496,204 @@ export default function Home({navigation}) {
             desc: "Extremely hard icy snow surface, usually found in small, round patches; Like the stone.",
             backgroundColor: "#DEEAF6"
         },
-
-        // {
-        //     key: 11,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: 'Good Snow ❄️',
-        //     title: 'Crud',
-        //     desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
-        //     backgroundColor: "#6A9ED0"
-        // },
-        // {
-        //     key: 12,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: 'Marginal Snow ❅',
-        //     title: 'Mashed Potatoes',
-        //     desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
-        //     backgroundColor: "#B5C4D7"
-        // },
-        // {
-        //     key: 13,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: 'Marginal Snow ❅',
-        //     title: 'Breakable Crust',
-        //     desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
-        //     backgroundColor: "#B5C4D7"
-        // },
-        // {
-        //     key: 14,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: 'Marginal Snow ❅',
-        //     title: 'Bulletproof',
-        //     desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-        //     backgroundColor: "#B5C4D7"
-        // },
-        // {
-        //     key: 15,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Tricky Snow ❆",
-        //     title: "Bulletproof",
-        //     desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-        //     backgroundColor: "#DBD4CA",
-        //   },
-        //   {
-        //     key: 16,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Tricky Snow ❆",
-        //     title: "Bulletproof",
-        //     desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-        //     backgroundColor: "#DBD4CA",
-        //   },
-        //   {
-        //     key: 17,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Tricky Snow ❆",
-        //     title: "Bulletproof",
-        //     desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-        //     backgroundColor: "#DBD4CA",
-        //   },
-        //   {
-        //     key: 18,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Marginal Snow ❅",
-        //     title: "Mashed Potatoes",
-        //     desc: "Soft lumpy spring snow, heavy like the namesake side dish.",
-        //     backgroundColor: "#FEF2CB",
-        //   },
-        //   {
-        //     key: 19,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Tricky Snow ❆",
-        //     title: "Breakable Crust",
-        //     desc: "A hard layer that gives way to soft snow underneath; a tough go.",
-        //     backgroundColor: "#FFD965",
-        //   },
-        //   {
-        //     key: 20,
-        //     anum: "8",
-        //     acronymn: "HS",
-        //     kind: "Tricky Snow ❆",
-        //     title: "Bulletproof",
-        //     desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-        //     backgroundColor: "#FEF2CB",
-        //   }
+        {
+            key: 53,
+            anum: "54",
+            acronymn: "CR",
+            kind: 'Marginal Snow ❄️',
+            title: 'Crud',
+            desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 54,
+            anum: "55",
+            acronymn: "BO",
+            kind: 'Marginal Snow ❄️',
+            title: 'Boilerplate',
+            desc: 'Dense hardpack, solid frozen;  Hard to set an edge = "slip & slide".',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 55,
+            anum: "56",
+            acronymn: "VA",
+            kind: 'Marginal Snow ❄️',
+            title: 'Variable',
+            desc: 'Experiencing different conditions during a single run; (e.g., Pow to Crud to Slop to...).',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 56,
+            anum: "57",
+            acronymn: "SC",
+            kind: 'Marginal Snow ❄️',
+            title: 'Sierra Cement',
+            desc: 'Very heavy, wet, snow often brought by Pacific storms;  Ugh!',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 57,
+            anum: "58",
+            acronymn: "CSC",
+            kind: 'Marginal Snow ❄️',
+            title: 'Colorado Super Chunk',
+            desc: 'Heavy, wet snow a few days after a spring snow storm.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 58,
+            anum: "59",
+            acronymn: "WP",
+            kind: 'Marginal Snow ❄️',
+            title: 'Wind Packed',
+            desc: 'Firm and consolidated, wind shaped and packed; Keeps your attention if odd shapes.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 59,
+            anum: "60",
+            acronymn: "CD",
+            kind: 'Marginal Snow ❄️',
+            title: 'Chunder',
+            desc: 'Powder with large chunks of ice*** and snow cluttering an otherwise fine ski run. ***Sometimes left behind by grooming machine.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 60,
+            anum: "61",
+            acronymn: "MP",
+            kind: 'Marginal Snow ❅',
+            title: 'Mashed Potatoes',
+            desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 61,
+            anum: "62",
+            acronymn: "MA",
+            kind: 'Marginal Snow ❅',
+            title: 'Mank',
+            desc: 'Older powder, cooked by the spring sun; so very heavy & tough.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 62,
+            anum: "63",
+            acronymn: "SoF",
+            kind: 'Marginal Snow ❅',
+            title: 'Salt on Formica',
+            desc: 'Feels, looks like salt granules on a cold, icy, hardpack surface.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 63,
+            anum: "64",
+            acronymn: "CL",
+            kind: 'Marginal Snow ❅',
+            title: 'Chocolate Chip',
+            desc: 'A nasty mix of loose, gravel or the tips of buried rocks poking through top of snow.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 64,
+            anum: "65",
+            acronymn: "BS",
+            kind: 'Marginal Snow ❅',
+            title: 'Brown Snow',
+            desc: 'Spring conditions with mud showing through, and mixing in; Blech!',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 65,
+            anum: "66",
+            acronymn: "STY",
+            kind: 'Marginal Snow ❅',
+            title: 'Styrofoam',
+            desc: 'Hollow-sounding snow, with same feel if skiing on this stuff.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 66,
+            anum: "67",
+            acronymn: "EF",
+            kind: 'Marginal Snow ❅',
+            title: 'Eastern Firm',
+            desc: 'A public relations spin that aims to make the conditions seem more palatable; Means "Ice".',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 67,
+            anum: "68",
+            acronymn: "DoC",
+            kind: 'Marginal Snow ❅',
+            title: 'Dust on Crust',
+            desc: 'A thin layer of new snow topping an icy, hardpack below.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 68,
+            anum: "69",
+            acronymn: "WB",
+            kind: 'Marginal Snow ❅',
+            title: 'Washboard',
+            desc: 'Frozen corduroy, that makes unusual hum sounds and vibrations.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 69,
+            anum: "70",
+            acronymn: "CW",
+            kind: 'Marginal Snow ❅',
+            title: 'Chowder',
+            desc: 'Heavy, wet, lumpy snow, chunky like the name says, thick soup.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 70,
+            anum: "71",
+            acronymn: "CA",
+            kind: 'Marginal Snow ❅',
+            title: 'Cascade Concrete',
+            desc: 'Very heavy wet dense snow, typical of the Pacific NW maritme.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 71,
+            anum: "72",
+            acronymn: "FN",
+            kind: 'Marginal Snow ❅',
+            title: 'Firn',
+            desc: 'Multi-year-old snow, a well-bonded snow, frozen solid; Can be difficult to ski on.',
+            backgroundColor: "#DEEAF6"
+        },
+        {
+            key: 72,
+            anum: "73",
+            acronymn: "CF",
+            kind: 'Tricky Snow ❅',
+            title: 'Cauliflower',
+            desc: 'Lumpy, ungroomed and dense snow located near recently operating snow gun.',
+            backgroundColor: "#ECECEC"
+        },
+        {
+            key: 73,
+            anum: "74",
+            acronymn: "SPR",
+            kind: 'Tricky Snow ❅',
+            title: 'Spring Conditions',
+            desc: 'Highly variable snow found late in season, prone to freeze/thaw.',
+            backgroundColor: "#ECECEC"
+        },
+        {
+            key: 74,
+            anum: "75",
+            acronymn: "BC",
+            kind: 'Tricky Snow ❅',
+            title: 'Breakable Crust',
+            desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
+            backgroundColor: "#ECECEC"
+        }
     ]);
 
     useEffect(() => {

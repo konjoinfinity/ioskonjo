@@ -17,11 +17,11 @@ export default function ModalScreen({ route }) {
       <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 5, margin: 5, alignSelf: "center" }}>{cardData.kind}</Text>
       <View style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.85, height: Dimensions.get('window').height * 0.8, marginBottom: 1}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 10, backgroundColor: cardData.backgroundColor}}>
-             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>{cardData.anum}</Text> 
-             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>{cardData.acronymn}</Text>
+             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", color: cardData.backgroundColor === "#DEEAF6" ? "black" : "white"}}>{cardData.anum}</Text> 
+             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", color: cardData.backgroundColor === "#DEEAF6" ? "black" : "white"}}>{cardData.acronymn}</Text>
              </View>
-             <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", padding: 12, marginTop: 12, alignSelf: "center" }}>{cardData.title}</Text>
-             <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 10, margin: 10, alignSelf: "center" }}>{cardData.desc}</Text>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", padding: 12, marginTop: 12, alignSelf: "center", color: cardData.backgroundColor === "#DEEAF6" ? "black" : "white" }}>{cardData.title}</Text>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 10, margin: 10, alignSelf: "center", color: cardData.backgroundColor === "#DEEAF6" ? "black" : "white" }}>{cardData.desc}</Text>
                 </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
