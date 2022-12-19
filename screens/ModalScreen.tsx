@@ -1,9 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
+import * as Haptics from 'expo-haptics';
 
 export default function ModalScreen({ route }) {
   const {cardData} = route.params;
+  
+  useEffect(() => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  }, [])
+
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />

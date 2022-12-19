@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View, Text, TouchableOpacity, Dimensions, ScrollView, Modal, StyleSheet, Pressable,
 } from 'react-native';
@@ -210,14 +210,6 @@ export default function Home({navigation}) {
             backgroundColor: "#FEF2CB",
           }
     ]);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [anum, setAnum] = useState("");
-    const [acronymn, setAcronym] = useState("");
-    const [kind, setKind] = useState("");
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
-    const [backgroundColor, setBackgroundColor] = useState("");
-
 
     useEffect(() => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -225,33 +217,8 @@ export default function Home({navigation}) {
 
         return(
             <ScrollView style={{ flex: 1 }}>
-                <GestureRecognizer
-  style={{flex: 1}}
-  onSwipeUp={ () => setModalVisible(true) }
-  onSwipeDown={ () => setModalVisible(false) }>
-                 <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{title !== "" ? title : "Test"}</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-        </GestureRecognizer>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-around"}}>
-                {cards.length !== 0 ? cards.map((cardData) => (<Card key={cardData.key} cardData={cardData} navigation={navigation} setModalVisible={() => setModalVisible()} /> )) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (<Card key={cardData.key} cardData={cardData} navigation={navigation} /> )) : ("")}               
                 </View>
             </ScrollView>
         );
