@@ -1,155 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, StyleSheet, Dimensions, LogBox
+    View, Text, TouchableOpacity, Dimensions, ScrollView,
 } from 'react-native';
 import 'react-native-gesture-handler';
-import SwipeCards from 'react-native-swipe-cards'
 import * as Haptics from 'expo-haptics';
+import snowData from '../constants/snowData';
 
-class Card extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
+export function Card({navigation, cardData}){
         return (
-            <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
-            <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"space-between", alignItems:"center", marginBottom: Dimensions.get('window').height * 0.1}}>
-            <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>#88</Text> 
-            <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>CR</Text>
-            </View>
-                <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 5, fontStyle: "italic", marginBottom: Dimensions.get('window').height * 0.1 }}>{this.props.kind}</Text>
-                <Text style={{ fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", padding: 5, marginBottom: 10 }}>{this.props.title}</Text>
-                <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 5 }}>{this.props.desc}</Text>
-        </View>
-        )
-    }
-}
-
-class NoMoreCards extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <View>
-                <TouchableOpacity style={{ backgroundColor: "#81c784", borderRadius: 15, padding: 10, margin: 20 }} onPress={this.props.handleRefresh}>
-                    <Text style={{ color: "white", fontSize: 22, textAlign: "center" }}>Refresh</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5}}>
+                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
+             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.anum}</Text> 
+             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.acronymn}</Text>
+             </View>
+             <Text style={{ fontSize: cardData.title == "Chowder Powder (Chowdah Powdah)" ? Dimensions.get('window').height * 0.023 : Dimensions.get('window').height * 0.026, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
                 </TouchableOpacity>
-            </View>
         )
     }
-}
 
+export default function Home({navigation}) {
+    const [cards, setCards] = useState([]);
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cards: []
-        };
-        this.handleRefresh = this.handleRefresh.bind(this);
-    }
-
-    componentDidMount() {
-        this.handleRefresh()
-        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-        LogBox.ignoreLogs(['Animated.event']);
-        LogBox.ignoreLogs(['componentWillReceiveProps']);
-    }
-
-    handleRefresh() {
+    useEffect(() => {
+        var result = snowData.filter(sno => sno.key >= 102);
+        setCards(result)
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-        var cards = [
-            {
-                key: 0,
-                kind: 'Good Snow ❄️',
-                title: 'Groomed',
-                desc: '"Farmed" snow that is rolled, smoothed, tilled, manicured into a consistent surface.',
-                backgroundColor: "#C8C8C8"
-            },
-            {
-                key: 1,
-                kind: 'Good Snow ❄️',
-                title: 'Windbuff',
-                desc: 'Fine snow that is redistributed by the wind and consolidated.',
-                backgroundColor: "#C8C8C8"
-            },
-            {
-                key: 2,
-                kind: 'Marginal Snow ❅',
-                title: 'Crud',
-                desc: 'Heavily skied and cut-up powder, uneven consistency & depth; Needs grooming, now!',
-                backgroundColor: "#C8C8C8"
-            },
-            {
-                key: 3,
-                kind: 'Marginal Snow ❅',
-                title: 'Mashed Potatoes',
-                desc: 'Soft lumpy spring snow, heavy like the namesake side dish.',
-                backgroundColor: "#A5A5A5"
-            },
-            {
-                key: 4,
-                kind: 'Tricky Snow ❆',
-                title: 'Breakable Crust',
-                desc: 'A hard layer that gives way to soft snow underneath; a tough go.',
-                backgroundColor: "#A5A5A5"
-            },
-            {
-                key: 5,
-                kind: 'Tricky Snow ❆',
-                title: 'Bulletproof',
-                desc: 'Solid, frozen hard snow; Hard to set an edge = "slide-for-life".',
-                backgroundColor: "#A5A5A5"
-            },
-        ];
-        this.setState({ cards: cards })
-    }
+      }, [])
 
-    handleYup(card) {
-        console.log(`Join for ${card.text}`)
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    }
-    handleNope(card) {
-        console.log(`Nope for ${card.text}`)
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    }
-    handleMaybe(card) {
-        console.log(`Maybe for ${card.text}`)
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    }
-
-    render() {
-        return (
-            <View style={{ flex: 1 }}>
-                <SwipeCards
-                    cards={this.state.cards}
-                    renderCard={(cardData) => <Card {...cardData} />}
-                    renderNoMoreCards={() => <NoMoreCards handleRefresh={this.handleRefresh} />}
-                    stack={true}
-                    handleYup={this.handleYup}
-                    handleNope={this.handleNope}
-                    handleMaybe={this.handleMaybe}
-                    hasMaybeAction={true}
-                    smoothTransition={false}
-                />
-            </View>
+        return(
+            <ScrollView style={{ flex: 1 }}>
+                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
+                {cards.length !== 0 ? cards.map((cardData) => (<Card key={cardData.key} cardData={cardData} navigation={navigation} /> )) : ("")}               
+                </View>
+            </ScrollView>
         );
-    }
 }
-export default Home;
-
-const styles = StyleSheet.create({
-    card: {
-        marginTop: Dimensions.get('window').height * 0.03,
-        height: Dimensions.get('window').height * 0.75,
-        width: Dimensions.get('window').width * 0.75,
-        borderRadius: 15,
-        padding: 15
-    },
-    noMoreCardsText: {
-        fontSize: 22,
-    }
-})

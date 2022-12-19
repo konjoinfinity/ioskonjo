@@ -17,7 +17,6 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
-import TabFiveScreen from "../screens/TabFiveScreen"
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -97,15 +96,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
           title: 'Unusual Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-1" color={color} />,
-          headerTitle: "Periodic Table of Snow"
-        })}
-      />
-      <BottomTab.Screen
-        name="TabFive"
-        component={TabFiveScreen}
-        options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
-          title: 'Gallery',
-          tabBarIcon: ({ color }) => <Icon name="snowflake-8" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
       />
