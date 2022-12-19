@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome, Fontisto, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, Fontisto, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,6 +19,8 @@ import TabThreeScreen from '../screens/TabThreeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import TabFiveScreen from '../screens/TabFiveScreen';
+import ModalNoteScreen from '../screens/ModalNoteScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -43,6 +45,7 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow" }} />
+        <Stack.Screen name="ModalNote" component={ModalNoteScreen} options={{ title: "Periodic Table Of Snow" }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -99,6 +102,15 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
         })}
       />
+      <BottomTab.Screen
+        name="TabFive"
+        component={TabFiveScreen}
+        options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
+          title: 'Notes',
+          tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
+          headerTitle: "Periodic Table of Snow"
+        })}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -111,5 +123,12 @@ function Icon(props: {
   color: string;
 }) {
   return <Fontisto size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
+function MIcon(props: {
+  name: React.ComponentProps<typeof MaterialIcons>['name'];
+  color: string;
+}) {
+  return <MaterialIcons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 

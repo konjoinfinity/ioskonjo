@@ -869,7 +869,7 @@ export default snowData = [
             acronymn: "YS",
             kind: 'You Call This Snow? ❅',
             title: 'Yellow Snow',
-            desc: "Don't eat this snow.	Don't ski this snow. Don't make this snow.",
+            desc: "Don't eat this snow. Don't ski this snow. Don't make this snow.",
             backgroundColor: "#FFD965"
         },
         {
