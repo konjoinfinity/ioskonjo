@@ -917,9 +917,283 @@ export default snowData = [
             desc: 'Mix 16 ounces of corn starch with one cup of conditioner, unscented and mix by hand, Fun!',
             backgroundColor: "#FEF2CB"
         },
-
-        
-
-
-       
+        {
+            key: 102,
+            anum: "103",
+            acronymn: "SAS",
+            kind: 'Exotic Snow ❅',
+            title: 'Sastrugi',
+            desc: 'Wind-sculpted hard surface formations of irregular shapes/ridges wave-like appearance.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 103,
+            anum: "104",
+            acronymn: "SUN",
+            kind: 'Exotic Snow ❅',
+            title: 'Sun Cups',
+            desc: 'Pattern of shallow bowl-shaped hollows formed by real intense sunshine and warmth.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 104,
+            anum: "105",
+            acronymn: "TAP",
+            kind: 'Exotic Snow ❅',
+            title: 'Tapioca',
+            desc: 'Spherical snow pellets or graupel, deep enough to ski "in"; Bring spoon = dessert.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 105,
+            anum: "106",
+            acronymn: "WTM",
+            kind: 'Exotic Snow ❅',
+            title: 'Watermelon',
+            desc: 'Pinkish/red snow caused by red-green; Sometimes it can smell like fruit.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 106,
+            anum: "107",
+            acronymn: "YUK",
+            kind: 'Exotic Snow ❅',
+            title: 'Yukimarimo',
+            desc: 'Balls of frost formed at very low temps, in places like Antartica.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 107,
+            anum: "108",
+            acronymn: "MEG",
+            kind: 'Exotic Snow ❅',
+            title: 'Megadunes',
+            desc: 'Giant snow dunes in Antartica made of huge snow crystals up to 3/4" across.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 108,
+            anum: "109",
+            acronymn: "DH",
+            kind: 'Exotic Snow ❅',
+            title: 'Depth Hoar',
+            desc: 'Snow layers unbonded	to adjoining layer, making for weakness and avalanche prone.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 109,
+            anum: "110",
+            acronymn: "PEN",
+            kind: 'Exotic Snow ❅',
+            title: 'Penitents',
+            desc: 'Tall, thin, closely-spaced blades of hard snow; Seen in Andes mountains; Whimsical.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 110,
+            anum: "111",
+            acronymn: "BAR",
+            kind: 'Exotic Snow ❅',
+            title: 'Snow Barchan',
+            desc: 'Horseshoe-shaped snowdrift with the ends pointing down-wind; a tough ski.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 111,
+            anum: "112",
+            acronymn: "ROL",
+            kind: 'Exotic Snow ❅',
+            title: 'Snow Roller',
+            desc: 'Wind blows chunks of	snow across the surface, snowballing into cylinder shapes.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 112,
+            anum: "113",
+            acronymn: "INJ",
+            kind: 'Exotic Snow ❅',
+            title: 'Injected',
+            desc: 'Race-prepared surface water forced in snow under high pressure; "World Cup" hard.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 113,
+            anum: "114",
+            acronymn: "SCU",
+            kind: 'Exotic Snow ❅',
+            title: 'Snow Sculpture',
+            desc: 'Fanciful, wondrous and whimsical art, created by carving & shaping packed snow.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 114,
+            anum: "115",
+            acronymn: "MET",
+            kind: 'Exotic Snow ❅',
+            title: 'Methane Snow',
+            desc: 'NASA scientists found some on the planet Pluto; Or is it a "dwarf planet"?',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 115,
+            anum: "116",
+            acronymn: "WG",
+            kind: 'Exotic Snow ❅',
+            title: 'White Gold',
+            desc: 'Slang for the money-making potential of snowy mountains, ski mountains especially.',
+            backgroundColor: "#C8C8C8"
+        },
+        {
+            key: 116,
+            anum: "117",
+            acronymn: "FRE",
+            kind: 'Foreign Snow ❅',
+            title: 'Poudreuse',
+            desc: 'Powder Snow in French.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 117,
+            anum: "118",
+            acronymn: "GER",
+            kind: 'Foreign Snow ❅',
+            title: 'Schnee',
+            desc: 'Snow in German.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 118,
+            anum: "119",
+            acronymn: "GER",
+            kind: 'Foreign Snow ❅',
+            title: 'Pulverschnee',
+            desc: 'Powder Snow in German.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 119,
+            anum: "120",
+            acronymn: "GER",
+            kind: 'Foreign Snow ❅',
+            title: 'Tiefschnee',
+            desc: 'Deep Powder Snow in German.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 120,
+            anum: "121",
+            acronymn: "JAP",
+            kind: 'Foreign Snow ❅',
+            title: 'Yuki',
+            desc: 'Snow in Japanese.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 121,
+            anum: "122",
+            acronymn: "JAP",
+            kind: 'Foreign Snow ❅',
+            title: 'Konayuki',
+            desc: 'Powder Snow in Japanese.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 122,
+            anum: "123",
+            acronymn: "JAP",
+            kind: 'Foreign Snow ❅',
+            title: 'Fukai Konayuki',
+            desc: 'Deep Powder Snow in Japanese.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 123,
+            anum: "124",
+            acronymn: "LAT",
+            kind: 'Foreign Snow ❅',
+            title: 'Nix',
+            desc: 'Snow in Latin.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 124,
+            anum: "125",
+            acronymn: "FRE",
+            kind: 'Foreign Snow ❅',
+            title: 'Neige',
+            desc: 'Snow in French.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 125,
+            anum: "126",
+            acronymn: "FRE",
+            kind: 'Foreign Snow ❅',
+            title: 'Linguee',
+            desc: 'Deep Powder Snow in French.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 126,
+            anum: "127",
+            acronymn: "ESK",
+            kind: 'Foreign Snow ❅',
+            title: 'Aput',
+            desc: 'Snow on the ground in Eskimo-Aleut.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 127,
+            anum: "128",
+            acronymn: "ESK",
+            kind: 'Foreign Snow ❅',
+            title: 'Qana',
+            desc: 'Falling Snow in Eskimo-Aleut.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 128,
+            anum: "129",
+            acronymn: "ESK",
+            kind: 'Foreign Snow ❅',
+            title: 'Piqsirpoq',
+            desc: 'Drifting Snow in Eskimo-Aleut.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 129,
+            anum: "130",
+            acronymn: "ESK",
+            kind: 'Foreign Snow ❅',
+            title: 'Qimuqsuq',
+            desc: 'Snow Drift in Eskimo-Aleut.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 130,
+            anum: "131",
+            acronymn: "NOR",
+            kind: 'Foreign Snow ❅',
+            title: 'Sno',
+            desc: 'Snow in Norwegian.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 131,
+            anum: "132",
+            acronymn: "SWA",
+            kind: 'Foreign Snow ❅',
+            title: 'Theluji',
+            desc: 'Snow in Swahili.',
+            backgroundColor: "#A5A5A5"
+        },
+        {
+            key: 132,
+            anum: "133",
+            acronymn: "GRK",
+            kind: 'Foreign Snow ❅',
+            title: 'Chioni',
+            desc: 'Snow in Greek.',
+            backgroundColor: "#A5A5A5"
+        },
     ]

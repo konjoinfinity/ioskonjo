@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet
+    View, Text, TouchableOpacity, Dimensions, ScrollView,
 } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
@@ -13,7 +13,7 @@ export function Card({navigation, cardData}){
              <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.acronymn}</Text>
              </View>
-             <Text style={{ fontSize: cardData.title == "Chowder Powder (Chowdah Powdah)" ? Dimensions.get('window').height * 0.023 : Dimensions.get('window').height * 0.028, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
+             <Text style={{ fontSize: cardData.title == "Chowder Powder (Chowdah Powdah)" ? Dimensions.get('window').height * 0.023 : Dimensions.get('window').height * 0.026, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
                 </TouchableOpacity>
         )
     }
