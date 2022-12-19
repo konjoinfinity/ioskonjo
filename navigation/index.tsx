@@ -43,7 +43,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow" }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -70,20 +70,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Best Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-4" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
           headerTitle: "Periodic Table of Snow"
         })}
       />
@@ -93,20 +79,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
           title: 'Ok Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
           headerTitle: "Periodic Table of Snow"
   })}
       />
@@ -116,20 +88,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
           title: 'Bad Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-3" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
           headerTitle: "Periodic Table of Snow"
         })}
       />
@@ -139,20 +97,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
           title: 'Unusual Snow',
           tabBarIcon: ({ color }) => <Icon name="snowflake-1" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
           headerTitle: "Periodic Table of Snow"
         })}
       />
@@ -162,20 +106,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
           title: 'Gallery',
           tabBarIcon: ({ color }) => <Icon name="snowflake-8" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
           headerTitle: "Periodic Table of Snow"
         })}
       />

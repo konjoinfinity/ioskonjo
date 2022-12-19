@@ -2,13 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
 
-export default function ModalScreen() {
+export default function ModalScreen({ route }) {
+  const {cardData} = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Periodic Table of Snow</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={{fontSize: Dimensions.get('window').height * 0.03, margin: Dimensions.get('window').height * 0.05 }}>So, here it is: the “Periodic Table of Snow”, in all its laughable glory. I hope you have a few chuckles as you read it, and maybe use some of the terms in the future. Although it took many hours of research and preparation, as you might imagine, I had a blast developing it. But what else was I going to do during a pandemic shelter-in-place? I had plenty of hours to fill. Time was something I had plenty of, in the spring of 2020.</Text>
-
+      <View style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.85, height: Dimensions.get('window').height * 0.8, marginBottom: 1}}>
+                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 10, backgroundColor: cardData.backgroundColor}}>
+             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>{cardData.anum}</Text> 
+             <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold"}}>{cardData.acronymn}</Text>
+             </View>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", padding: 5, marginTop: 10, alignSelf: "center" }}>{cardData.title}</Text>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 10, margin: 10, alignSelf: "center" }}>{cardData.desc}</Text>
+                </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -26,7 +32,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 10,
     height: 1,
     width: '80%',
   },
