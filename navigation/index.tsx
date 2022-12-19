@@ -106,8 +106,8 @@ function BottomTabNavigator() {
         name="TabFive"
         component={TabFiveScreen}
         options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
-          title: 'Notes',
-          tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
+          title: 'Search',
+          tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
       />
