@@ -14,14 +14,18 @@ export default function ModalNoteScreen({ route, navigation }) {
   const [occasion, setOccasion] = useState("");
   const [notes, setNotes] = useState("");
   const {noteData} = route.params;
+  let keys = []
   
   useEffect(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
   }, [])
 
+
   const setNoteData = async() => {
-    try {
-    await AsyncStorage.setItem("key1",
+          keys = await AsyncStorage.getAllKeys()
+        console.log(keys)
+        try {
+    await AsyncStorage.setItem(`key${keys.length + 1}`,
       JSON.stringify({
           date: noteData.date,
           location: location,
@@ -40,8 +44,7 @@ export default function ModalNoteScreen({ route, navigation }) {
   return (
     <ScrollView>
     <View style={styles.container}>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={{marginBottom: 20}} category='h6'>Date: {noteData.date}</Text>
+      <Text style={{marginBottom: 20, marginTop: 10}} category='h6'>Date: {noteData}</Text>
       <Input
           style={styles.input}
           status='info'
@@ -101,6 +104,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: Dimensions.get('window').width * 0.95,
-    padding: 10
+    padding: 5
   }
 });
