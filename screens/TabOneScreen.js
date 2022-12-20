@@ -22,8 +22,7 @@ export default function Home({navigation}) {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        var result = snowData.filter(sno => sno.key <= 34);
-        setCards(result)
+        setCards(snowData)
         const unsubscribe = navigation.addListener('focus', () => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
           });
