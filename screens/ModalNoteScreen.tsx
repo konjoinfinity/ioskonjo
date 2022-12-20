@@ -1,29 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Platform, StyleSheet, Dimensions } from 'react-native';
-import { Stack, TextInput, IconButton } from "@react-native-material/core";
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useInputState = (initialValue = '') => {
-  const [value, setValue] = React.useState(initialValue);
-  return { value, onChangeText: setValue };
-};
-
-export default function ModalNoteScreen({ route }) {
-  const locationInputState = useInputState();
-  const weatherInputState = useInputState();
-  const companionsInputState = useInputState();
-  const occasionInputState = useInputState();
-  const notesInputState = useInputState();
-  
+export default function ModalNoteScreen({ route, navigation }) {
+  const [location, setLocation] = useState("");
+  const [weather, setWeather] = useState("");
+  const [companions, setCompanions] = useState("");
+  const [occasion, setOccasion] = useState("");
+  const [notes, setNotes] = useState("");
   const {noteData} = route.params;
   
   useEffect(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
   }, [])
+
+  const setNoteData = async() => {
+    try {
+    await AsyncStorage.setItem("key1",
+      JSON.stringify({
+          date: noteData.date,
+          location: location,
+          weather: weather,
+          companions: companions,
+          occasion: occasion,
+          notes: notes
+      })
+    )
+    console.log("written")
+  } catch (error) {
+      console.log(error)
+  }
+  } 
 
   return (
     <ScrollView>
@@ -34,33 +46,38 @@ export default function ModalNoteScreen({ route }) {
           style={styles.input}
           status='info'
           placeholder='Location'
-          {...locationInputState}
+          value={location}
+          onChangeText={nextValue => setLocation(nextValue)}
         />
         <Input
           style={styles.input}
           status='info'
           placeholder='Weather'
-          {...weatherInputState}
+          value={weather}
+          onChangeText={nextValue => setWeather(nextValue)}
         />
         <Input
           style={styles.input}
           status='info'
           placeholder='Companions'
-          {...companionsInputState}
+          value={companions}
+          onChangeText={nextValue => setCompanions(nextValue)}
         />
         <Input
           style={styles.input}
           status='info'
           placeholder='Occasion'
-          {...occasionInputState}
+          value={occasion}
+          onChangeText={nextValue => setOccasion(nextValue)}
         />
         <Input
           style={styles.input}
           status='info'
           placeholder='Notes'
-          {...notesInputState}
+          value={notes}
+          onChangeText={nextValue => setNotes(nextValue)}
         />
-      <Button style={{marginTop: 40}} appearance="filled"><Text>Add New Note</Text></Button>
+      <Button onPress={() => {setNoteData(), navigation.navigate("TabFour")}} style={{marginTop: 40}} appearance="filled"><Text>Add New Note</Text></Button>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
