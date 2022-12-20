@@ -24,8 +24,11 @@ export default function Home({navigation}) {
     useEffect(() => {
         var result = snowData.filter(sno => sno.key >= 72 && sno.key <= 101);
         setCards(result)
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      }, [])
+        const unsubscribe = navigation.addListener('focus', () => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        });
+        return unsubscribe;
+    }, [navigation])
 
         return(
             <ScrollView style={{ flex: 1 }}>

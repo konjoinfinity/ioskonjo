@@ -14,10 +14,13 @@ export default function TabFiveScreen({ navigation }) {
   const [search, setSearch] = useState("")
   
   useEffect(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     setCards(snowData)
-    textInput.focus();
-  }, [])
+    const unsubscribe = navigation.addListener('focus', () => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+      textInput.focus();
+    });
+    return unsubscribe;
+  }, [navigation])
 
   const handleChange = (search) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -30,8 +33,9 @@ export default function TabFiveScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
       <ScrollView contentContainerStyle={{paddingLeft: 12, height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width * 1, alignItems: "center", justifyContent:"flex-start", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>{search.length !== 0 && cardSearch.length < 20 ? cardSearch.map((card) => 
-      (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.035,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : ("")}</ScrollView>
-      <TextInput variant="outlined" color="#5B9BD5" textAlignVertical="center" style={{width: Dimensions.get('window').width * 0.9,  alignSelf: "center", marginBottom: Dimensions.get('window').width * 0.6  }} placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
+      (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.035,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : 
+      ("")}</ScrollView>
+      <TextInput textAlign="center" variant="outlined" color="#5B9BD5" textAlignVertical="center" style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Dimensions.get('window').width * 0.6  }} placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
 
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
