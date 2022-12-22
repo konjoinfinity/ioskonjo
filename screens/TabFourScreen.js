@@ -17,26 +17,32 @@ export default function Home({navigation}) {
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-           
+            dataFunc();
+            console.log(note)
           });
-          dataFunc();
           return unsubscribe;
-          
       }, [navigation])
       
       const dataFunc = async() => {
-        keys = await AsyncStorage.getAllKeys()
-        console.log(keys)
-        try {   
-            const session = await AsyncStorage.getItem("key1");
-            if (session !== undefined) {
-                console.log(session)
-                setNote(JSON.parse(session))
-            }
-        } catch (error) {
-            console.log(error)
-        }
+        // let noteArr = [];
+        // keys = await AsyncStorage.getAllKeys()
+        //     if(keys.length) {
+        //         console.log("if")
+        //         for(var i=1; i<keys.length; i++){
+        //             console.log("loop")
+        //             const getData = await AsyncStorage.getItem(`key${i}`);
+        //             noteArr.push(JSON.parse(getData))
+        //             }
+        //             setNote(noteArr)
+        //             console.log(note)
+        //     } else {
+                console.log("else")
+                const getOne = await AsyncStorage.getItem("key4");
+                if (getOne !== undefined) {
+                    setNote(JSON.parse(getOne))
+                }
       }
+
         return(
             <ScrollView style={{ flex: 1 }}>
     <View style={{display: "flex", alignItems:"center", justifyContent:"center"}}>
@@ -50,12 +56,12 @@ export default function Home({navigation}) {
       </Text>
       <Button onPress={() => navigation.navigate("ModalNote", {noteData: date.toLocaleDateString()})} style={{width: Dimensions.get('window').width * 0.5}} appearance="filled"><Text>Add Note</Text></Button>
       </View>
-      <Card status='info'>
+        <Card status='info'>
         <Text style={{padding: 5}}>Date: {note.date}</Text>
       <Text style={{padding: 5}}>Location: {note.location}</Text>
       <Text style={{padding: 5}}>Weather: {note.weather}</Text>
       <Text style={{padding: 5}}>Occasion: {note.occasion}</Text>
-      <Text style={{padding: 5}}>Notes: {note.notes}</Text> 
+      <Text style={{padding: 5}}>Notes: {note.notes}</Text>
       </Card>
     </ScrollView>
         );

@@ -76,7 +76,7 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
         })}
       />
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
@@ -84,7 +84,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
           headerTitle: "Periodic Table of Snow"
   })}
-      /> */}
+      />
        {/* <BottomTab.Screen
         name="TabThree"
         component={TabThreeScreen}
