@@ -7,7 +7,7 @@ import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function ModalNoteScreen({ route, navigation }) {
+export default function ModalEditNoteScreen({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
   const [companions, setCompanions] = useState("");

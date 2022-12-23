@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   View,
   ScrollView,
@@ -17,220 +17,157 @@ import { Card, Text, Input, Button } from '@ui-kitten/components';
 import GestureRecognizer from "react-native-swipe-gestures"
 
 const logskey = "logs";
+var eachlog;
 
-class TabTwoScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      logmodal: false,
-      log: "",
-      logs: [],
-      textinputheight: 0,
-      editlog: "",
-      editlogmodal: false,
-      position: "",
-      logselected: "",
-      location: "",
-      weather: "",
-      companions: "",
-      occasion: ""
-    };
-  }
+export default function TabTwoScreen({ navigation }) {
+const [logmodal, setLogmodal] = useState(false)
+const [log, setLog] = useState("")
+const [logs, setLogs] = useState([])
+const [textinputheight, setTextinputheight] = useState(0)
+const [editlog, setEditlog] = useState("")
+const [editlogmodal, setEditlogmodal] = useState(false)
+const [position, setPosition] = useState("")
+const [logselected, setLogselected] = useState("")
+const [location, setLocation] = useState("")
+const [weather, setWeather] = useState("")
+const [companions, setCompanions] = useState("")
+const [occasion, setOccasion] = useState("")
 
-  async componentDidMount() {
+useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        getLogs();
+      });
+      return unsubscribe;
+  }, [navigation])
+
+
+  const getLogs = async() => {
     try {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       await AsyncStorage.getItem(logskey, (error, result) => {
         result !== null && result !== "[]"
-          ? this.setState({ logs: JSON.parse(result) })
-          : this.setState({ logs: [] });
+          ? setLogs(JSON.parse(result))
+          : setLogs([]);
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  async addLog() {
-    try {
-      if (this.state.log !== "") {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        var newLog = this.state.logs;
-        var logDate = new Date().toLocaleDateString();
-        newLog.unshift({ log: this.state.log, dateCreated: logDate, location: this.state.location, weather: this.state.weather, companions: this.state.companions, occasion: this.state.occasion });
-        this.setState({ log: "", logmodal: false, logs: newLog, location: "", weather: "", companions: "", occasion: "" });
-        await AsyncStorage.setItem(logskey, JSON.stringify(newLog));
-        setTimeout(() => {
-          this.scrolltop.scrollTo({ y: 90, animated: true });
-        }, 750);
-      } else {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        Alert.alert(
-          "Please enter some text.",
-          "",
-          [
-            {
-              text: "Ok",
-              onPress: () =>
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
-            },
-          ],
-          { cancelable: false }
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+//   async addLog() {
+//     try {
+//       if (log !== "") {
+//         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+//         var newLog = logs;
+//         var logDate = new Date().toLocaleDateString();
+//         newLog.unshift({ log: log, dateCreated: logDate, location: location, weather: weather, companions: companions, occasion: occasion });
+//         this.setState({ log: "", logmodal: false, logs: newLog, location: "", weather: "", companions: "", occasion: "" });
+//         await AsyncStorage.setItem(logskey, JSON.stringify(newLog));
+//         setTimeout(() => {
+//           this.scrolltop.scrollTo({ y: 90, animated: true });
+//         }, 750);
+//       } else {
+//         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+//         Alert.alert(
+//           "Please enter some text.",
+//           "",
+//           [
+//             {
+//               text: "Ok",
+//               onPress: () =>
+//                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+//             },
+//           ],
+//           { cancelable: false }
+//         );
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-  async deleteLog(log) {
-    try {
-      var filtered = this.state.logs.filter((deleted) => deleted !== log);
-      this.setState({
-        log: "",
-        editlogmodal: false,
-        logs: filtered,
-        editlog: "",
-      });
-      await AsyncStorage.setItem(logskey, JSON.stringify(filtered));
-      setTimeout(() => {
-        this.scrolltop.scrollTo({ y: 0, animated: true });
-      }, 750);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+//   async deleteLog(log) {
+//     try {
+//       var filtered = logs.filter((deleted) => deleted !== log);
+//       this.setState({
+//         log: "",
+//         editlogmodal: false,
+//         logs: filtered,
+//         editlog: "",
+//       });
+//       await AsyncStorage.setItem(logskey, JSON.stringify(filtered));
+//       setTimeout(() => {
+//         this.scrolltop.scrollTo({ y: 0, animated: true });
+//       }, 750);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-  scrollToLogRef(id) {
-    try {
-      this.refs["log" + id].measure((ox, oy, width, height, px, py) => {
-        const offsetY = oy + 90;
-        this.scrolltop.scrollTo({ y: offsetY });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+//   scrollToLogRef(id) {
+//     try {
+//       this.refs["log" + id].measure((ox, oy, width, height, px, py) => {
+//         const offsetY = oy + 90;
+//         this.scrolltop.scrollTo({ y: offsetY });
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-  async editLog(position) {
-    try {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      var editlogs = this.state.logs;
-      editlogs[position] = {log: this.state.editlog, location: this.state.location, weather: this.state.weather, companions: this.state.companions, occasion: this.state.occasion};
-      this.setState({ logs: editlogs, editlog: "", editlogmodal: false, location: "", weather: "", companions: "", occasion: "" });
-      await AsyncStorage.setItem(logskey, JSON.stringify(editlogs));
-      setTimeout(() => {
-        this.scrollToLogRef(this.state.position);
-      }, 750);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+//   async editLog(position) {
+//     try {
+//       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+//       var editlogs = logs;
+//       editlogs[position] = {log: editlog, location: location, weather: weather, companions: companions, occasion: occasion};
+//       this.setState({ logs: editlogs, editlog: "", editlogmodal: false, location: "", weather: "", companions: "", occasion: "" });
+//       await AsyncStorage.setItem(logskey, JSON.stringify(editlogs));
+//       setTimeout(() => {
+//         this.scrollToLogRef(position);
+//       }, 750);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-  confirmDelete(log) {
-    try {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      Alert.alert(
-        "Are you sure you want to delete this log?",
-        "Please confirm.",
-        [
-          {
-            text: "Yes",
-            onPress: () => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-              this.deleteLog(log);
-            },
-          },
-          {
-            text: "No",
-            onPress: () => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            },
-          },
-        ],
-        { cancelable: false }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
+//   confirmDelete(log) {
+//     try {
+//       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+//       Alert.alert(
+//         "Are you sure you want to delete this log?",
+//         "Please confirm.",
+//         [
+//           {
+//             text: "Yes",
+//             onPress: () => {
+//                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+//               this.deleteLog(log);
+//             },
+//           },
+//           {
+//             text: "No",
+//             onPress: () => {
+//               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+//             },
+//           },
+//         ],
+//         { cancelable: false }
+//       );
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-  render() {
-    var eachlog;
-    this.state.logs &&
-      this.state.logs.length > 0 &&
-      (eachlog = this.state.logs.map((log, id) => {
-        return (
-          <View
-            key={id}
-            ref={"log" + id}>
-            <Card status='info'>
-                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left" }}>
-              <Text>
-                {log.log}
-              </Text>
-              <Text>
-                Location: {log.location}
-              </Text>
-              <Text>
-                Weather: {log.weather}
-              </Text>
-              <Text>
-                Companions: {log.companions}
-              </Text>
-              <Text>
-                Occasion: {log.occasion}
-              </Text>
-              <Text>
-                {log.dateCreated}
-              </Text>
-            </View>
-            <Button
-            style={{height: Dimensions.get("window").height * 0.08}}
-            size="giant"
-            appearance="filled"
-              onPress={() =>
-                this.setState(
-                  {
-                    editlogmodal: true,
-                    editlog: log.log,
-                    position: id,
-                    logselected: log,
-                    location: log.location, 
-                    weather: log.weather, 
-                    companions: log.companions, 
-                    occasion: log.occasion
-                  },
-                  () => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    Platform.OS === "ios"
-                      ? this.editloginput.focus()
-                      : setTimeout(() => this.editloginput.focus(), 10);
-                  }
-                )
-              }
-            >
-              <Icon
-              color={"white"}
-                name="playlist-edit"
-              />
-            </Button>
-            </View>
-            </Card>
-          </View>
-          
-        );
-      }));
-    return (
-      <View>
-        <GestureRecognizer
+return (
+    <View>
+        {/* <GestureRecognizer
   style={{flex: 1}}
   onSwipeUp={ () => this.setState({logmodal: true}) }
   onSwipeDown={ () => {this.setState({logmodal: false}), Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); } }
 >
         <Modal
           animationType="slide"
-          visible={this.state.logmodal}
+          visible={logmodal}
           presentationStyle="formSheet"
         >
           <View
@@ -263,7 +200,7 @@ class TabTwoScreen extends Component {
               </Text>
               <Input
                 placeholder="Notes"
-                value={this.state.log}
+                value={log}
                 ref={(input) => {
                   this.loginput = input;
                 }}
@@ -279,7 +216,7 @@ class TabTwoScreen extends Component {
               />
               <Input
                 placeholder="Location"
-                value={this.state.location}
+                value={location}
                 ref={(input) => {
                   this.locationinput = input;
                 }}
@@ -294,7 +231,7 @@ class TabTwoScreen extends Component {
               />
                <Input
                 placeholder="Weather"
-                value={this.state.weather}
+                value={weather}
                 ref={(input) => {
                   this.weatherinput = input;
                 }}
@@ -309,7 +246,7 @@ class TabTwoScreen extends Component {
               />
               <Input
                 placeholder="Companions"
-                value={this.state.companions}
+                value={companions}
                 ref={(input) => {
                   this.companionsinput = input;
                 }}
@@ -324,7 +261,7 @@ class TabTwoScreen extends Component {
               />
                <Input
                 placeholder="Occasion"
-                value={this.state.occasion}
+                value={occasion}
                 ref={(input) => {
                   this.occasioninput = input;
                 }}
@@ -377,7 +314,7 @@ class TabTwoScreen extends Component {
 >
         <Modal
           animationType="slide"
-          visible={this.state.editlogmodal}
+          visible={editlogmodal}
           presentationStyle="formSheet"
         >
           <View
@@ -408,7 +345,7 @@ class TabTwoScreen extends Component {
                 Edit Snow Note
               </Text>
               <Input
-                value={this.state.editlog}
+                value={editlog}
                 ref={(input) => {
                   this.editloginput = input;
                 }}
@@ -427,7 +364,7 @@ class TabTwoScreen extends Component {
               />
                <Input
                 placeholder="Location"
-                value={this.state.location}
+                value={location}
                 ref={(input) => {
                   this.locationinput = input;
                 }}
@@ -442,7 +379,7 @@ class TabTwoScreen extends Component {
               />
                <Input
                 placeholder="Weather"
-                value={this.state.weather}
+                value={weather}
                 ref={(input) => {
                   this.weatherinput = input;
                 }}
@@ -457,7 +394,7 @@ class TabTwoScreen extends Component {
               />
               <Input
                 placeholder="Companions"
-                value={this.state.companions}
+                value={companions}
                 ref={(input) => {
                   this.companionsinput = input;
                 }}
@@ -472,7 +409,7 @@ class TabTwoScreen extends Component {
               />
                <Input
                 placeholder="Occasion"
-                value={this.state.occasion}
+                value={occasion}
                 ref={(input) => {
                   this.occasioninput = input;
                 }}
@@ -497,7 +434,7 @@ class TabTwoScreen extends Component {
                 style={{margin: 5}}
                 appearance="filled"
                   onPress={() => {
-                    this.confirmDelete(this.state.logselected);
+                    this.confirmDelete(logselected);
                   }}
                 >
                   <Text>
@@ -519,7 +456,7 @@ class TabTwoScreen extends Component {
                 <Button
                 style={{margin: 5}}
                 appearance="filled"
-                  onPress={() => this.editLog(this.state.position)}
+                  onPress={() => this.editLog(position)}
                 >
                   <Text>
                     Save
@@ -529,45 +466,87 @@ class TabTwoScreen extends Component {
             </View>
           </View>
         </Modal>
-        </GestureRecognizer>
-        <ScrollView
-          ref={(ref) => {
-            this.scrolltop = ref;
-          }}
-        >
+        </GestureRecognizer> */}
+        <View>
+        <ScrollView>
             <View alignItems="center" justifyContent="center">
             <Text style={{ color: "white", fontSize: 28, padding: 10 }}>
                 Snow Notes
               </Text>
               </View>
+              {logs && logs.length > 0 ? (eachlog = logs.map((log, id) => {
+        return (
+          <View
+            key={id}>
+            <Card status='info'>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left" }}>
+              <Text>
+                {log.log}
+              </Text>
+              <Text>
+                Location: {log.location}
+              </Text>
+              <Text>
+                Weather: {log.weather}
+              </Text>
+              <Text>
+                Companions: {log.companions}
+              </Text>
+              <Text>
+                Occasion: {log.occasion}
+              </Text>
+              <Text>
+                {log.dateCreated}
+              </Text>
+            </View>
+            <Button
+            style={{height: Dimensions.get("window").height * 0.08}}
+            size="giant"
+            appearance="filled"
+              onPress={() => {
+                    this.setEditlogmodal(true),
+                    this.setEditlog(log.log)
+                    this.setPosition(id),
+                    this.setLogselected(log),
+                    this.setLocation(log.location) 
+                    this.setWeather(log.weather) 
+                    this.setCompanions(log.companions), 
+                    this.setOccasion(log.occasion)
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  }}>
+              <Icon
+              color={"white"}
+                name="playlist-edit" />
+            </Button>
+            </View>
+            </Card>
+          </View>
+          
+        )
+      })) : ("")}
+      </ScrollView>
           <View>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "flex-end",
                 padding: 10,
+                marginBottom: 10
               }}
             >
               <TouchableOpacity
               appearance="filled"
                 onPress={() =>
-                  this.setState({ logmodal: true }, () => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    Platform.OS === "ios"
-                      ? this.loginput.focus()
-                      : setTimeout(() => this.loginput.focus(), 10);
-                  })
+                navigation.navigate("ModalAddNote")
+
                 }
               >
                 <MIcon color={"white"} name="add-circle" size={50} />
               </TouchableOpacity>
             </View>
-            {this.state.logs && eachlog !== undefined && <View>{eachlog}</View>}
           </View>
-        </ScrollView>
+        </View>
       </View>
-    );
-  }
+    )
 }
-
-export default TabTwoScreen;

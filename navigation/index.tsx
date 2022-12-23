@@ -20,7 +20,8 @@ import TabFourScreen from '../screens/TabFourScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import TabSixScreen from '../screens/TabSixScreen';
-import ModalNoteScreen from '../screens/ModalNoteScreen';
+import ModalEditNoteScreen from '../screens/ModalEditNoteScreen';
+import ModalAddNoteScreen from '../screens/ModalAddNoteScreen';
 import TabFiveScreen from "../screens/TabFiveScreen"
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -46,7 +47,8 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow" }} />
-        <Stack.Screen name="ModalNote" component={ModalNoteScreen} options={{ title: "Add Note" }} />
+        <Stack.Screen name="ModalAddNote" component={ModalAddNoteScreen} options={{ title: "Add Note" }} />
+        <Stack.Screen name="ModalEditNote" component={ModalEditNoteScreen} options={{ title: "Edit Note" }} />
       </Stack.Group>
     </Stack.Navigator>
   );
