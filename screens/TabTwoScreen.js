@@ -469,10 +469,21 @@ return (
         </GestureRecognizer> */}
         <View>
         <ScrollView>
-            <View alignItems="center" justifyContent="center">
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 5,
+                marginBottom: 5
+              }}>
             <Text style={{ color: "white", fontSize: 28, padding: 10 }}>
                 Snow Notes
               </Text>
+              <TouchableOpacity
+              appearance="filled"
+                onPress={() =>
+                navigation.navigate("ModalAddNote")}>
+                <MIcon color={"white"} name="add-circle" size={50} />
+              </TouchableOpacity>
               </View>
               {logs && logs.length > 0 ? (eachlog = logs.map((log, id) => {
         return (
@@ -505,16 +516,7 @@ return (
             size="giant"
             appearance="filled"
               onPress={() => {
-                    this.setEditlogmodal(true),
-                    this.setEditlog(log.log)
-                    this.setPosition(id),
-                    this.setLogselected(log),
-                    this.setLocation(log.location) 
-                    this.setWeather(log.weather) 
-                    this.setCompanions(log.companions), 
-                    this.setOccasion(log.occasion)
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  }}>
+                navigation.navigate("ModalEditNote", {number: id, loggy: log})}}>
               <Icon
               color={"white"}
                 name="playlist-edit" />
@@ -526,26 +528,6 @@ return (
         )
       })) : ("")}
       </ScrollView>
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                padding: 10,
-                marginBottom: 10
-              }}
-            >
-              <TouchableOpacity
-              appearance="filled"
-                onPress={() =>
-                navigation.navigate("ModalAddNote")
-
-                }
-              >
-                <MIcon color={"white"} name="add-circle" size={50} />
-              </TouchableOpacity>
-            </View>
-          </View>
         </View>
       </View>
     )
