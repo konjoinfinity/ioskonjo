@@ -22,9 +22,7 @@ export default function ModalAddNoteScreen({ navigation, route }) {
   const loginput = useRef(null);
   
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    });
+    const unsubscribe = navigation.addListener('focus', () => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) });
     getLogs();
     loginput.current.focus();
     return unsubscribe;
@@ -50,17 +48,16 @@ setOccasion(logselected.occasion)
     }
   }
 
-  const deleteLog = async(log) => {
+  const deleteLog = async() => {
     try {
-      console.log(log)
-      console.log(logs)
-      var filtered = logs.filter((deleted) => deleted !== log);
+      var filtered = logs.filter(function(log) { return log.log != route.params.loggy.log}); 
       setLog("");
       setLogs(filtered);
       setEditlog("")
       await AsyncStorage.setItem(logskey, JSON.stringify(filtered), () => {navigation.navigate("TabTwo")});
     } catch (error) {
       console.log(error);
+
     }
   }
 
