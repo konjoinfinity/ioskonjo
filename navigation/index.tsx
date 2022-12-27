@@ -79,11 +79,20 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
+        name="TabFive"
+        component={TabFiveScreen}
+        options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
+          title: 'Weather Types',
+          tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
+          headerTitle: "Periodic Table of Snow"
+        })}
+      />
+      <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
           title: 'Snow Notes',
-          tabBarIcon: ({ color }) => <Icon name="snowflake-2" color={color} />,
+          tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
           headerTitle: "Periodic Table of Snow"
   })}
       />
@@ -96,16 +105,7 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
         })}
       /> */}
-      <BottomTab.Screen
-        name="TabFive"
-        component={TabFiveScreen}
-        options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
-          title: 'Weather Types',
-          tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
-          headerTitle: "Periodic Table of Snow"
-        })}
-      />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
         options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
@@ -113,7 +113,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
-      /> 
+      />  */}
       <BottomTab.Screen
         name="TabSix"
         component={TabSixScreen}
