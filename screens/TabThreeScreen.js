@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 import {
+    View,
   StyleSheet,
   Dimensions
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import AnimatedSnow from './AnimatedSnow';
 const {height, width} = Dimensions.get('window');
 
@@ -18,9 +18,9 @@ class TabThreeScreen extends Component {
   render() {
 
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <AnimatedSnow style={styles.snowContainer}/>
-      </ScrollView>
+      </View>
     );
   }
 }
