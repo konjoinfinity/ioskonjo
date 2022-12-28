@@ -491,7 +491,7 @@ return (
             key={id}>
             <Card status='info'>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left" }}>
+            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.6 }}>
               <Text>
                 {log.log}
               </Text>

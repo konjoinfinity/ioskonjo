@@ -31,6 +31,7 @@ export default function TabSixScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
       <ScrollView contentContainerStyle={{paddingLeft: 12, height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width * 1, alignItems: "center", justifyContent:"flex-start", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>{search.length !== 0 && cardSearch.length < 20 ? cardSearch.map((card) => 
       (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.035,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : 

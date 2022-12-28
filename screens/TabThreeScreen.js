@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, {Component} from 'react';
+
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView,
+  StyleSheet,
+  View,
+  Dimensions
 } from 'react-native';
-import 'react-native-gesture-handler';
-import * as Haptics from 'expo-haptics';
-import snowData from '../constants/snowData';
+import { ScrollView } from 'react-native-gesture-handler';
+import AnimatedSnow from './AnimatedSnow';
+const {height, width} = Dimensions.get('window');
 
-export function Card({navigation, cardData}){
-        return (
-            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5}}>
-                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
-             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.anum}</Text> 
-             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.acronymn}</Text>
-             </View>
-             <Text style={{ fontSize: cardData.title == "Chowder Powder (Chowdah Powdah)" ? Dimensions.get('window').height * 0.023 : Dimensions.get('window').height * 0.026, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
-                </TouchableOpacity>
-        )
-    }
+class TabThreeScreen extends Component {
 
-export default function Home({navigation}) {
-    const [cards, setCards] = useState([]);
+  constructor(props) {
+    super(props);
+  }
 
-    useEffect(() => {
-        var result = snowData.filter(sno => sno.key >= 72 && sno.key <= 101);
-        setCards(result)
-        const unsubscribe = navigation.addListener('focus', () => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-        });
-        return unsubscribe;
-    }, [navigation])
 
-        return(
-            <ScrollView style={{ flex: 1 }}>
-                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
-                {cards.length !== 0 ? cards.map((cardData) => (<Card key={cardData.key} cardData={cardData} navigation={navigation} /> )) : ("")}               
-                </View>
-            </ScrollView>
-        );
+  render() {
+
+    return (
+      <ScrollView style={styles.container}>
+        <AnimatedSnow style={styles.snowContainer}/>
+      </ScrollView>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  snowContainer: {
+    position: 'absolute',
+    width: width,
+    height: height,
+  }
+});
+
+export default TabThreeScreen

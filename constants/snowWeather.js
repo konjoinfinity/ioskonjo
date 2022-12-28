@@ -152,5 +152,13 @@ export default snowWeather = [
             desc: 'Quick snowfall of variable intensity, typically resulting in little accumulation.',
             backgroundColor: "#BFBFBF",
         },
-      
+        {
+            key: 17,
+            anum: "151",
+            acronymn: "SQU",
+            kind: 'Snow Weather ❄️',
+            title: 'Snow Squall',
+            desc: 'Short duration but intense snow event with high wind and low visiblity.',
+            backgroundColor: "#BFBFBF",
+        },
 ]
