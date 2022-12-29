@@ -8,22 +8,12 @@ import {
 import AnimatedSnow from './AnimatedSnow';
 const {height, width} = Dimensions.get('window');
 
-class TabThreeScreen extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-
-  render() {
+export default function TabThreeScreen(props) {
 
     return (
-      <View style={styles.container}>
         <AnimatedSnow style={styles.snowContainer}/>
-      </View>
     );
   }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -36,5 +26,3 @@ const styles = StyleSheet.create({
     height: height,
   }
 });
-
-export default TabThreeScreen

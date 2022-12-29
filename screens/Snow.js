@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Random from './Random';
@@ -13,92 +13,87 @@ const INCREMENT_UPPER = 4;
 const FLAKE_SIZE_LOWER = 6;
 const FLAKE_SIZE_UPPER = 12;
 
-export default class Snow extends Component {
-  constructor(props) {
-    super(props);
+export default function Snow(props) {
 
-    this.x = Random.getRandomInt(this.props.width);
-    this.y = Random.getRandomInt(this.props.height);
+    var thisx = Random.getRandomInt(props.width);
+    var thisy = Random.getRandomInt(props.height);
+    var thisangle = Random.getRandomFloat(ANGLE_SEED) / ANGLE_SEED * ANGE_RANGE + HALF_PI - HALF_ANGLE_RANGE;
+    var increment = Random.getRandom(INCREMENT_LOWER, INCREMENT_UPPER);
+    var thisflakeSize = Random.getRandom(FLAKE_SIZE_LOWER, FLAKE_SIZE_UPPER);
+    var opacity = Math.random() + 0.1;
+    var updateInterval;
+    var viewRef;
 
-    this.angle =
-      Random.getRandomFloat(ANGLE_SEED) / ANGLE_SEED * ANGE_RANGE + HALF_PI - HALF_ANGLE_RANGE;
-    this.increment = Random.getRandom(INCREMENT_LOWER, INCREMENT_UPPER);
-    this.flakeSize = Random.getRandom(FLAKE_SIZE_LOWER, FLAKE_SIZE_UPPER);
-    this.opacity = Math.random() + 0.1;
-  }
-
-  componentDidMount() {
-    this.updateInterval = setInterval(() => {
-      this.move(this.props.width, this.props.height);
+  useEffect(()=>{
+     updateInterval = setInterval(() => {
+      move(props.width, props.height);
     }, 50);
-  }
+    return () => {
+      return false;
+    }
+  },[])
 
-  componentWillUnmount() {
-    clearInterval(this.updateInterval);
-  }
 
-  shouldComponentUpdate = () => {
-    return false;
-  };
+  useEffect(() => {
+    return () => {
+      clearInterval(updateInterval);
+    }
+  }, [])
 
-  move(width, height) {
-    const x = this.x + this.increment * Math.cos(this.angle);
-    const y = this.y + this.increment * Math.sin(this.angle);
+  const move = (width, height) => {
+    const x = thisx + increment * Math.cos(thisangle);
+    const y = thisy + increment * Math.sin(thisangle);
+    thisangle += Random.getRandom(-ANGLE_SEED, ANGLE_SEED) / ANGLE_DIVISOR;
+    thisx = Math.floor(x);
+    thisy = Math.floor(y);
 
-    this.angle += Random.getRandom(-ANGLE_SEED, ANGLE_SEED) / ANGLE_DIVISOR;
-
-    this.x = Math.floor(x);
-    this.y = Math.floor(y);
-
-    if (!this.isInside(width, height)) {
-      this.reset(width);
+    if (!isInside(width, height)) {
+      reset(width);
     }
 
-    this.viewRef.setNativeProps({
-      top: this.y,
-      left: this.x,
+    viewRef.setNativeProps({
+      top: thisy,
+      left: thisx,
     });
   }
 
-  isInside(width, height) {
-    const x = this.x;
-    const y = this.y;
-    const flakeSize = this.flakeSize;
+  const isInside = (width, height) => {
+    const x = thisx;
+    const y = thisy;
+    const flakeSize = thisflakeSize;
     return (
       x >= -flakeSize - 1 && x + flakeSize <= width && y >= -flakeSize - 1 && y - flakeSize < height
     );
   }
 
-  reset(width) {
+  const reset = (width) => {
     const x = Random.getRandomInt(width);
-    const y = -this.flakeSize - 1;
-    const angle =
-      Random.getRandomFloat(ANGLE_SEED) / ANGLE_SEED * ANGE_RANGE + HALF_PI - HALF_ANGLE_RANGE;
+    const y = -thisflakeSize - 1;
+    const angle = Random.getRandomFloat(ANGLE_SEED) / ANGLE_SEED * ANGE_RANGE + HALF_PI - HALF_ANGLE_RANGE;
 
-    this.x = x;
-    this.y = y;
-    this.angle = angle;
+    thisx = x;
+    thisy = y;
+    thisangle = angle;
   }
 
-  getPosition() {
+  const getPosition = () => {
     return {
-      top: this.y,
-      left: this.x,
-      width: this.flakeSize,
-      height: this.flakeSize,
-      borderRadius: this.flakeSize / 2,
-      opacity: this.opacity,
+      top: thisy,
+      left: thisx,
+      width: thisflakeSize,
+      height: thisflakeSize,
+      borderRadius: thisflakeSize / 2,
+      opacity: opacity,
     };
   }
 
-  render() {
-    const snowShape = this.getPosition();
-
+ 
+  const snowShape = getPosition();
     return (
-      <View ref={el => (this.viewRef = el)} {...this.props} style={[styles.snow, snowShape]} />
+      <View ref={el => (viewRef = el)} {...props} style={[styles.snow, snowShape]} />
     );
   }
-}
+
 
 Snow.propTypes = {
   width: PropTypes.number.isRequired,

@@ -15,11 +15,11 @@ export default function TabSixScreen({ navigation }) {
   
   useEffect(() => {
     setCards(snowData)
-    const unsubscribe = navigation.addListener('focus', () => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
       textInput.focus();
-    });
-    return unsubscribe;
+    // const unsubscribe = navigation.addListener('focus', () => {
+    // });
+    // return unsubscribe;
   }, [navigation])
 
   const handleChange = (search) => {

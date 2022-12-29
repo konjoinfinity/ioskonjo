@@ -1,43 +1,43 @@
-import {View }from "react-native";
-import React, { PureComponent } from "react";
+import { View }from "react-native";
+import React, { useState, useEffect } from "react";
 import Snow from './Snow';
+import TabSixScreen from "./TabSixScreen";
+import * as Haptics from 'expo-haptics';
 
-export default class AnimatedSnow extends PureComponent {
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        width: 0,
-        height: 0,
-      }
-    }
+
+export default function AnimatedSnow(props) {
+
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
   
-    render() {
-  
-      const snow = [];
-      if (this.state.width > 0 && this.state.height > 0) {
-        for (let i = 0; i < 300; i++) {
-          snow.push(
-            <Snow
-              key={i}
-              width={this.state.width}
-              height={this.state.height}
-            />)
-        }
-      }
+  useEffect(() => {
+    // const unsubscribe = navigation.addListener('focus', () => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    // });
+    // return unsubscribe;
+  }, [])
+
+
+  const snow = [];
+  if (width > 0 && height > 0) {
+    for (let i = 0; i < 300; i++) {
+      snow.push(<Snow
+          key={i}
+          width={width}
+          height={height}
+          />)}}
   
       return (
-        <View {...this.props}
+        <View {...props}
           onLayout={(e) => {
             const {width, height} = e.nativeEvent.layout;
-            this.setState ({
-              width: width,
-              height: height
-            });
+            setWidth(width);
+              setHeight(height);
           }}>
             {snow}
         </View>
       )
     }
-  }
+
  
