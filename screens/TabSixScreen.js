@@ -5,21 +5,25 @@ import { TextInput } from "@react-native-material/core";
 import { Text, View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
+import { useNavigation } from '@react-navigation/native';
+import snowWeather from '../constants/snowWeather';
 
 let textInput;
 let cardSearch = "";
 
-export default function TabSixScreen({ navigation }) {
+export default function TabSixScreen() {
+  const navigation = useNavigation();
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState("")
   
   useEffect(() => {
-    setCards(snowData)
+    let snowdat = [...snowData, ...snowWeather];
+    setCards(snowdat)
+    const unsubscribe = navigation.addListener('focus', () => {
+    });
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      textInput.focus();
-    // const unsubscribe = navigation.addListener('focus', () => {
-    // });
-    // return unsubscribe;
+    textInput.focus();
+    return unsubscribe;
   }, [navigation])
 
   const handleChange = (search) => {
@@ -36,8 +40,6 @@ export default function TabSixScreen({ navigation }) {
       (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.035,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : 
       ("")}</ScrollView>
       <TextInput textAlign="center" variant="outlined" color="#5B9BD5" textAlignVertical="center" style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Dimensions.get('window').width * 0.6  }} placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </SafeAreaView>
   );

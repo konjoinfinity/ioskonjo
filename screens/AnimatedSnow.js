@@ -1,21 +1,20 @@
-import { View }from "react-native";
+import { View, ScrollView }from "react-native";
 import React, { useState, useEffect } from "react";
 import Snow from './Snow';
 import TabSixScreen from "./TabSixScreen";
 import * as Haptics from 'expo-haptics';
+import { useNavigation } from '@react-navigation/native';
 
-
-
-export default function AnimatedSnow(props) {
-
+ const AnimatedSnow = (props) => {
+  const navigation = useNavigation();
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
   
   useEffect(() => {
-    // const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener('focus', () => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    // });
-    // return unsubscribe;
+    });
+    return unsubscribe;
   }, [])
 
 
@@ -29,15 +28,18 @@ export default function AnimatedSnow(props) {
           />)}}
   
       return (
-        <View {...props}
+        <ScrollView {...props}
           onLayout={(e) => {
             const {width, height} = e.nativeEvent.layout;
             setWidth(width);
               setHeight(height);
           }}>
             {snow}
-        </View>
+            <TabSixScreen/>
+            </ScrollView>
       )
     }
+
+export default AnimatedSnow
 
  

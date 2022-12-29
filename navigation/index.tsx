@@ -100,8 +100,8 @@ function BottomTabNavigator() {
         name="TabThree"
         component={TabThreeScreen}
         options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
-          title: 'Bad Snow',
-          tabBarIcon: ({ color }) => <Icon name="snowflake-3" color={color} />,
+          title: 'Search',
+          tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
       />
@@ -114,7 +114,7 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
         })}
       />  */}
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="TabSix"
         component={TabSixScreen}
         options={({ navigation }: RootTabScreenProps<'TabSix'>) => ({
@@ -122,7 +122,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
-      />
+      /> */}
     </BottomTab.Navigator>
   );
 }
