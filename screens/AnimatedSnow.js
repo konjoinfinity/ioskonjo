@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
   const navigation = useNavigation();
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
+  const child = React.createRef();
   
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -16,7 +17,6 @@ import { useNavigation } from '@react-navigation/native';
     });
     return unsubscribe;
   }, [])
-
 
   const snow = [];
   if (width > 0 && height > 0) {
@@ -35,7 +35,7 @@ import { useNavigation } from '@react-navigation/native';
               setHeight(height);
           }}>
             {snow}
-            <TabSixScreen/>
+            <TabSixScreen />
             </ScrollView>
       )
     }
