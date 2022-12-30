@@ -44,6 +44,9 @@ export default function Home({navigation}) {
                     <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 13 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
+                <View style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').width * 0.2, margin: 0.5}}>
+                    <Text style={{ color: "#BDD7EE", fontSize: Dimensions.get('window').height * 0.05, fontStyle: "italic", padding: 10, alignSelf: "center" }}>Snow Oddities</Text>
+                    </View>
             </ScrollView>
         );
 }
