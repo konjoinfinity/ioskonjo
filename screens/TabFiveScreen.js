@@ -47,16 +47,22 @@ export default function Home({navigation}) {
                     <Text style={{ color: "#BDD7EE", fontSize: Dimensions.get('window').height * 0.05, fontStyle: "italic", padding: 10, alignSelf: "center" }}>Snow Oddities</Text>
                     </View>
                     <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
-                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 36 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 36 && cardData.key < 59 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
 
                 <View style={{ flex: 1, alignItems: "center"}}>
                     <Text style={{ color: "#B3F7F5", fontSize: Dimensions.get('window').height * 0.05, fontStyle: "italic", textAlign: "center", padding: 10, margin: 0.5 }}>International Snow Classification for Seasonal Snow (Grain Shape)</Text>
                     </View>
+                    <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 58 && cardData.key < 71 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
+                </View>
 
                     <View style={{ flex: 1, alignItems: "center"}}>
                     <Text style={{ color: "#ACE7FD", fontSize: Dimensions.get('window').height * 0.05, fontStyle: "italic", textAlign: "center", padding: 10, margin: 0.5 }}>Snow Flake Types Precipitation Particles (Subclasses)</Text>
                     </View>
+                    <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 70 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
+                </View>
                 					
             </ScrollView>
         );
