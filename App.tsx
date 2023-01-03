@@ -16,7 +16,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       setShowSplash(true)
-    }, 3000)
+    }, 500)
   }, [])
 
   if (!isLoadingComplete) {

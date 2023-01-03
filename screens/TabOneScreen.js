@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView,
+    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet
 } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
+import AnimatedSnow from './AnimatedSnow';
+
+const {height, width} = Dimensions.get('window');
 
 export function Card({navigation, cardData}){
         return (
@@ -28,16 +31,19 @@ export function Title({title, color}){
 
 export default function Home({navigation}) {
     const [cards, setCards] = useState([]);
+    const [snowing, setSnowing] = useState(true)
 
     useEffect(() => {
         setCards(snowData)
         const unsubscribe = navigation.addListener('focus', () => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
           });
+          setTimeout(() => {setSnowing(false)}, 5000)
           return unsubscribe;
       }, [navigation])
 
         return(
+            
             <ScrollView style={{ flex: 1 }}>
                 {cards.length !== 0 ?<Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
@@ -71,6 +77,23 @@ export default function Home({navigation}) {
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 115 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
+                {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")}
             </ScrollView>
         );
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    snowContainer: {
+      width: width,
+      height: height,
+      position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.001)'
+    }
+  });

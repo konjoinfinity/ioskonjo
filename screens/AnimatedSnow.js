@@ -3,20 +3,20 @@ import React, { useState, useEffect } from "react";
 import Snow from './Snow';
 import TabSixScreen from "./TabSixScreen";
 import * as Haptics from 'expo-haptics';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
  const AnimatedSnow = (props) => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
   const child = React.createRef();
   
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    });
-    return unsubscribe;
-  }, [])
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  //   });
+  //   return unsubscribe;
+  // }, [])
 
   const snow = [];
   if (width > 0 && height > 0) {
@@ -28,15 +28,15 @@ import { useNavigation } from '@react-navigation/native';
           />)}}
   
       return (
-        <ScrollView {...props}
+        <View {...props}
           onLayout={(e) => {
             const {width, height} = e.nativeEvent.layout;
             setWidth(width);
               setHeight(height);
           }}>
             {snow}
-            <TabSixScreen />
-            </ScrollView>
+            {/* <TabSixScreen /> */}
+            </View>
       )
     }
 

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import {
     View,
   StyleSheet,
@@ -24,5 +23,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: width,
     height: height,
+    backgroundColor: 'transparent'
   }
 });
