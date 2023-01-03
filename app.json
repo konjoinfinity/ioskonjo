@@ -7,7 +7,11 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-   
+    "splash": {
+      "image": "./assets/images/snow.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
