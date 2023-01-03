@@ -6,21 +6,30 @@ import Navigation from './navigation';
 import React from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
+import AnimatedSplash from "react-native-animated-splash-screen";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
   if (!isLoadingComplete) {
-    return null;
+    return null
   } else {
     return (
+      <AnimatedSplash
+      translucent={true}
+      isLoaded={isLoadingComplete}
+      logoImage={require("./assets/images/snowlogo.png")}
+      backgroundColor={"#000000"}
+      logoHeight={200}
+      logoWidth={200}>
       <ApplicationProvider {...eva} theme={eva.dark}>
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
       </SafeAreaProvider>
       </ApplicationProvider>
+      </AnimatedSplash>
     );
   }
 }
