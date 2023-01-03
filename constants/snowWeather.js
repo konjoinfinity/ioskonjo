@@ -422,12 +422,114 @@ export default snowWeather = [
             desc: 'Speed and skill competition where horse-drawn skiers race on snowy streets.',
             backgroundColor: "#BDD7EE",
         },
-
-
-
-
-
-
+        {
+            key: 47,
+            anum: "181",
+            acronymn: "KIT",
+            kind: 'Snow Oddities ❄️',
+            title: "Kite Skiing",
+            desc: 'Activity using wind and kite to propel skier/boarder across snow, like kiteboarder.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 48,
+            anum: "182",
+            acronymn: "BOB",
+            kind: 'Snow Oddities ❄️',
+            title: "Skibobbing",
+            desc: 'Activity using bicycle fitted with skiis to enable steerable rides/descents on snow.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 49,
+            anum: "183",
+            acronymn: "SaM",
+            kind: 'Snow Oddities ❄️',
+            title: "Snow a Mineral",
+            desc: 'Technically speaking, snow could be defined as a mineral: natural, inorganic, 1 substance.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 50,
+            anum: "184",
+            acronymn: "SPE",
+            kind: 'Snow Oddities ❄️',
+            title: "Snow Speed",
+            desc: 'Snowflakes usually float as they fall from sky; But they can fall at rates up to 9MPH.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 51,
+            anum: "185",
+            acronymn: "SiH",
+            kind: 'Snow Oddities ❄️',
+            title: "Snowball in Hell",
+            desc: 'Death Valley, California, one of hottest places in the world, had snow in December 2008.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 52,
+            anum: "186",
+            acronymn: "OS",
+            kind: 'Snow Oddities ❄️',
+            title: "Snowball in Hell",
+            desc: 'In 1992, Syracuse, NY City Counsel outlawed snow after a really bad	winter. Really bad!',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 53,
+            anum: "187",
+            acronymn: "CIT",
+            kind: 'Snow Oddities ❄️',
+            title: "Snow City",
+            desc: 'Snowiest city in the	world is Aomori, Japan with an average of 312" per year.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 54,
+            anum: "188",
+            acronymn: "GLO",
+            kind: 'Snow Oddities ❄️',
+            title: "Alpenglow",
+            desc: 'Reddish or pink glow appearing on high mountain peaks at dawn or early morning.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 55,
+            anum: "189",
+            acronymn: "COL",
+            kind: 'Snow Oddities ❄️',
+            title: "Snow Color",
+            desc: 'Actually, snow is translucent, but as light passes through, it appears white/blue ** can also be "stained" pink, red, yellow and brown, too.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 56,
+            anum: "190",
+            acronymn: "ROO",
+            kind: 'Snow Oddities ❄️',
+            title: "Roostertail",
+            desc: 'A spray of snow emanating from back of snowboard or ski & shooting up in the air.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 57,
+            anum: "191",
+            acronymn: "SFL",
+            kind: 'Snow Oddities ❄️',
+            title: "Snowflake",
+            desc: 'Derogatory slang for a person with an exaggerated sense of uniqueness/entitlement.',
+            backgroundColor: "#BDD7EE",
+        },
+        {
+            key: 58,
+            anum: "192",
+            acronymn: "CAT",
+            kind: 'Snow Oddities ❄️',
+            title: "Snowcat",
+            desc: 'Snow grooming machines made by: Bombardier, PistenBully, Prinoth, Tucker, Thiokol.',
+            backgroundColor: "#BDD7EE",
+        },
         {
             key: 59,
             anum: "193",
@@ -437,6 +539,25 @@ export default snowWeather = [
             desc: '(PPsd) Six-sided star-like stellars or dendrites.',
             backgroundColor: "#B3F7F5",
         },
+        {
+            key: 60,
+            anum: "194",
+            acronymn: "MMrp",
+            kind: 'International Snow Classification for Seasonal Snow (Grain Shape) ❄️',
+            title: "Machine-Made Snow",
+            desc: '(MMrp) Round polycrystalline particle, w/protrusions.',
+            backgroundColor: "#B3F7F5",
+        },
+
+
+
+
+
+
+
+
+
+
         {
             key: 71,
             anum: "205",
