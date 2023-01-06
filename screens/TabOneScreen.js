@@ -7,11 +7,12 @@ import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
 import AnimatedSnow from './AnimatedSnow';
 
-const {height, width} = Dimensions.get('window');
+var width;
+var height;
 
 export function Card({navigation, cardData}){
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5}}>
+            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.acronymn}</Text>
@@ -38,13 +39,12 @@ export default function Home({navigation}) {
         const unsubscribe = navigation.addListener('focus', () => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
           });
-          setTimeout(() => {setSnowing(false)}, 5000)
           return unsubscribe;
       }, [navigation])
 
         return(
-            
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
+                {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")}
                 {cards.length !== 0 ?<Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
@@ -77,7 +77,6 @@ export default function Home({navigation}) {
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 115 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")}
             </ScrollView>
         );
 }

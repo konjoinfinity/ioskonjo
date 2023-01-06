@@ -96,15 +96,15 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
   })}
       />
-       <BottomTab.Screen
-        name="TabThree"
-        component={TabThreeScreen}
-        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
+       {/* <BottomTab.Screen
+        name="TabFour"
+        component={TabFourScreen}
+        options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
           title: 'Search',
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
-      />
+      /> */}
       {/* <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
@@ -114,7 +114,7 @@ function BottomTabNavigator() {
           headerTitle: "Periodic Table of Snow"
         })}
       />  */}
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="TabSix"
         component={TabSixScreen}
         options={({ navigation }: RootTabScreenProps<'TabSix'>) => ({
@@ -122,7 +122,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow"
         })}
-      /> */}
+      />
     </BottomTab.Navigator>
   );
 }

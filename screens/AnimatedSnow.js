@@ -20,7 +20,7 @@ import * as Haptics from 'expo-haptics';
 
   const snow = [];
   if (width > 0 && height > 0) {
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 800; i++) {
       snow.push(<Snow
           key={i}
           width={width}
