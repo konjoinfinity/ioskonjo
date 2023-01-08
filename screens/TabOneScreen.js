@@ -6,27 +6,34 @@ import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
 import AnimatedSnow from './AnimatedSnow';
+import * as Animatable from 'react-native-animatable';
 
+AnimatableView = Animatable.createAnimatableComponent(View);
 var width;
 var height;
 
 export function Card({navigation, cardData}){
         return (
+            <AnimatableView
+            animation="bounceInUp"
+            delay={cardData.key * 100}
+            duration={2000}>
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
-             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.anum}</Text> 
-             <Text style={{fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{cardData.acronymn}</Text>
+             <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
+             <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>
              </View>
-             <Text style={{ fontSize: cardData.title == "Chowder Powder (Chowdah Powdah)" ? Dimensions.get('window').height * 0.023 : Dimensions.get('window').height * 0.026, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
-                </TouchableOpacity>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
+            </TouchableOpacity>
+            </AnimatableView>
         )
     }
 
 export function Title({title, color}){
     return (
         <View style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').width * 0.2, margin: 0.5}}>
-                    <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.05, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
-                    </View>
+        <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.04, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
+        </View>
         )
     }
 
@@ -35,16 +42,23 @@ export default function Home({navigation}) {
     const [snowing, setSnowing] = useState(true)
 
     useEffect(() => {
-        setCards(snowData)
         const unsubscribe = navigation.addListener('focus', () => {
+            setCards(snowData)
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
           });
           return unsubscribe;
       }, [navigation])
 
+      useEffect(() => {
+        const unsubscribe = navigation.addListener('blur', () => {
+            setCards([])
+        });
+        return unsubscribe;
+      }, [navigation]);
+
         return(
             <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
-                {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")}
+                {/* {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")} */}
                 {cards.length !== 0 ?<Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               

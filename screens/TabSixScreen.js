@@ -39,7 +39,7 @@ export default function TabSixScreen() {
       <ScrollView contentContainerStyle={{paddingLeft: 12, height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width * 1, alignItems: "center", justifyContent:"flex-start", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>{search.length !== 0 && cardSearch.length < 20 ? cardSearch.map((card) => 
       (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.03,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : 
       ("")}</ScrollView>
-      <TextInput textAlign="center" variant="outlined" color="#5B9BD5" textAlignVertical="center" style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Dimensions.get('window').width * 0.6  }} placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
+      <TextInput textAlign="center" variant="outlined" color="#5B9BD5" textAlignVertical="center" style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Dimensions.get('window').width * 0.7  }} placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </SafeAreaView>
   );

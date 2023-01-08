@@ -10,6 +10,9 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import * as Haptics from "expo-haptics";
 import { Card, Text, Button } from '@ui-kitten/components';
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 const logskey = "logs";
 var eachlog;
@@ -20,8 +23,15 @@ const [logs, setLogs] = useState([])
 
 useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-        getLogs();
+      getLogs();
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+      });
+      return unsubscribe;
+  }, [navigation])
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+        setLogs([]);
       });
       return unsubscribe;
   }, [navigation])
@@ -61,8 +71,12 @@ return (
               </View>
               {logs && logs.length > 0 ? (eachlog = logs.map((log, id) => {
         return (
-          <View
-            key={id}>
+          <AnimatableView
+          key={id}
+            animation="bounceInUp"
+            delay={id * 100}
+            duration={2000}>
+          <View>
             <Card status='info'>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.6 }}>
@@ -99,6 +113,7 @@ return (
             </View>
             </Card>
           </View>
+          </AnimatableView>
         )
       })) : ("")}
       </ScrollView>

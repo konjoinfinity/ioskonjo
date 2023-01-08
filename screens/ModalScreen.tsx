@@ -15,12 +15,12 @@ export default function ModalScreen({ route }) {
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 5, margin: 5, alignSelf: "center" }}>{cardData.kind}</Text>
-      <View style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.85, height: Dimensions.get('window').height * 0.8, marginBottom: 1}}>
+      <View style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.9, height: Dimensions.get('window').height * 0.7, marginBottom: 100}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 10, backgroundColor: cardData.backgroundColor}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", color: "black"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", color: "black"}}>{cardData.acronymn}</Text>
              </View>
-             <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", padding: 12, marginTop: 12, alignSelf: "center", color: "black" }}>{cardData.title}</Text>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", padding: 10, marginTop: 12, alignSelf: "center", color: "black" }}>{cardData.title}</Text>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.04, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>{cardData.desc}</Text>
                 </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
