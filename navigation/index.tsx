@@ -1,8 +1,3 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { Fontisto, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
@@ -34,10 +29,6 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
@@ -46,7 +37,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow" }} />
+        <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow©" }} />
         <Stack.Screen name="ModalAddNote" component={ModalAddNoteScreen} options={{ title: "Add Note" }} />
         <Stack.Screen name="ModalEditNote" component={ModalEditNoteScreen} options={{ title: "Edit Note" }} />
       </Stack.Group>
@@ -54,10 +45,6 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
@@ -75,7 +62,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Periodic Table',
           tabBarIcon: ({ color }) => <Icon name="snowflake-4" color={color} />,
-          headerTitle: "Periodic Table of Snow"
+          headerTitle: "Periodic Table of Snow©"
         })}
       />
       <BottomTab.Screen
@@ -84,7 +71,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
           title: 'Weather Types',
           tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
-          headerTitle: "Periodic Table of Snow"
+          headerTitle: "Periodic Table of Snow©"
         })}
       />
       <BottomTab.Screen
@@ -93,16 +80,16 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
           title: 'Snow Notes',
           tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
-          headerTitle: "Periodic Table of Snow"
+          headerTitle: "Periodic Table of Snow©"
   })}
       />
        {/* <BottomTab.Screen
-        name="TabFour"
-        component={TabFourScreen}
-        options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
-          title: 'Search',
-          tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
-          headerTitle: "Periodic Table of Snow"
+        name="TabThree"
+        component={TabThreeScreen}
+        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
+          title: 'Snow',
+          tabBarIcon: ({ color }) => <Icon name="snowflake-8" color={color} />,
+          headerTitle: "Periodic Table of Snow®"
         })}
       /> */}
       {/* <BottomTab.Screen
@@ -120,7 +107,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabSix'>) => ({
           title: 'Search',
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
-          headerTitle: "Periodic Table of Snow"
+          headerTitle: "Periodic Table of Snow©"
         })}
       />
     </BottomTab.Navigator>
@@ -150,4 +137,3 @@ function MCIcon(props: {
 }) {
   return <MaterialCommunityIcons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
-

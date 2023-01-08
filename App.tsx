@@ -6,7 +6,10 @@ import Navigation from './navigation';
 import React, { useState, useEffect } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
-import AnimatedSplash from "react-native-animated-splash-screen";
+import AnimatedSnow from './screens/AnimatedSnow';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {height, width} = Dimensions.get('window');
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -16,27 +19,28 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       setShowSplash(true)
-    }, 500)
+    }, 4500)
   }, [])
 
   if (!isLoadingComplete) {
     return null
   } else {
     return (
-      <AnimatedSplash
-      translucent={true}
-      isLoaded={showSplash}
-      logoImage={require("./assets/images/snowlogo.png")}
-      backgroundColor={"#000000"}
-      logoHeight={200}
-      logoWidth={200}>
-      <ApplicationProvider {...eva} theme={eva.dark}>
-      <SafeAreaProvider>
+      showSplash == false ? <AnimatedSnow style={styles.snowContainer}/> :
+      <ApplicationProvider {...eva} theme={eva.dark}><SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
       </SafeAreaProvider>
       </ApplicationProvider>
-      </AnimatedSplash>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  snowContainer: {
+    position: 'absolute',
+    width: width,
+    height: height,
+    backgroundColor: '#000000'
+  }
+});
