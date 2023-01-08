@@ -14,10 +14,7 @@ var height;
 
 export function Card({navigation, cardData}){
         return (
-            <AnimatableView
-            animation="bounceInUp"
-            delay={cardData.key * 100}
-            duration={2000}>
+            
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
@@ -25,7 +22,6 @@ export function Card({navigation, cardData}){
              </View>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center" }}>{cardData.title}</Text>
             </TouchableOpacity>
-            </AnimatableView>
         )
     }
 
@@ -59,9 +55,9 @@ export default function Home({navigation}) {
         return(
             <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
                 {/* {snowing == true ? <AnimatedSnow style={styles.snowContainer} /> : ("")} */}
-                {cards.length !== 0 ?<Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
+                {cards.length !== 0 ? <Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
-                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} /></AnimatableView> : (""))) : ("")}               
                 </View>
                 {cards.length !== 0 ?<Title title={cards[23].kind} color={cards[23].backgroundColor} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>

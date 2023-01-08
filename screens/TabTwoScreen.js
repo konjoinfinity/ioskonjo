@@ -73,8 +73,8 @@ return (
         return (
           <AnimatableView
           key={id}
-            animation="bounceInUp"
-            delay={id * 100}
+            animation="bounceInDown"
+            delay={id * 200}
             duration={2000}>
           <View>
             <Card status='info'>
