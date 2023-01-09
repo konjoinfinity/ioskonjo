@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PTOS",
-    "slug": "ioskonjo",
+    "slug": "ptos",
     "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rsdesign.ptos"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +30,11 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "26e74d7a-8b9f-4402-aa4f-c6a1eda03bc9"
+      }
     }
   }
 }
