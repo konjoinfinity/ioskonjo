@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StyleSheet, Dimensions, Alert, useColorScheme } from 'react-native';
+import { Platform, StyleSheet, Dimensions, Alert, useColorScheme, TouchableOpacity } from 'react-native';
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import { Button, Input, Text } from '@ui-kitten/components';
@@ -115,7 +115,7 @@ setOccasion(logselected.occasion)
       <Input
       ref={loginput}
       textStyle={{color: colors.text}}
-      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, paddingTop: 20}]}
       status='info'
                 value={log}
                 onChangeText={log => setLog(log)}
@@ -160,38 +160,66 @@ setOccasion(logselected.occasion)
                   paddingTop: 5,
                   paddingBottom: 5,
                 }}>
-                <Button
-                style={{margin: 5}}
-                appearance="filled"
-                  onPress={() => {
-                    confirmDelete(logselected);
-                  }}
-                >
-                  <Text>
+                <TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', // IOS
+                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+                shadowOpacity: 1, // IOS
+                shadowRadius: 1, //IOS
+                borderRadius: 5,
+                elevation: 2, // Android
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.24,
+                margin: 5}}
+                  onPress={() => {confirmDelete(logselected)}}>
+                  <Text style={{fontWeight: "bold"}}>
                     Delete
                   </Text>
-                </Button>
-                <Button
-                style={{margin: 5}}
-                appearance="filled"
+                </TouchableOpacity>
+                <TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', // IOS
+                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+                shadowOpacity: 1, // IOS
+                shadowRadius: 1, //IOS
+                borderRadius: 5,
+                elevation: 2, // Android
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.24,
+                margin: 5}}
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     setEditlog("");
-                    navigation.navigate("TabTwo")
-                  }}>
-                  <Text>
+                    navigation.navigate("TabTwo")}}>
+                  <Text style={{fontWeight: "bold"}}>
                     Cancel
                   </Text>
-                </Button>
-                <Button
-                style={{margin: 5}}
-                appearance="filled"
-                  onPress={() => editLog(position)}
-                >
-                  <Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', // IOS
+                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+                shadowOpacity: 1, // IOS
+                shadowRadius: 1, //IOS
+                borderRadius: 5,
+                elevation: 2, // Android
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.24,
+                margin: 5}}
+                  onPress={() => editLog(position)}>
+                  <Text style={{fontWeight: "bold"}}>
                     Save
                   </Text>
-                </Button>
+                </TouchableOpacity>
                 </View>      
                 <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -203,6 +231,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingBottom: Dimensions.get('window').height * 0.45,
   },
   title: {
     fontSize: 20,
