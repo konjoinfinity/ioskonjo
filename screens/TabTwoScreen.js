@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import * as Haptics from "expo-haptics";
-import { Card, Text, Button } from '@ui-kitten/components';
+import { Card, Text } from '@ui-kitten/components';
 import * as Animatable from 'react-native-animatable';
 import { useTheme } from '@react-navigation/native';
 

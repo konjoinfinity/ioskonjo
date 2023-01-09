@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StyleSheet, Dimensions } from 'react-native';
+import { Platform, StyleSheet, Dimensions, useColorScheme, TouchableOpacity } from 'react-native';
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '@react-navigation/native';
 
 const logskey = "logs";
 
@@ -17,6 +18,8 @@ export default function ModalAddNoteScreen({ navigation }) {
   const [log, setLog] = useState("");
   const [logs, setLogs] = useState([])
   const loginput = useRef(null);
+  const { colors } = useTheme();
+  let colorScheme = useColorScheme();
   
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -75,19 +78,21 @@ export default function ModalAddNoteScreen({ navigation }) {
   }
 
   return (
-    <ScrollView>
+    <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
       <Input
       ref={loginput}
-      style={styles.input}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, paddingTop: 20}]}
       status='info'
+      textStyle={{color: colors.text}}
                 placeholder="Notes"
                 value={log}
                 onChangeText={log => setLog(log)}
                 blurOnSubmit={false}
               />
               <Input
-              style={styles.input}
+              textStyle={{color: colors.text}}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
                 placeholder="Location"
                 value={location}
@@ -95,7 +100,8 @@ export default function ModalAddNoteScreen({ navigation }) {
                 blurOnSubmit={false}
               />
                <Input
-               style={styles.input}
+               textStyle={{color: colors.text}}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
                status='info'
                 placeholder="Weather"
                 value={weather}
@@ -103,7 +109,8 @@ export default function ModalAddNoteScreen({ navigation }) {
                 blurOnSubmit={false}
               />
               <Input
-              style={styles.input}
+              textStyle={{color: colors.text}}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
                 placeholder="Companions"
                 value={companions}
@@ -111,7 +118,8 @@ export default function ModalAddNoteScreen({ navigation }) {
                 blurOnSubmit={false}
               />
                <Input
-               style={styles.input}
+               textStyle={{color: colors.text}}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
                status='info'
                 placeholder="Occasion"
                 value={occasion}
@@ -126,27 +134,48 @@ export default function ModalAddNoteScreen({ navigation }) {
                   paddingBottom: 5,
                 }}
               >
-                <Button
-                style={{margin: 5}}
-                appearance="filled"
+                <TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', // IOS
+                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+                shadowOpacity: 1, // IOS
+                shadowRadius: 1, //IOS
+                borderRadius: 5,
+                elevation: 2, // Android
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.24,
+                margin: 5}}
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     setLog("");
                     navigation.navigate("TabTwo")
-                  }}
-                >
-                  <Text>
+                  }}>
+                  <Text style={{fontWeight: "bold"}}>
                     Cancel
                   </Text>
-                </Button>
-                <Button
-                style={{margin: 5}}
-                  onPress={() => addLog()}
-                >
-                  <Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', // IOS
+                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+                shadowOpacity: 1, // IOS
+                shadowRadius: 1, //IOS
+                borderRadius: 5,
+                elevation: 2, // Android
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.24,
+                margin: 5}}
+                  onPress={() => addLog()}>
+                  <Text style={{fontWeight: "bold"}}>
                     Save
                   </Text>
-                </Button>
+                </TouchableOpacity>
                 </View>      
                 <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
@@ -158,6 +187,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingBottom: Dimensions.get('window').height * 0.45,
   },
   title: {
     fontSize: 20,
@@ -170,6 +200,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: Dimensions.get('window').width * 0.95,
-    padding: 5
+    padding: 5,
   }
 });

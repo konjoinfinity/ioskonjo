@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StyleSheet, Dimensions, Alert } from 'react-native';
+import { Platform, StyleSheet, Dimensions, Alert, useColorScheme } from 'react-native';
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTheme } from '@react-navigation/native';
 
 const logskey = "logs";
 
@@ -20,6 +21,8 @@ export default function ModalAddNoteScreen({ navigation, route }) {
   const [position, setPosition] = useState(JSON.stringify(route.params.number))
   const [logselected, setLogselected] = useState(route.params.loggy)
   const loginput = useRef(null);
+  const { colors } = useTheme();
+  let colorScheme = useColorScheme();
   
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) });
@@ -107,40 +110,45 @@ setOccasion(logselected.occasion)
   }
 
   return (
-    <ScrollView>
+    <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
       <Input
       ref={loginput}
-      style={styles.input}
+      textStyle={{color: colors.text}}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
       status='info'
                 value={log}
                 onChangeText={log => setLog(log)}
                 blurOnSubmit={false}
               />
               <Input
-              style={styles.input}
+              textStyle={{color: colors.text}}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
                 value={location}
                 onChangeText={location => setLocation(location)}
                 blurOnSubmit={false}
               />
                <Input
-               style={styles.input}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+               textStyle={{color: colors.text}}
                status='info'
                 value={weather}
                 onChangeText={weather => setWeather(weather)}
                 blurOnSubmit={false}
               />
               <Input
-              style={styles.input}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
+              textStyle={{color: colors.text}}
                 value={companions}
                 onChangeText={companions => setCompanions(companions)}
                 blurOnSubmit={false}
               />
                <Input
-               style={styles.input}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
                status='info'
+               textStyle={{color: colors.text}}
                 value={occasion}
                 onChangeText={occasion => setOccasion(occasion)}
                 blurOnSubmit={true}
