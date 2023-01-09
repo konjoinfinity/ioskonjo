@@ -59,7 +59,7 @@ export default snowData = [
             acronymn: "CK",
             kind: 'Exquisite Snow ❄️',
             title: 'Chokable',
-            desc: 'Powder so fine and eep = hard to breath; Might need a snorkel!',
+            desc: 'Powder so fine and deep = hard to breath; Might need a snorkel!',
             backgroundColor: "#5B9BD5"
         },
         {
