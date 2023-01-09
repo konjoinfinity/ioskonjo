@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet
+    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, Appearance, useColorScheme
 } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
-import AnimatedSnow from './AnimatedSnow';
 import * as Animatable from 'react-native-animatable';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
@@ -26,6 +25,7 @@ export function Card({navigation, cardData}){
     }
 
 export function Title({title, color}){
+;
     return (
         <View style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').width * 0.2, margin: 0.5}}>
         <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.04, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
@@ -36,6 +36,7 @@ export function Title({title, color}){
 export default function Home({navigation}) {
     const [cards, setCards] = useState([]);
     const [snowing, setSnowing] = useState(true)
+    let colorScheme = useColorScheme();
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
@@ -54,35 +55,35 @@ export default function Home({navigation}) {
 
         return(
             <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
-                {cards.length !== 0 ? <Title title={cards[0].kind} color={cards[0].backgroundColor} /> : ("")} 
+                {cards.length !== 0 ? <Title title={cards[0].kind} color={colorScheme === 'dark' ? cards[0].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} /></AnimatableView> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[23].kind} color={cards[23].backgroundColor} /> : ("")} 
+                {cards.length !== 0 ?<Title title={cards[23].kind} color={colorScheme === 'dark' ? cards[23].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 22 && cardData.key < 35 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[35].kind} color={cards[35].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[35].kind} color={colorScheme === 'dark' ? cards[35].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 34 && cardData.key < 51 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[51].kind} color={cards[51].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[51].kind} color={colorScheme === 'dark' ? cards[51].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 50 && cardData.key < 72 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[72].kind} color={cards[72].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[72].kind} color={colorScheme === 'dark' ? cards[72].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 71 && cardData.key < 95 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[95].kind} color={cards[95].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[95].kind} color={colorScheme === 'dark' ? cards[95].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 94 && cardData.key < 102 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[102].kind} color={cards[102].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[102].kind} color={colorScheme === 'dark' ? cards[102].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 101 && cardData.key < 116 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
-                {cards.length !== 0 ?<Title title={cards[116].kind} color={cards[116].backgroundColor} /> : ("")}
+                {cards.length !== 0 ?<Title title={cards[116].kind} color={colorScheme === 'dark' ? cards[116].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:""}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 115 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
