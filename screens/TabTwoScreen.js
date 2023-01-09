@@ -57,7 +57,7 @@ return (
               shadowOffset: { height: 2.5, width: 2.5 }, // IOS
               shadowOpacity: 1, // IOS
               shadowRadius: 1, //IOS
-              backgroundColor: colors.card,
+              backgroundColor: "white",
               borderRadius: 50,
               elevation: 2, // Android
               justifyContent: 'center',
@@ -87,7 +87,7 @@ return (
             delay={id * 200}
             duration={2000}>
           <View>
-            <Card style={{backgroundColor: colors.card, borderColor: colors.background}}>
+            <Card style={{backgroundColor: colorScheme === "dark" ? colors.border : colors.card, borderColor: colors.background}}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.65 }}>
               <Text style={{color: colors.text}}>
@@ -126,7 +126,7 @@ return (
               onPress={() => {
                 navigation.navigate("ModalEditNote", {number: id, loggy: log})}}>
               <Icon
-              color={colors.border}
+              color="white"
                 name="playlist-edit" size={40} style={{paddingLeft: 5}} />
             </TouchableOpacity>
             </View>
