@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
+import { View, ScrollView, TouchableOpacity, Dimensions, useColorScheme } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import * as Haptics from "expo-haptics";
 import { Card, Text, Button } from '@ui-kitten/components';
 import * as Animatable from 'react-native-animatable';
+import { useTheme } from '@react-navigation/native';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
-
 const logskey = "logs";
-var eachlog;
 
 export default function TabTwoScreen({ navigation }) {
 const [logs, setLogs] = useState([])
-
+let colorScheme = useColorScheme();
+var eachlog;
+const { colors } = useTheme();
 
 useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -52,22 +48,36 @@ useEffect(() => {
 return (
     <View>
         <View>
-        <ScrollView>
-            <View style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                padding: 5,
-                marginBottom: 5
-              }}>
-            <Text style={{ color: "white", fontSize: 28, padding: 10 }}>
-                Snow Notes
-              </Text>
-              <TouchableOpacity
+        <TouchableOpacity
+              style={{position: 'absolute',
+              bottom: 20,
+              right: 20,
+              zIndex: 2,
+              shadowColor: 'rgba(0,0,0, .4)', // IOS
+              shadowOffset: { height: 2.5, width: 2.5 }, // IOS
+              shadowOpacity: 1, // IOS
+              shadowRadius: 1, //IOS
+              backgroundColor: colors.card,
+              borderRadius: 50,
+              elevation: 2, // Android
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row'}}
               appearance="filled"
                 onPress={() =>
                 navigation.navigate("ModalAddNote")}>
-                <MIcon color={"white"} name="add-circle" size={50} />
+                <MIcon color={colors.primary} style={{margin: -6}} name="add-circle" size={70} />
               </TouchableOpacity>
+        <ScrollView>
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                padding: 5,
+                marginBottom: 5
+              }}>
+            <Text style={{ color: colors.primary, fontSize: 28, padding: 10 }}>
+                Snow Notes
+              </Text>
               </View>
               {logs && logs.length > 0 ? (eachlog = logs.map((log, id) => {
         return (
@@ -77,39 +87,48 @@ return (
             delay={id * 200}
             duration={2000}>
           <View>
-            <Card status='info'>
+            <Card style={{backgroundColor: colors.card, borderColor: colors.background}}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.6 }}>
-              <Text>
+            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.65 }}>
+              <Text style={{color: colors.text}}>
                 {log.log}
               </Text>
-              <Text>
+              <Text style={{color: colors.text}}>
                 Location: {log.location}
               </Text>
-              <Text>
+              <Text style={{color: colors.text}}>
                 Weather: {log.weather}
               </Text>
-              <Text>
+              <Text style={{color: colors.text}}>
                 Companions: {log.companions}
               </Text>
-              <Text>
+              <Text style={{color: colors.text}}>
                 Occasion: {log.occasion}
               </Text>
-              <Text>
+              <Text style={{color: colors.text}}>
                 {log.dateCreated}
               </Text>
             </View>
-            <Button
-            status='info'
-            style={{height: Dimensions.get("window").height * 0.08}}
-            size="giant"
-            appearance="filled"
+            <TouchableOpacity
+            style={{backgroundColor: colors.primary,  
+              shadowColor: 'rgba(0,0,0, .4)', // IOS
+            shadowOffset: { height: 1, width: 1 }, // IOS
+            shadowOpacity: 1, // IOS
+            shadowRadius: 1, //IOS
+            backgroundColor: colors.primary,
+            borderRadius: 5,
+            elevation: 2, // Android
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+            height: Dimensions.get("window").width * 0.12,
+            width: Dimensions.get("window").width * 0.12}}
               onPress={() => {
                 navigation.navigate("ModalEditNote", {number: id, loggy: log})}}>
               <Icon
-              color={"white"}
-                name="playlist-edit" />
-            </Button>
+              color={colors.border}
+                name="playlist-edit" size={40} style={{paddingLeft: 5}} />
+            </TouchableOpacity>
             </View>
             </Card>
           </View>

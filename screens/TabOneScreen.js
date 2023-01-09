@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, Appearance, useColorScheme
+    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, useColorScheme
 } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
