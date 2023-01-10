@@ -7806,11 +7806,6 @@ react-native-mask-loader@^0.0.3:
   resolved "https://registry.yarnpkg.com/react-native-mask-loader/-/react-native-mask-loader-0.0.3.tgz#4081db3a17b574c7b9057c89b39d23fbb2105a6e"
   integrity sha512-qZ3UpaTCGxa7whx+v+zlqV6XaZlOEi68WN8ropG9lThGEFFgvD6CvUVx7OYUcX+o2eysldQ70cNczeOybKQ38w==
 
-react-native-motion-splash@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-motion-splash/-/react-native-motion-splash-1.0.1.tgz#9329e1cb2a95b146143f78a11a2c5f0dc6de1138"
-  integrity sha512-HElAaYKlbeEMUqZLTna1hadW8C5vlGzg8EhHXl4mRvrBRa42iHNsaf9DiBpL5D2/nJs9xDjDPmgB2caAKZVfXw==
-
 react-native-ratings@8.0.4:
   version "8.0.4"
   resolved "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"

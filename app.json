@@ -26,7 +26,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rsdesign.ptos"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
