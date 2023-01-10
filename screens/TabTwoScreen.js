@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, TouchableOpacity, Dimensions, useColorScheme } from "react-native";
+import { View, ScrollView, TouchableOpacity, Dimensions, useColorScheme, Image, Animated, Easing } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MIcon from "react-native-vector-icons/MaterialIcons";
@@ -11,11 +11,36 @@ import { useTheme } from '@react-navigation/native';
 AnimatableView = Animatable.createAnimatableComponent(View);
 const logskey = "logs";
 
+export function PCard({title, color}){
+  return (
+      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.4, height: Dimensions.get('window').width * 0.4, margin: 0.5, opacity: 0.9}}>
+       <Text style={{ fontSize: Dimensions.get('window').height * 0.035, fontWeight: "bold", padding: 5, marginTop: 50, alignSelf: "center", color: "#000" }}>{title}</Text>
+      </View>
+  )
+}
+
 export default function TabTwoScreen({ navigation }) {
 const [logs, setLogs] = useState([])
 let colorScheme = useColorScheme();
 var eachlog;
 const { colors } = useTheme();
+var spinValue = new Animated.Value(0);
+
+Animated.loop(
+  Animated.timing(
+    spinValue,
+    {
+     toValue: 1,
+     duration: 20000,
+     easing: Easing.linear,
+     useNativeDriver: true
+    }
+  )
+ ).start();
+const spin = spinValue.interpolate({
+inputRange: [0, 1],
+outputRange: ['0deg', '360deg']
+})
 
 useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -54,13 +79,13 @@ return (
               bottom: 20,
               right: 20,
               zIndex: 2,
-              shadowColor: 'rgba(0,0,0, .4)', // IOS
-              shadowOffset: { height: 2.5, width: 2.5 }, // IOS
-              shadowOpacity: 1, // IOS
-              shadowRadius: 1, //IOS
+              shadowColor: 'rgba(0,0,0, .4)', 
+              shadowOffset: { height: 2.5, width: 2.5 }, 
+              shadowOpacity: 1, 
+              shadowRadius: 1, 
               backgroundColor: "white",
               borderRadius: 50,
-              elevation: 2, // Android
+              elevation: 2, 
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'row'}}
@@ -76,7 +101,7 @@ return (
                 padding: 5,
                 marginBottom: 5
               }}>
-            <Text style={{ color: colors.primary, fontSize: 28, padding: 10 }}>
+            <Text style={{ color: colors.text, fontSize: 28, padding: 10 }}>
                 Snow Notes
               </Text>
               </View>
@@ -112,13 +137,13 @@ return (
             </View>
             <TouchableOpacity
             style={{backgroundColor: colors.primary,  
-              shadowColor: 'rgba(0,0,0, .4)', // IOS
-            shadowOffset: { height: 1, width: 1 }, // IOS
-            shadowOpacity: 1, // IOS
-            shadowRadius: 1, //IOS
+              shadowColor: 'rgba(0,0,0, .4)', 
+            shadowOffset: { height: 1, width: 1 }, 
+            shadowOpacity: 1, 
+            shadowRadius: 1, 
             backgroundColor: colors.primary,
             borderRadius: 5,
-            elevation: 2, // Android
+            elevation: 2, 
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'row',
@@ -135,7 +160,20 @@ return (
           </View>
           </AnimatableView>
         )
-      })) : ("")}
+      })) : (<View><View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent: "center", height: Dimensions.get("window").height * 0.5 }}>
+        <Animated.Image
+  style={{transform: [{rotate: spin}], height: Dimensions.get("window").height * 0.2, width:Dimensions.get("window").height * 0.2, marginTop: Dimensions.get("window").height * 0.25,  
+  shadowColor: 'rgba(0,0,0, .4)', 
+shadowOffset: { height: 2, width: 2 }, 
+shadowOpacity: 1, 
+shadowRadius: 1, 
+borderRadius: 5,
+elevation: 2 }}
+  source={require('../assets/images/snowlogo.png')} />
+      </View>
+        <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Which snow did you find?</Text>
+        <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Tap + to add a note.</Text>
+      </View>)}
       </ScrollView>
       </View>
         </View>
