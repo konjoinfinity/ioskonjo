@@ -136,12 +136,12 @@ export default function ModalAddNoteScreen({ navigation }) {
               >
                 <TouchableOpacity
                 style={{backgroundColor: colors.primary,  
-                  shadowColor: 'rgba(200,200,200, 200)', // IOS
-                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
-                shadowOpacity: 1, // IOS
-                shadowRadius: 1, //IOS
+                  shadowColor: 'rgba(200,200,200, 200)', 
+                shadowOffset: { height: 2.5, width: 2.5 }, 
+                shadowOpacity: 1, 
+                shadowRadius: 1, 
                 borderRadius: 5,
-                elevation: 2, // Android
+                elevation: 2, 
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
@@ -159,12 +159,12 @@ export default function ModalAddNoteScreen({ navigation }) {
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={{backgroundColor: colors.primary,  
-                  shadowColor: 'rgba(200,200,200, 200)', // IOS
-                shadowOffset: { height: 2.5, width: 2.5 }, // IOS
-                shadowOpacity: 1, // IOS
-                shadowRadius: 1, //IOS
+                  shadowColor: 'rgba(200,200,200, 200)', 
+                shadowOffset: { height: 2.5, width: 2.5 }, 
+                shadowOpacity: 1, 
+                shadowRadius: 1, 
                 borderRadius: 5,
-                elevation: 2, // Android
+                elevation: 2, 
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
