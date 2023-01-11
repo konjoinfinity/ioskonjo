@@ -35,12 +35,12 @@ export default function ModalAddNoteScreen({ navigation, route }) {
 
 useEffect(() => {
 setLog(logselected.log)
-setLocation(logselected.location)
-setWeather(logselected.weather)
-setCompanions(logselected.companions)
-setOccasion(logselected.occasion)
-setDate(new Date(logselected.dateCreated))
-console.log(logselected.dateCreated)
+setLocation(logselected.location !== "" ? logselected.location : "")
+setWeather(logselected.weather !== "" ? logselected.weather : "")
+setCompanions(logselected.companions !== "" ? logselected.companions : "")
+setOccasion(logselected.occasion !== "" ? logselected.occasion : "")
+setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCreated) : "")
+console.log(logselected.dateCreated !== "" ? logselected.dateCreated : "")
 }, [])
 
   const getLogs = async() => {
@@ -128,6 +128,7 @@ console.log(logselected.dateCreated)
       textStyle={{color: colors.text}}
       style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
       status='info'
+      placeholder="Notes"
                 value={log}
                 onChangeText={log => setLog(log)}
                 blurOnSubmit={false}
@@ -136,6 +137,7 @@ console.log(logselected.dateCreated)
               textStyle={{color: colors.text}}
               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
+              placeholder="Location"
                 value={location}
                 onChangeText={location => setLocation(location)}
                 blurOnSubmit={false}
@@ -144,6 +146,7 @@ console.log(logselected.dateCreated)
                style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
                textStyle={{color: colors.text}}
                status='info'
+               placeholder="Weather"
                 value={weather}
                 onChangeText={weather => setWeather(weather)}
                 blurOnSubmit={false}
@@ -152,6 +155,7 @@ console.log(logselected.dateCreated)
               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
               status='info'
               textStyle={{color: colors.text}}
+              placeholder="Companions"
                 value={companions}
                 onChangeText={companions => setCompanions(companions)}
                 blurOnSubmit={false}
@@ -159,6 +163,7 @@ console.log(logselected.dateCreated)
                <Input
                style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
                status='info'
+               placeholder="Occasion"
                textStyle={{color: colors.text}}
                 value={occasion}
                 onChangeText={occasion => setOccasion(occasion)}
