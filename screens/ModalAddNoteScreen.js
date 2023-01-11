@@ -81,7 +81,6 @@ export default function ModalAddNoteScreen({ navigation }) {
 
   const onDateChange = (selectedDate) => {
     setDate(new Date(selectedDate));
-    console.log(date)
   };
 
   return (
@@ -106,8 +105,10 @@ export default function ModalAddNoteScreen({ navigation }) {
                   {date.toLocaleDateString()}
                   </Text>
                 </TouchableOpacity>:("")}
-    {showDatePicker == true ? <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
-    setShowDatePicker(!showDatePicker); onDateChange(value) }}/> : ("")}
+    {/* {showDatePicker == true ?  */}
+    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    setShowDatePicker(!showDatePicker); onDateChange(value) }}/>
+     {/* : ("")} */}
       <Input
       ref={loginput}
       style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}

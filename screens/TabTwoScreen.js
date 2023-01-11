@@ -45,7 +45,6 @@ useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       getLogs();
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      console.log(logs)
       });
       return unsubscribe;
   }, [navigation])

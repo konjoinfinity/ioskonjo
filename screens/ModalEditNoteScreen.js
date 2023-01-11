@@ -40,7 +40,6 @@ setWeather(logselected.weather !== "" ? logselected.weather : "")
 setCompanions(logselected.companions !== "" ? logselected.companions : "")
 setOccasion(logselected.occasion !== "" ? logselected.occasion : "")
 setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCreated) : "")
-console.log(logselected.dateCreated !== "" ? logselected.dateCreated : "")
 }, [])
 
   const getLogs = async() => {
