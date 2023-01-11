@@ -1,18 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StyleSheet, Dimensions, Alert, useColorScheme, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Dimensions, Alert, useColorScheme, TouchableOpacity, DatePickerIOS } from 'react-native';
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const logskey = "logs";
 
 export default function ModalAddNoteScreen({ navigation, route }) {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
+  const [date, setDate] = useState(new Date(1598051730000));
   const [companions, setCompanions] = useState("");
   const [occasion, setOccasion] = useState("");
   const [editlog, setEditlog] = useState("");
@@ -37,6 +39,8 @@ setLocation(logselected.location)
 setWeather(logselected.weather)
 setCompanions(logselected.companions)
 setOccasion(logselected.occasion)
+setDate(new Date(logselected.dateCreated))
+console.log(logselected.dateCreated)
 }, [])
 
   const getLogs = async() => {
@@ -68,7 +72,8 @@ setOccasion(logselected.occasion)
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       var editlogs = logs;
-      editlogs[position] = {log: log, location: location, weather: weather, companions: companions, occasion: occasion};
+      var logDate = new Date(date).toLocaleDateString();
+      editlogs[position] = {log: log, dateCreated: logDate, location: location, weather: weather, companions: companions, occasion: occasion};
       setLogs(editlogs)
       setEditlog("") 
       setLocation("") 
@@ -109,13 +114,19 @@ setOccasion(logselected.occasion)
     }
   }
 
+  const onDateChange = (selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(new Date(currentDate));
+  };
+
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
+    <DateTimePicker value={new Date(date)} style={{paddingTop: 10}} onChange={(event, date) => {onDateChange(date)}}/>
       <Input
       ref={loginput}
       textStyle={{color: colors.text}}
-      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, paddingTop: 20}]}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
       status='info'
                 value={log}
                 onChangeText={log => setLog(log)}

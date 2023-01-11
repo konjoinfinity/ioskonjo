@@ -203,7 +203,7 @@ export default snowData = [
             acronymn: "UTA",
             kind: 'Exquisite Snow ❄️',
             title: '"Greatest Snow On Earth"',
-            desc: 'Slogan appears Utah license plates in 1985; Debatable claim ** Said the man from Colorado.',
+            desc: 'Slogan appears Utah license plates in 1985; Debatable claim (Said the man from Colorado).',
             backgroundColor: "#5B9BD5"
         },
         {
@@ -257,7 +257,7 @@ export default snowData = [
             acronymn: "WS",
             kind: 'Ideal Snow ❄️',
             title: 'White Suede',
-            desc: 'Smooth hard snow w/ a mysterious surface that allows for easy, smooth carving;  Nice!',
+            desc: 'Smooth hard snow with a mysterious surface that allows for easy, smooth carving;  Nice!',
             backgroundColor: "#8EAADB"
         },
         {
@@ -473,7 +473,7 @@ export default snowData = [
             acronymn: "MC",
             kind: 'Marginal Snow ❄️',
             title: 'Marble Crust',
-            desc: "Extremely hard icy snow surface, usually found in small, round patches; Like the stone.",
+            desc: "Extremely hard icy snow surface, usually found in small, round patches; unforgiving like the stone.",
             backgroundColor: "#DEEAF6"
         },
         {
@@ -518,7 +518,7 @@ export default snowData = [
             acronymn: "CSC",
             kind: 'Marginal Snow ❄️',
             title: 'Colorado Super Chunk',
-            desc: 'Heavy, wet snow a few days after a spring snow storm.',
+            desc: 'Heavy wet snow a few days after a spring snow storm.',
             backgroundColor: "#DEEAF6"
         },
         {
@@ -536,7 +536,7 @@ export default snowData = [
             acronymn: "CD",
             kind: 'Marginal Snow ❄️',
             title: 'Chunder',
-            desc: 'Powder with large chunks of ice*** and snow cluttering an otherwise fine ski run. ***Sometimes left behind by grooming machine.',
+            desc: 'Powder with large chunks of ice (sometimes left behind by grooming machine) and snow cluttering an otherwise fine ski run.',
             backgroundColor: "#DEEAF6"
         },
         {
@@ -572,7 +572,7 @@ export default snowData = [
             acronymn: "CL",
             kind: 'Marginal Snow ❅',
             title: 'Chocolate Chip',
-            desc: 'A nasty mix of loose, gravel or the tips of buried rocks poking through top of snow.',
+            desc: 'A nasty mix of loose gravel in the snow, or the tips of buried rocks...',
             backgroundColor: "#DEEAF6"
         },
         {
@@ -635,7 +635,7 @@ export default snowData = [
             acronymn: "CA",
             kind: 'Marginal Snow ❅',
             title: 'Cascade Concrete',
-            desc: 'Very heavy wet dense snow, typical of the Pacific NW maritme.',
+            desc: 'Very heavy wet dense snow, typical of the Pacific NW maritime.',
             backgroundColor: "#DEEAF6"
         },
         {
@@ -860,7 +860,7 @@ export default snowData = [
             acronymn: "SN",
             kind: 'You Call This Snow? ❅',
             title: 'Snirt',
-            desc: 'Snow with a cover of	dirt, usually wind blown, common in springtime; snot pretty. **** Not quite snow, Not quite dirt.',
+            desc: 'Snow with a cover of	dirt, usually wind blown, common in springtime; snot pretty. Not quite snow, Not quite dirt.',
             backgroundColor: "#FEF2CB"
         },
         {
@@ -950,7 +950,7 @@ export default snowData = [
             acronymn: "WTM",
             kind: 'Exotic Snow ❅',
             title: 'Watermelon',
-            desc: 'Pinkish/red snow caused by red-green; Sometimes it can smell like fruit.',
+            desc: 'Pinkish/red snow caused by red-green algae; Sometimes it can smell like fruit.',
             backgroundColor: "#C8C8C8"
         },
         {
@@ -1013,7 +1013,7 @@ export default snowData = [
             acronymn: "INJ",
             kind: 'Exotic Snow ❅',
             title: 'Injected',
-            desc: 'Race-prepared surface water forced in snow under high pressure; "World Cup" hard.',
+            desc: 'Race-prepared surface where water is forced in snow under high pressure; "World Cup" hard.',
             backgroundColor: "#C8C8C8"
         },
         {
@@ -1022,7 +1022,7 @@ export default snowData = [
             acronymn: "SCU",
             kind: 'Exotic Snow ❅',
             title: 'Snow Sculpture',
-            desc: 'Fanciful, wondrous and whimsical art, created by carving & shaping packed snow.',
+            desc: 'Fanciful, wondrous and whimsical art, created by carving & shaping packed snow. Sometimes displayed in competitive exhibitions.',
             backgroundColor: "#C8C8C8"
         },
         {

@@ -473,7 +473,7 @@ export default snowWeather = [
             acronymn: "OS",
             kind: 'Snow Oddities ❄️',
             title: "Snowball in Hell",
-            desc: 'In 1992, Syracuse, NY City Counsel outlawed snow after a really bad	winter. Really bad!',
+            desc: 'In 1992, Syracuse, NY City Counsel outlawed snow after a really bad winter. Really bad!',
             backgroundColor: "#BDD7EE",
         },
         {
@@ -500,7 +500,7 @@ export default snowWeather = [
             acronymn: "COL",
             kind: 'Snow Oddities ❄️',
             title: "Snow Color",
-            desc: 'Actually, snow is translucent, but as light passes through, it appears white/blue ** can also be "stained" pink, red, yellow and brown, too.',
+            desc: 'Actually, snow is translucent, but as light passes through, it appears white/blue. Can also be "stained" pink, red, yellow and brown, too.',
             backgroundColor: "#BDD7EE",
         },
         {

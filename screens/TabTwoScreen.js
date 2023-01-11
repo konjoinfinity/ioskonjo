@@ -115,25 +115,55 @@ return (
           <View>
             <Card style={{backgroundColor: colorScheme === "dark" ? colors.border : colors.card, borderColor: colors.background}}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"left", width: Dimensions.get("window").width * 0.65 }}>
-              <Text style={{color: colors.text}}>
+            <View style={{ flexDirection: "column", justifyContent: "space-evenly", alignItems:"left", width: Dimensions.get("window").width * 0.65,  }}>
+            <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Date:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.dateCreated}
+              </Text>
+              </View>
+            <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Note:
+              </Text>
+             <Text style={{color: colors.text, paddingBottom: 2}}>
                 {log.log}
               </Text>
-              <Text style={{color: colors.text}}>
-                Location: {log.location}
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Location: 
               </Text>
-              <Text style={{color: colors.text}}>
-                Weather: {log.weather}
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.location}
               </Text>
-              <Text style={{color: colors.text}}>
-                Companions: {log.companions}
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Weather:
               </Text>
-              <Text style={{color: colors.text}}>
-                Occasion: {log.occasion}
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.weather}
               </Text>
-              <Text style={{color: colors.text}}>
-                {log.dateCreated}
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Companions:
               </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.companions}
+              </Text>
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Occasion:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.occasion}
+              </Text>
+              </View>
             </View>
             <TouchableOpacity
             style={{backgroundColor: colors.primary,  

@@ -7,11 +7,13 @@ import { Button, Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const logskey = "logs";
 
 export default function ModalAddNoteScreen({ navigation }) {
   const [location, setLocation] = useState("");
+  const [date, setDate] = useState(new Date());
   const [weather, setWeather] = useState("");
   const [companions, setCompanions] = useState("");
   const [occasion, setOccasion] = useState("");
@@ -47,7 +49,7 @@ export default function ModalAddNoteScreen({ navigation }) {
       if (log !== "") {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         var newLog = logs;
-        var logDate = new Date().toLocaleDateString();
+        var logDate = new Date(date).toLocaleDateString();
         newLog.unshift({ log: log, dateCreated: logDate, location: location, weather: weather, companions: companions, occasion: occasion });
         setLog("")
         setLocation("")
@@ -77,12 +79,20 @@ export default function ModalAddNoteScreen({ navigation }) {
     }
   }
 
+  const onDateChange = (selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(new Date(currentDate));
+  };
+
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
+    <DateTimePicker value={new Date(date)} style={{paddingTop: 10}} onChange={(event, date) => {
+          onDateChange(date);
+        }}/>
       <Input
       ref={loginput}
-      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, paddingTop: 20}]}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
       status='info'
       textStyle={{color: colors.text}}
                 placeholder="Notes"
