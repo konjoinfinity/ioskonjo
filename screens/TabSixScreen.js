@@ -14,8 +14,8 @@ let cardSearch = "";
 
 export function Card({title, color}){
   return (
-      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.4, height: Dimensions.get('window').width * 0.4, margin: 0.5, opacity: 0.9}}>
-       <Text style={{ fontSize: Dimensions.get('window').height * 0.035, fontWeight: "bold", padding: 5, marginTop: 50, alignSelf: "center" }}>{title}</Text>
+      <View style={{backgroundColor: color, width: Dimensions.get('window').height * 0.16, height: Dimensions.get('window').height * 0.16, margin: 0.5, opacity: 0.9}}>
+       <Text style={{ fontSize: Dimensions.get('window').height * 0.035, fontWeight: "bold", padding: 5, marginTop: Dimensions.get('window').width * 0.1, alignSelf: "center" }}>{title}</Text>
       </View>
   )
 }

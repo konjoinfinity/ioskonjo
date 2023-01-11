@@ -63,7 +63,6 @@ useEffect(() => {
         // console.log('Done.')
       await AsyncStorage.getItem(logskey, (error, result) => {
         var toPush = JSON.parse(result)
-        console.log(JSON.parse(result))
         result !== null && result !== "[]"
           ? setLogs(toPush)
           : setLogs([]);
