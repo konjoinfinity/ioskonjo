@@ -39,7 +39,6 @@ export default function ModalAddNoteScreen({ navigation }) {
         result !== null && result !== "[]" && result !== undefined
           ? setLogs(JSON.parse(result))
           : setLogs([]);
-          console.log(error)
       });
     } catch (error) {
       console.log(error);
