@@ -1,10 +1,10 @@
-#Periodic Table Of Snow (PTOS)#
+Periodic Table Of Snow (PTOS)
 
-###A companion app to the Periodic Table of Snow©. Created by RS Design, PTOS is the digital version of the Periodic Table of Snow. Carry it in your pocket while you ski or snowboard. Write notes about snow conditions and winter weather you come across. Learn the types of snow, classifications, and descriptions.
+A companion app to the Periodic Table of Snow©. Created by RS Design, PTOS is the digital version of the Periodic Table of Snow. Carry it in your pocket while you ski or snowboard. Write notes about snow conditions and winter weather you come across. Learn the types of snow, classifications, and descriptions.
 
-##Built using Expo and React Native
+Built using Expo and React Native
 
-#Other software that made this project possible:
+Other software that made this project possible:
 
 @babel/preset-env
 @eva-design/eva
