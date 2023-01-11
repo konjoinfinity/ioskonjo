@@ -19,8 +19,10 @@
       "**/*"
     ],
     "ios": {
+      "autoIncrement": "buildNumber",
       "supportsTablet": true,
-      "bundleIdentifier": "com.rsdesign.ptos"
+      "bundleIdentifier": "com.rsdesign.ptos",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
