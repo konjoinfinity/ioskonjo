@@ -22,7 +22,6 @@ export function PCard({title, color}){
 export default function TabTwoScreen({ navigation }) {
 const [logs, setLogs] = useState([])
 let colorScheme = useColorScheme();
-var eachlog;
 const { colors } = useTheme();
 var spinValue = new Animated.Value(0);
 
@@ -46,6 +45,7 @@ useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       getLogs();
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+      console.log(logs)
       });
       return unsubscribe;
   }, [navigation])
@@ -60,11 +60,15 @@ useEffect(() => {
 
   const getLogs = async() => {
     try {
+        //   await AsyncStorage.removeItem(logskey)
+        // console.log('Done.')
       await AsyncStorage.getItem(logskey, (error, result) => {
+        var toPush = JSON.parse(result)
+        console.log(JSON.parse(result))
         result !== null && result !== "[]"
-          ? setLogs(JSON.parse(result))
+          ? setLogs(toPush)
           : setLogs([]);
-      });
+      })
     } catch (error) {
       console.log(error);
     }
@@ -105,7 +109,7 @@ return (
                 Snow Notes
               </Text>
               </View>
-              {logs && logs.length > 0 ? (eachlog = logs.map((log, id) => {
+              {logs && logs.length > 0 ? (logs.map((log, id) => {
         return (
           <AnimatableView
           key={id}

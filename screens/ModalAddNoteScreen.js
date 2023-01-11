@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
-import { Platform, StyleSheet, Dimensions, useColorScheme, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Dimensions, useColorScheme, TouchableOpacity, Alert } from 'react-native';
 import { View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
-import { Button, Input, Text } from '@ui-kitten/components';
+import { Input, Text } from '@ui-kitten/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
@@ -21,6 +21,7 @@ export default function ModalAddNoteScreen({ navigation }) {
   const [logs, setLogs] = useState([])
   const loginput = useRef(null);
   const { colors } = useTheme();
+  const [showDatePicker, setShowDatePicker] = useState(true)
   let colorScheme = useColorScheme();
   
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function ModalAddNoteScreen({ navigation }) {
         result !== null && result !== "[]" && result !== undefined
           ? setLogs(JSON.parse(result))
           : setLogs([]);
+          console.log(error)
       });
     } catch (error) {
       console.log(error);
@@ -49,8 +51,7 @@ export default function ModalAddNoteScreen({ navigation }) {
       if (log !== "") {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         var newLog = logs;
-        var logDate = new Date(date).toLocaleDateString();
-        newLog.unshift({ log: log, dateCreated: logDate, location: location, weather: weather, companions: companions, occasion: occasion });
+        newLog.unshift({ log: log, dateCreated: new Date(date).toLocaleDateString(), location: location, weather: weather, companions: companions, occasion: occasion });
         setLog("")
         setLocation("")
         setWeather("")
@@ -64,12 +65,11 @@ export default function ModalAddNoteScreen({ navigation }) {
         Alert.alert(
           "Please enter some text.",
           "",
-          [
-            {
+          [{
               text: "Ok",
               onPress: () =>
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
-            },
+            }, 
           ],
           { cancelable: false }
         );
@@ -80,16 +80,34 @@ export default function ModalAddNoteScreen({ navigation }) {
   }
 
   const onDateChange = (selectedDate) => {
-    const currentDate = selectedDate;
-    setDate(new Date(currentDate));
+    setDate(new Date(selectedDate));
+    console.log(date)
   };
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
-    <DateTimePicker value={new Date(date)} style={{paddingTop: 10}} onChange={(event, date) => {
-          onDateChange(date);
-        }}/>
+    {Platform.OS == "android" ?<TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', 
+                shadowOffset: { height: 2.5, width: 2.5 }, 
+                shadowOpacity: 1, 
+                shadowRadius: 1, 
+                borderRadius: 5,
+                elevation: 2, 
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.35,
+                margin: 5}}
+                  onPress={() => setShowDatePicker(!showDatePicker)}>
+                  <Text style={{fontWeight: "bold"}}>
+                  {date.toLocaleDateString()}
+                  </Text>
+                </TouchableOpacity>:("")}
+    {showDatePicker == true ? <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    setShowDatePicker(!showDatePicker); onDateChange(value) }}/> : ("")}
       <Input
       ref={loginput}
       style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
