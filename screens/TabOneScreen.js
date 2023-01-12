@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, useColorScheme
+    View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, useColorScheme, Platform
 } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
@@ -13,8 +13,23 @@ var height;
 
 export function Card({navigation, cardData, border}){
         return (
-            
-            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
+            Platform.OS == "ios" ? 
+            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
+            height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, 
+            borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
+                <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
+             <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
+             <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>
+             </View>
+             <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
+             </View>
+            </TouchableOpacity> :
+            <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
+            height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, 
+            borderStyle: "solid", borderColor: "gray", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>

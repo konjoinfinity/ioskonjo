@@ -107,7 +107,8 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabSix'>) => ({
           title: 'Search',
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
-          headerTitle: "Periodic Table of Snow©"
+          headerTitle: "Periodic Table of Snow©",
+          keyboardHidesTabBar: true
         })}
       />
     </BottomTab.Navigator>
