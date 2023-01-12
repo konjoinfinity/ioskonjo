@@ -1,9 +1,3 @@
-/**
- * Learn more about deep linking with React Navigation
- * https://reactnavigation.org/docs/deep-linking
- * https://reactnavigation.org/docs/configuring-links
- */
-
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 import { RootStackParamList } from '../types';
@@ -33,24 +27,13 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               TabFourScreen: 'four',
             },
-          },
-          TabFive: {
-            screens: {
-              TabFiveScreen: 'five',
-            },
-          },
-          TabSix: {
-            screens: {
-              TabSixScreen: 'six',
-            },
-          },
+          }
         },
       },
       Modal: 'modal',
       InfoModal: "infomodal",
       ModalAddNote: 'modaladdnote',
       ModalEditNote: 'modaleditnote',
-      NotFound: '*',
     },
   },
 };

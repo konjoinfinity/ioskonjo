@@ -30,9 +30,9 @@ export default function InfoModalScreen() {
       <Text style={{ fontSize: Dimensions.get('window').height * 0.015}}>©</Text>
       </View>
       <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent: "center"}}>
-      <Card title={"Periodic"} color={"#5B9BD5"} />
-      <Card title={"Table"} color={"#DEEAF6"} />
-      <Card title={"of"} color={"#FFD965"} /> 
+      <Card title={"Periodic"} copy={""} color={"#5B9BD5"} />
+      <Card title={"Table"} copy={""}color={"#DEEAF6"} />
+      <Card title={"of"} copy={""} color={"#FFD965"} /> 
       <Card title={"Snow"} copy={"©"} color={"#ECECEC"} />
       </View>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 10, margin: 10, alignSelf: "center"}}>
