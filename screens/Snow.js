@@ -28,11 +28,13 @@ export default function Snow(props) {
      updateInterval = setInterval(() => {
       move(props.width, props.height);
     }, 50);
+  setTimeout(() => {
+  clearInterval(updateInterval);
+}, 4000)
     return () => {
       return false;
     }
   },[])
-
 
   useEffect(() => {
     return () => {
@@ -87,20 +89,17 @@ export default function Snow(props) {
     };
   }
 
- 
   const snowShape = getPosition();
     return (
       <View ref={el => (viewRef = el)} {...props} style={[styles.snow, snowShape]} />
     );
   }
 
-
 Snow.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };
 
-// Styles
 const styles = StyleSheet.create({
   snow: {
     position: 'absolute',
