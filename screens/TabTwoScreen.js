@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, TouchableOpacity, Dimensions, useColorScheme, Image, Animated, Easing } from "react-native";
+import { View, ScrollView, TouchableOpacity, Dimensions, useColorScheme, Image, Animated, Easing, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MIcon from "react-native-vector-icons/MaterialIcons";
@@ -62,9 +62,8 @@ useEffect(() => {
         //   await AsyncStorage.removeItem(logskey)
         // console.log('Done.')
       await AsyncStorage.getItem(logskey, (error, result) => {
-        var toPush = JSON.parse(result)
         result !== null && result !== "[]"
-          ? setLogs(toPush)
+          ? setLogs(JSON.parse(result))
           : setLogs([]);
       })
     } catch (error) {
@@ -117,7 +116,7 @@ return (
           <View>
             <Card style={{backgroundColor: colorScheme === "dark" ? colors.border : colors.card, borderColor: colors.background}}>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", justifyContent: "space-evenly", alignItems:"left", width: Dimensions.get("window").width * 0.65,  }}>
+            <View style={{ flexDirection: "column", justifyContent: "space-evenly", alignItems:"flex-start", width: Dimensions.get("window").width * 0.65,  }}>
             <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
             <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
             Date:
@@ -206,6 +205,107 @@ elevation: 2 }}
         <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Which snow did you find?</Text>
         <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Tap + to add a note.</Text>
       </View>)}
+
+      {/* {Platform.OS == "android" && logs ? (logs.map((log, id) => {
+        return (
+          <AnimatableView
+          key={id}
+            animation="bounceInDown"
+            delay={id * 200}
+            duration={2000}>
+          <View>
+            <Card style={{backgroundColor: colorScheme === "dark" ? colors.border : colors.card, borderColor: colors.background}}>
+                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={{ flexDirection: "column", justifyContent: "space-evenly", alignItems:"flex-start", width: Dimensions.get("window").width * 0.65,  }}>
+            <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Date:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.dateCreated}
+              </Text>
+              </View>
+            <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Note:
+              </Text>
+             <Text style={{color: colors.text, paddingBottom: 2}}>
+                {log.log}
+              </Text>
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Location: 
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.location}
+              </Text>
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+                Weather:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.weather}
+              </Text>
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Companions:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.companions}
+              </Text>
+              </View>
+              <View style={{display: "flex", alignItems: "flex-start", justifyContent:"flex-start", flexDirection: "row"}}>
+            <Text style={{color: colors.text, fontWeight: "bold", paddingRight: 5}}>
+            Occasion:
+              </Text>
+              <Text style={{color: colors.text, paddingBottom: 2}}>
+              {log.occasion}
+              </Text>
+              </View>
+            </View>
+            <TouchableOpacity
+            style={{backgroundColor: colors.primary,  
+              shadowColor: 'rgba(0,0,0, .4)', 
+            shadowOffset: { height: 1, width: 1 }, 
+            shadowOpacity: 1, 
+            shadowRadius: 1, 
+            backgroundColor: colors.primary,
+            borderRadius: 5,
+            elevation: 2, 
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+            height: Dimensions.get("window").width * 0.12,
+            width: Dimensions.get("window").width * 0.12}}
+              onPress={() => {
+                navigation.navigate("ModalEditNote", {number: id, loggy: log})}}>
+              <Icon
+              color="white"
+                name="playlist-edit" size={40} style={{paddingLeft: 5}} />
+            </TouchableOpacity>
+            </View>
+            </Card>
+          </View>
+          </AnimatableView>
+        )
+      })) : (<View><View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent: "center", height: Dimensions.get("window").height * 0.5 }}>
+        <Animated.Image
+  style={{transform: [{rotate: spin}], height: Dimensions.get("window").height * 0.2, width:Dimensions.get("window").height * 0.2, marginTop: Dimensions.get("window").height * 0.25,  
+  shadowColor: 'rgba(0,0,0, .4)', 
+shadowOffset: { height: 2, width: 2 }, 
+shadowOpacity: 1, 
+shadowRadius: 1, 
+borderRadius: 5,
+elevation: 2 }}
+  source={require('../assets/images/snowlogo.png')} />
+      </View>
+        <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Which snow did you find?</Text>
+        <Text style={{alignSelf: "center", padding:5, color: colors.text}}>Tap + to add a note.</Text>
+      </View>)} */}
+
       </ScrollView>
       </View>
         </View>

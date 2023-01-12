@@ -23,6 +23,7 @@ export default function ModalAddNoteScreen({ navigation, route }) {
   const [position, setPosition] = useState(JSON.stringify(route.params.number))
   const [logselected, setLogselected] = useState(route.params.loggy)
   const loginput = useRef(null);
+  const [showDatePicker, setShowDatePicker] = useState(false)
   const { colors } = useTheme();
   let colorScheme = useColorScheme();
   
@@ -121,7 +122,33 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
     <View style={styles.container}>
-    <DateTimePicker value={new Date(date)} style={{paddingTop: 10}} onChange={(event, date) => {onDateChange(date)}}/>
+    {Platform.OS == "android" ?<TouchableOpacity
+                style={{backgroundColor: colors.primary,  
+                  shadowColor: 'rgba(200,200,200, 200)', 
+                shadowOffset: { height: 2.5, width: 2.5 }, 
+                shadowOpacity: 1, 
+                shadowRadius: 1, 
+                borderRadius: 5,
+                elevation: 2, 
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                height: Dimensions.get("window").width * 0.12,
+                width: Dimensions.get("window").width * 0.35,
+                margin: 5}}
+                  onPress={() => {setShowDatePicker(!showDatePicker); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)}}>
+                  <Text style={{fontWeight: "bold"}}>
+                  {date.toLocaleDateString()}
+                  </Text>
+                </TouchableOpacity>:("")}
+    {Platform.OS == "android" && showDatePicker == true ? 
+    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
+     : ("")}
+     {Platform.OS == "ios" ? 
+    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
+     : ("")}
       <Input
       ref={loginput}
       textStyle={{color: colors.text}}

@@ -21,7 +21,7 @@ export default function ModalAddNoteScreen({ navigation }) {
   const [logs, setLogs] = useState([])
   const loginput = useRef(null);
   const { colors } = useTheme();
-  const [showDatePicker, setShowDatePicker] = useState(true)
+  const [showDatePicker, setShowDatePicker] = useState(false)
   let colorScheme = useColorScheme();
   
   useEffect(() => {
@@ -99,15 +99,19 @@ export default function ModalAddNoteScreen({ navigation }) {
                 height: Dimensions.get("window").width * 0.12,
                 width: Dimensions.get("window").width * 0.35,
                 margin: 5}}
-                  onPress={() => setShowDatePicker(!showDatePicker)}>
+                  onPress={() => {setShowDatePicker(!showDatePicker); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)}}>
                   <Text style={{fontWeight: "bold"}}>
                   {date.toLocaleDateString()}
                   </Text>
                 </TouchableOpacity>:("")}
-    {/* {showDatePicker == true ?  */}
+    {Platform.OS == "android" && showDatePicker == true ? 
     <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
-    setShowDatePicker(!showDatePicker); onDateChange(value) }}/>
-     {/* : ("")} */}
+    setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
+     : ("")}
+     {Platform.OS == "ios" ? 
+    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
+     : ("")}
       <Input
       ref={loginput}
       style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
