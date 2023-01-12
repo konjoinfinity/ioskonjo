@@ -21,10 +21,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rsdesign.ptos",
-      "buildNumber": "3"
+      "buildNumber": "4"
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
