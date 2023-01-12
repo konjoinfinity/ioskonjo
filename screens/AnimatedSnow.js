@@ -48,7 +48,7 @@ export function Card({title, color, copy}){
             <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", paddingTop: Dimensions.get('window').height * 0.3, paddingLeft: Dimensions.get('window').width * 0.04, paddingRight: Dimensions.get('window').width * 0.04}}>
                 <AnimatableView animation="bounceInDown" delay={500} duration={2000}><Card title={"Periodic"} color={"#5B9BD5"} /></AnimatableView>      
                 <AnimatableView animation="bounceInDown" delay={750} duration={2000}><Card title={"Table"} color={"#DEEAF6"} /></AnimatableView>  
-                <AnimatableView animation="bounceInDown" delay={1000} duration={2000}><Card title={"Of"} color={"#FFD965"} /></AnimatableView>  
+                <AnimatableView animation="bounceInDown" delay={1000} duration={2000}><Card title={"of"} color={"#FFD965"} /></AnimatableView>  
                 <AnimatableView animation="bounceInDown" delay={1250} duration={2000}><Card title={"Snow"} copy={"©"} color={"#ECECEC"} /></AnimatableView>          
                 </View>
             </View>

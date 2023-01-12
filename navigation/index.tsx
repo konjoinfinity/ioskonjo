@@ -1,4 +1,4 @@
-import { Fontisto, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Fontisto, MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,17 +7,16 @@ import { ColorSchemeName, Pressable, Text, Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
+import InfoModalScreen from '../screens/InfoModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
-import TabFourScreen from '../screens/TabFourScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import TabSixScreen from '../screens/TabSixScreen';
+import TabFourScreen from '../screens/TabFourScreen';
 import ModalEditNoteScreen from '../screens/ModalEditNoteScreen';
 import ModalAddNoteScreen from '../screens/ModalAddNoteScreen';
-import TabFiveScreen from "../screens/TabFiveScreen"
+import TabTwoScreen from "../screens/TabTwoScreen"
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,6 +37,7 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow©" }} />
+        <Stack.Screen name="InfoModal" component={InfoModalScreen} options={{ title: "Info" }} />
         <Stack.Screen name="ModalAddNote" component={ModalAddNoteScreen} options={{ title: "Add Note" }} />
         <Stack.Screen name="ModalEditNote" component={ModalEditNoteScreen} options={{ title: "Edit Note" }} />
       </Stack.Group>
@@ -62,49 +62,45 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Periodic Table',
           tabBarIcon: ({ color }) => <Icon name="snowflake-4" color={color} />,
-          headerTitle: "Periodic Table of Snow©"
-        })}
-      />
-      <BottomTab.Screen
-        name="TabFive"
-        component={TabFiveScreen}
-        options={({ navigation }: RootTabScreenProps<'TabFive'>) => ({
-          title: 'Weather Types',
-          tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
-          headerTitle: "Periodic Table of Snow©"
+          headerTitle: "Periodic Table of Snow©",
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('InfoModal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
         })}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
+          title: 'Weather Types',
+          tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
+          headerTitle: "Periodic Table of Snow©"
+        })}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabThreeScreen}
+        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
           title: 'Snow Notes',
           tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
           headerTitle: "Periodic Table of Snow©"
   })}
       />
-       {/* <BottomTab.Screen
-        name="TabThree"
-        component={TabThreeScreen}
-        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
-          title: 'Snow',
-          tabBarIcon: ({ color }) => <Icon name="snowflake-8" color={color} />,
-          headerTitle: "Periodic Table of Snow®"
-        })}
-      /> */}
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="TabFour"
         component={TabFourScreen}
         options={({ navigation }: RootTabScreenProps<'TabFour'>) => ({
-          title: 'Notes',
-          tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />,
-          headerTitle: "Periodic Table of Snow"
-        })}
-      />  */}
-      <BottomTab.Screen
-        name="TabSix"
-        component={TabSixScreen}
-        options={({ navigation }: RootTabScreenProps<'TabSix'>) => ({
           title: 'Search',
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow©",
@@ -114,9 +110,6 @@ function BottomTabNavigator() {
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function Icon(props: {
   name: React.ComponentProps<typeof Fontisto>['name'];
   color: string;

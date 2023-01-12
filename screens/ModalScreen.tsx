@@ -15,6 +15,7 @@ export default function ModalScreen({ route }) {
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 5, margin: 5, alignSelf: "center" }}>{cardData.kind}</Text>
+      {/* Add conditional for Android - cuts off longer text */}
       <View style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.9, height: Dimensions.get('window').height * 0.7, marginBottom: 100}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 10, backgroundColor: cardData.backgroundColor}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", color: "black"}}>{cardData.anum}</Text> 

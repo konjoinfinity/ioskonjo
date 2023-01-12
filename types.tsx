@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   ModalAddNote: undefined;
   ModalEditNote: undefined;
+  InfoModal: undefined;
   Modal: undefined;
   NotFound: undefined;
 };
