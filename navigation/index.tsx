@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable, Text } from 'react-native';
+import { ColorSchemeName, Pressable, Text, Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
@@ -108,7 +108,6 @@ function BottomTabNavigator() {
           title: 'Search',
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: "Periodic Table of Snow©",
-          keyboardHidesTabBar: true
         })}
       />
     </BottomTab.Navigator>
