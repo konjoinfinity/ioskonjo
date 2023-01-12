@@ -19,12 +19,12 @@
       "**/*"
     ],
     "ios": {
-      "autoIncrement": "buildNumber",
       "supportsTablet": true,
       "bundleIdentifier": "com.rsdesign.ptos",
       "buildNumber": "3"
     },
     "android": {
+      "versionCode": "2",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
