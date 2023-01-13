@@ -27,8 +27,8 @@ export function Card({navigation, cardData, border, matching}){
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 2, marginTop: 2, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
-            {matching.map((title) => {title.snowType == cardData.title 
-            return <Ionicons name="md-checkmark-circle-sharp" size={25} color="black" /> })}
+            {/* {matching.filter((title) => {title.snowType == cardData.title 
+            return <Ionicons name="md-checkmark-circle-sharp" size={25} color="black" /> })} */}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
             style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
