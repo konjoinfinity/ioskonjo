@@ -15,7 +15,6 @@ export default function ModalScreen({ route }) {
   useEffect(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     getFound();
-    // var filtered = found.filter(function(snow) { return snow.snow != route.params.loggy.log}); 
   }, [])
 
   const getFound = async() => {
@@ -30,8 +29,13 @@ export default function ModalScreen({ route }) {
         setFound(JSON.parse(result)) : setFound([]);
         console.log("Get")
         console.log(result)
+      var filtered = JSON.parse(result).filter(function(snow) { return snow.snowType == cardData.title}); 
+      console.log("filtered")
+      console.log(filtered)
+      filtered.length > 0 ? setFoundSnow("#94C68A") : console.log("not found")
       });
       console.log(found)
+      
     } catch (error) {
       console.log(error);
     }
