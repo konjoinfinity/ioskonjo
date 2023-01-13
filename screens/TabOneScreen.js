@@ -65,7 +65,7 @@ export function Title({title, color}){
         )
     }
 
-export default function Home({navigation}, props) {
+export default function Home({navigation}) {
     const [cards, setCards] = useState([]);
     const [found, setFound] = useState([])
     const [matching, setMatching] = useState([])
@@ -109,7 +109,7 @@ export default function Home({navigation}, props) {
             <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
                 {cards.length !== 0 ? <Title title={cards[0].kind} color={colorScheme === 'dark' ? cards[0].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
-                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card {...props} key={cardData.key} cardData={cardData} navigation={navigation} matching={matching} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} matching={matching} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               
                 </View>
                 {cards.length !== 0 ?<Title title={cards[23].kind} color={colorScheme === 'dark' ? cards[23].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
