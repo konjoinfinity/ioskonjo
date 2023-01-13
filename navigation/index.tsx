@@ -34,7 +34,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table Of Snow©" }} />
+        <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table of Snow©" }} />
         <Stack.Screen name="InfoModal" component={InfoModalScreen} options={{ title: "Info" }} />
         <Stack.Screen name="ModalAddNote" component={ModalAddNoteScreen} options={{ title: "Add Note" }} />
         <Stack.Screen name="ModalEditNote" component={ModalEditNoteScreen} options={{ title: "Edit Note" }} />
