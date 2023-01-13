@@ -14,19 +14,14 @@ var height;
 const foundkey = "found";
 
 export function Card({navigation, cardData, border, matching}){
-    const useCheckboxState = (initialCheck = true) => {
-        const [checked, setChecked] = React.useState(initialCheck);
-        return { checked };
-      };
-    const successCheckboxState = useCheckboxState();
-  
+  console.log(matching)
+
         return (
             Platform.OS == "ios" ? 
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
             style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
             height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, 
             borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
-               
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>
@@ -34,10 +29,9 @@ export function Card({navigation, cardData, border, matching}){
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 2, marginTop: 2, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
-             {matching && matching.filter((title) => {title.snowType == cardData.title 
-            return title.snowType == cardData.title ?
-             <CheckBox style={{position:"absolute",  bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")})}
-             {/* <Ionicons style={{position:"absolute",  bottom: 5, right: 5}} name="md-checkmark-circle-sharp" size={25} color="black" /> */}
+             {matching.map(snow => { 
+              snowData.filter(title => {
+                return snow.snowType === title.title ? <Text style={{color:"#fff"}}>Test</Text> : ("")})})}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
             style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
@@ -50,14 +44,12 @@ export function Card({navigation, cardData, border, matching}){
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
-             {/* <CheckBox style={{position:"absolute",  bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> */}
+             
             </TouchableOpacity>
-            
         )
     }
 
 export function Title({title, color}){
-;
     return (
         <View style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').width * 0.2, margin: 0.5}}>
         <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.04, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
@@ -78,7 +70,7 @@ export default function Home({navigation}) {
             getFound();
           });
           return unsubscribe;
-      }, [navigation])
+      }, [navigation, matching])
 
       useEffect(() => {
         const unsubscribe = navigation.addListener('blur', () => {
