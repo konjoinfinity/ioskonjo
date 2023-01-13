@@ -10,7 +10,9 @@ const foundkey = "found";
 export default function ModalScreen({ route }) {
   const [foundSnow, setFoundSnow] = useState("#fff");
   const [found, setFound] = useState([]);
+  const [current, setCurrent] = useState([])
   const {cardData} = route.params;
+  var filtered;
   
   useEffect(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -29,10 +31,17 @@ export default function ModalScreen({ route }) {
         setFound(JSON.parse(result)) : setFound([]);
         console.log("Get")
         console.log(result)
-      var filtered = JSON.parse(result).filter(function(snow) { return snow.snowType == cardData.title}); 
-      console.log("filtered")
-      console.log(filtered)
-      filtered.length > 0 ? setFoundSnow("#94C68A") : console.log("not found")
+        if(result !== null && result !== "[]" && result !== undefined) {
+          filtered = JSON.parse(result).filter(function(snow) { return snow.snowType == cardData.title}); 
+          console.log("filtered")
+          console.log(filtered)
+          if(filtered.length > 0){
+            setFoundSnow("#94C68A")
+            setCurrent(filtered)
+          } else {
+            console.log("not found")
+          }
+        }
       });
       console.log(found)
       
@@ -54,6 +63,15 @@ export default function ModalScreen({ route }) {
         console.log(found)
         await AsyncStorage.setItem(foundkey, JSON.stringify(newFound));
         console.log(found)
+        filtered = found.filter(function(snow) { return snow.snowType == cardData.title}); 
+          console.log("filtered")
+          console.log(filtered)
+          if(filtered.length > 0){
+            setFoundSnow("#94C68A")
+            setCurrent(filtered)
+          } else {
+            console.log("not found")
+          }
       } else {
         newFound.shift();
         console.log(newFound)
@@ -90,7 +108,7 @@ export default function ModalScreen({ route }) {
                 alignItems: 'center',
                 flexDirection: 'row',
                 }} onPress={() => foundThis(cardData.title)}><Text style={{textAlign: "center", color: "#000", fontWeight:"600", fontSize: Dimensions.get('window').height * 0.02, padding: 22 }}>{foundSnow == "#fff" ? `Found ${cardData.title}?`: `You Found ${cardData.title}!`}</Text></TouchableOpacity> 
-                {/* <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>{cardData.desc}</Text> */}
+                {foundSnow == "#94C68A" && current.length > 0 ? <Text style={{ fontSize: Dimensions.get('window').height * 0.02, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>Date Found: {new Date(current[0].dateFound).toLocaleDateString()}</Text> : ("")}
                 </View>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
