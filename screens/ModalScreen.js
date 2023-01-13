@@ -73,11 +73,11 @@ export default function ModalScreen({ route }) {
             console.log("not found")
           }
       } else {
-        newFound.shift();
-        console.log(newFound)
-        setFound(newFound)
+        var remove = found.filter(function(snow) { return snow.snowType !== cardData.title}); 
+        console.log(remove)
+        setFound(remove)
         console.log(found)
-        await AsyncStorage.setItem(foundkey, JSON.stringify(newFound));
+        await AsyncStorage.setItem(foundkey, JSON.stringify(remove));
         console.log(found)
       }
     } catch(err) {
