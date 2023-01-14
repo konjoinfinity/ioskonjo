@@ -30,21 +30,16 @@ export default function App() {
   const getMyObject = async () => {
     var db;
     try {
-  // await AsyncStorage.removeItem(storagekey) 
       await AsyncStorage.getItem(storagekey, (error, result) => {
         if (result !== null && result !== "[]" && result !== undefined) {
-          console.log("db already created")
         } else {
           db = snowData.concat(snowWeather); 
-          console.log(db)
           AsyncStorage.setItem(storagekey, JSON.stringify(db));
-          console.log("db written")
         }
       })
     } catch(e) {
       console.log(e)
     }
-    console.log('Done.')
   }
 
   if (!isLoadingComplete) {

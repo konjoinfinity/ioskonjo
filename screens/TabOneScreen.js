@@ -63,8 +63,7 @@ export default function Home({navigation}) {
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
           AsyncStorage.getItem(storagekey, (error, result) => {
-            result !== null && result !== "[]" && result !== undefined ? setCards(JSON.parse(result)) : console.log("DB not loaded")
-            console.log("DB loaded")
+            result !== null && result !== "[]" && result !== undefined ? setCards(JSON.parse(result)) : console.log(error)
           });
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         })

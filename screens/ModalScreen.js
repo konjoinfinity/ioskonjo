@@ -22,9 +22,8 @@ export default function ModalScreen({ route }) {
     try {
       await AsyncStorage.getItem(storagekey, (error, result) => {
         result !== null && result !== "[]" && result !== undefined ? 
-        setDb(JSON.parse(result)) : console.log("database not loaded")
+        setDb(JSON.parse(result)) : console.log(error)
         const i = JSON.parse(result).findIndex(x => x.key === cardData.key)
-        console.log(i)
         if(JSON.parse(result)[i].found == true) {
           setFound(true)
           setSnowDate(JSON.parse(result)[i].dateFound)
@@ -35,7 +34,6 @@ export default function ModalScreen({ route }) {
     } catch (error) {
       console.log(error);
     }
-    console.log("database loaded")
   }
 
   const foundThis = async() => {
@@ -44,12 +42,9 @@ export default function ModalScreen({ route }) {
       setFound(!found)
       var newArr = db;
       const i = newArr.findIndex(x => x.key === cardData.key)
-      console.log(i)
-      console.log(newArr[i])
       newArr[i].found = !newArr[i].found
       newArr[i].dateFound = newArr[i].dateFound == "" ? new Date() : ""
       setSnowDate(snowDate == "" ? new Date() : "")
-      console.log(newArr[i])
       setDb(newArr)
       await AsyncStorage.setItem(storagekey, JSON.stringify(newArr));
     } catch(err) {
