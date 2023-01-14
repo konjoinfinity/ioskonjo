@@ -30,6 +30,7 @@ export default function App() {
   const getMyObject = async () => {
     var db;
     try {
+  // await AsyncStorage.removeItem(storagekey) 
       await AsyncStorage.getItem(storagekey, (error, result) => {
         if (result !== null && result !== "[]" && result !== undefined) {
           console.log("db already created")

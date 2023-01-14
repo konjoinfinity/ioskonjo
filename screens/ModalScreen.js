@@ -5,81 +5,53 @@ import { Text, View } from '../components/Themed';
 import * as Haptics from 'expo-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const foundkey = "found";
+const storagekey = "storage";
 
 export default function ModalScreen({ route }) {
-  const [foundSnow, setFoundSnow] = useState("#fff");
-  const [found, setFound] = useState([]);
-  const [current, setCurrent] = useState([])
+  const [found, setFound] = useState(false);
+  const [db, setDb] = useState([]);
+  const [snowDate, setSnowDate] = useState("");
   const {cardData} = route.params;
-  var filtered;
   
   useEffect(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    getFound();
+    getDb();
   }, [])
 
-  const getFound = async() => {
-      // try {
-      //   await AsyncStorage.removeItem(foundkey)
-      // } catch(e) {
-      // }
-      // console.log('Done.')
+  const getDb = async() => {
     try {
-      await AsyncStorage.getItem(foundkey, (error, result) => {
+      await AsyncStorage.getItem(storagekey, (error, result) => {
         result !== null && result !== "[]" && result !== undefined ? 
-        setFound(JSON.parse(result)) : setFound([]);
-        console.log("Get")
-        console.log(result)
-        if(result !== null && result !== "[]" && result !== undefined) {
-          filtered = JSON.parse(result).filter(function(snow) { return snow.snowType == cardData.title}); 
-          console.log("filtered")
-          console.log(filtered)
-          if(filtered.length > 0){
-            setFoundSnow("#94C68A")
-            setCurrent(filtered)
-          } else {
-            console.log("not found")
-          }
+        setDb(JSON.parse(result)) : console.log("database not loaded")
+        const i = JSON.parse(result).findIndex(x => x.key === cardData.key)
+        console.log(i)
+        if(JSON.parse(result)[i].found == true) {
+          setFound(true)
+          setSnowDate(JSON.parse(result)[i].dateFound)
+        } else {
+          setFound(false)
         }
       });
-      console.log(found)
-      
     } catch (error) {
       console.log(error);
     }
+    console.log("database loaded")
   }
 
-  const foundThis = async(snowtype) => {
+  const foundThis = async() => {
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      foundSnow == "#fff" ? setFoundSnow("#94C68A") : setFoundSnow("#fff")
-      var newFound = found;
-      console.log(found)
-      if(foundSnow == "#fff") {
-        newFound.unshift({ snowType: snowtype, dateFound: new Date() })
-        console.log(newFound)
-        setFound(newFound)
-        console.log(found)
-        await AsyncStorage.setItem(foundkey, JSON.stringify(newFound));
-        console.log(found)
-        filtered = found.filter(function(snow) { return snow.snowType == cardData.title}); 
-          console.log("filtered")
-          console.log(filtered)
-          if(filtered.length > 0){
-            setFoundSnow("#94C68A")
-            setCurrent(filtered)
-          } else {
-            console.log("not found")
-          }
-      } else {
-        var remove = found.filter(function(snow) { return snow.snowType !== cardData.title}); 
-        console.log(remove)
-        setFound(remove)
-        console.log(found)
-        await AsyncStorage.setItem(foundkey, JSON.stringify(remove));
-        console.log(found)
-      }
+      setFound(!found)
+      var newArr = db;
+      const i = newArr.findIndex(x => x.key === cardData.key)
+      console.log(i)
+      console.log(newArr[i])
+      newArr[i].found = !newArr[i].found
+      newArr[i].dateFound = newArr[i].dateFound == "" ? new Date() : ""
+      setSnowDate(snowDate == "" ? new Date() : "")
+      console.log(newArr[i])
+      setDb(newArr)
+      await AsyncStorage.setItem(storagekey, JSON.stringify(newArr));
     } catch(err) {
       console.log(err)
     }
@@ -97,7 +69,7 @@ export default function ModalScreen({ route }) {
              <Text style={{ fontSize: Dimensions.get('window').height * 0.045, fontWeight: "bold", padding: 10, marginTop: 12, alignSelf: "center", color: "black", textAlign: "center" }}>{cardData.title}</Text>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.03, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>{cardData.desc}</Text>
              <TouchableOpacity style={{alignSelf: "center", maxWidth: Dimensions.get('window').width * 0.8, marginTop: Dimensions.get('window').height * 0.025,
-             backgroundColor: foundSnow,
+             backgroundColor: found == true ? "#94C68A" : "#fff",
                   shadowColor: 'rgba(200,200,200, 200)', 
                 shadowOffset: { height: 2.5, width: 2.5 }, 
                 shadowOpacity: 1, 
@@ -107,8 +79,8 @@ export default function ModalScreen({ route }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
-                }} onPress={() => foundThis(cardData.title)}><Text style={{textAlign: "center", color: "#000", fontWeight:"600", fontSize: Dimensions.get('window').height * 0.02, padding: 22 }}>{foundSnow == "#fff" ? `Found ${cardData.title}?`: `You Found ${cardData.title}!`}</Text></TouchableOpacity> 
-                {foundSnow == "#94C68A" && current.length > 0 ? <Text style={{ fontSize: Dimensions.get('window').height * 0.02, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>Date Found: {new Date(current[0].dateFound).toLocaleDateString()}</Text> : ("")}
+                }} onPress={() => foundThis(cardData.title)}><Text style={{textAlign: "center", color: "#000", fontWeight:"600", fontSize: Dimensions.get('window').height * 0.02, padding: 22 }}>{found == true ? `You Found ${cardData.title}!`:`Found ${cardData.title}?`}</Text></TouchableOpacity> 
+                {found == true ? <Text style={{ fontSize: Dimensions.get('window').height * 0.02, padding: 10, margin: 10, alignSelf: "center", color: "black"}}>Date Found: {new Date(snowDate).toLocaleDateString()}</Text> : ("")}
                 </View>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
