@@ -8,8 +8,12 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 import AnimatedSnow from './screens/AnimatedSnow';
 import {StyleSheet, Dimensions} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import snowWeather from './constants/snowWeather';
+import snowData from './constants/snowData';
 
 const {height, width} = Dimensions.get('window');
+const storagekey = "storage";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,10 +21,30 @@ export default function App() {
   const [showSplash, setShowSplash] = useState(false)
 
   useEffect(() => {
+    getMyObject()
     setTimeout(() => {
       setShowSplash(true)
     }, 4500)
   }, [])
+
+  const getMyObject = async () => {
+    var db;
+    try {
+      await AsyncStorage.getItem(storagekey, (error, result) => {
+        if (result !== null && result !== "[]" && result !== undefined) {
+          console.log("db already created")
+        } else {
+          db = snowData.concat(snowWeather); 
+          console.log(db)
+          AsyncStorage.setItem(storagekey, JSON.stringify(db));
+          console.log("db written")
+        }
+      })
+    } catch(e) {
+      console.log(e)
+    }
+    console.log('Done.')
+  }
 
   if (!isLoadingComplete) {
     return null

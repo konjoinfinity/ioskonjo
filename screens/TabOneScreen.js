@@ -14,7 +14,8 @@ var height;
 const foundkey = "found";
 
 export function Card({navigation, cardData, border, matching}){
-  console.log(matching)
+  const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = React.useState(initialCheck); return { checked };};
+  const successCheckboxState = useCheckboxState();
 
         return (
             Platform.OS == "ios" ? 
@@ -30,8 +31,8 @@ export function Card({navigation, cardData, border, matching}){
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 2, marginTop: 2, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
              {matching.map(snow => { 
-              snowData.filter(title => {
-                return snow.snowType === title.title ? <Text style={{color:"#fff"}}>Test</Text> : ("")})})}
+              if(snow.snowType == snowData.title) {
+              return  <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox>}})}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
             style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
