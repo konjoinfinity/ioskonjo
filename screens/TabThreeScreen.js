@@ -25,6 +25,7 @@ let colorScheme = useColorScheme();
 const { colors } = useTheme();
 var spinValue = new Animated.Value(0);
 
+
 Animated.loop(
   Animated.timing(
     spinValue,
@@ -78,13 +79,13 @@ return (
               bottom: 20,
               right: 20,
               zIndex: 2,
-              shadowColor: 'rgba(0,0,0, .4)', 
+              shadowColor: 'rgba(0,0,0,.4)', 
               shadowOffset: { height: 2.5, width: 2.5 }, 
               shadowOpacity: 1, 
               shadowRadius: 1, 
               backgroundColor: "white",
               borderRadius: 50,
-              elevation: 2, 
+              elevation: 8, 
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'row'}}
