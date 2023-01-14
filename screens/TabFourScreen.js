@@ -14,10 +14,11 @@ AnimatableView = Animatable.createAnimatableComponent(View);
 let textInput;
 let cardSearch = "";
 
-export function Card({title, color}){
+export function Card({title, color, copy}){
   return (
-      <View style={{backgroundColor: color, width: Platform.OS == "ios" ? Dimensions.get('window').width * 0.3 : Dimensions.get('window').width * 0.25, height: Platform.OS == "ios" ? Dimensions.get('window').width * 0.3 : Dimensions.get('window').width * 0.25, margin: 0.5, opacity: 0.9}}>
-       <Text style={{ fontSize: Platform.OS == "ios" ? Dimensions.get('window').height * 0.03 : Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: Platform.OS == "ios" ? Dimensions.get('window').width * 0.1 : Dimensions.get('window').width * 0.08, alignSelf: "center" }}>{title}</Text>
+      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.3, height: Dimensions.get('window').width * 0.2, opacity: 0.9, alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "row"}}>
+       <Text style={{ fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{title}</Text>
+       <Text style={{ fontSize: Dimensions.get('window').height * 0.015 }}>{copy}</Text>
       </View>
   )
 }
@@ -55,7 +56,7 @@ export default function TabFourScreen() {
       <AnimatableView animation="bounceInDown" delay={500} duration={2000}><Card title={"Periodic"} color={"#5B9BD5"} /></AnimatableView>      
       <AnimatableView animation="bounceInDown" delay={750} duration={2000}><Card title={"Table"} color={"#DEEAF6"} /></AnimatableView>  
       <AnimatableView animation="bounceInDown" delay={1000} duration={2000}><Card title={"of"} color={"#FFD965"} /></AnimatableView>  
-      <AnimatableView animation="bounceInDown" delay={1250} duration={2000}><Card title={"Snow©"} color={"#ECECEC"} /></AnimatableView>          
+      <AnimatableView animation="bounceInDown" delay={1250} duration={2000}><Card title={"Snow"} copy={"©"} color={"#ECECEC"} /></AnimatableView>         
       </View>)}</ScrollView>
       <Input autoFocus={true} textAlign="center" variant="outlined" textAlignVertical="center" textStyle={{color: colors.text}}
       style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Platform.OS == "ios" ? Dimensions.get('window').width * 0.7 : 0, backgroundColor: colorScheme === "dark" ? colors.border : colors.background}} 
