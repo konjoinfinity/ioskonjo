@@ -1,6 +1,6 @@
 import { Fontisto, MaterialCommunityIcons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable, Text, Platform, View, Dimensions } from 'react-native';
@@ -47,6 +47,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  const { colors } = useTheme();
 
   return (
     <BottomTab.Navigator
@@ -62,7 +63,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <Icon name="snowflake-4" color={color} />,
           headerTitle: () => (
             <View style={{display: "flex", alignItems: "center", flexDirection:"row", justifyContent: "center"}}>
-              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500"}}>Periodic Table of Snow</Text><Text>©</Text></View>), 
+              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500", color: colors.text}}>Periodic Table of Snow</Text><Text style={{color: colors.text}}>©</Text></View>),              
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('InfoModal')}
@@ -87,7 +88,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MCIcon name="weather-snowy-heavy" color={color} />,
           headerTitle: () => (
             <View style={{display: "flex", alignItems: "center", flexDirection:"row", justifyContent: "center"}}>
-              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500"}}>Periodic Table of Snow</Text><Text>©</Text></View>), 
+              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500", color: colors.text}}>Periodic Table of Snow</Text><Text style={{color: colors.text}}>©</Text></View>),  
         })}
       />
       <BottomTab.Screen
@@ -96,7 +97,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
           headerTitle: () => (
           <View style={{display: "flex", alignItems: "center", flexDirection:"row", justifyContent: "center"}}>
-            <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500"}}>Periodic Table of Snow</Text><Text>©</Text></View>), 
+            <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500", color: colors.text}}>Periodic Table of Snow</Text><Text style={{color: colors.text}}>©</Text></View>),  
           title: 'Snow Notes',
           tabBarIcon: ({ color }) => <MIcon name="notes" color={color} />
   })}
@@ -109,7 +110,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MIcon name="search" color={color} />,
           headerTitle: () => (
             <View style={{display: "flex", alignItems: "center", flexDirection:"row", justifyContent: "center"}}>
-              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500"}}>Periodic Table of Snow</Text><Text>©</Text></View>), 
+              <Text style={{fontSize: Dimensions.get('window').width * 0.06, fontWeight:"500", color: colors.text}}>Periodic Table of Snow</Text><Text style={{color: colors.text}}>©</Text></View>),  
         })}
       />
     </BottomTab.Navigator>

@@ -57,7 +57,7 @@ export default function ModalAddNoteScreen({ navigation }) {
         setCompanions("")
         setOccasion("")
         setLogs(newLog)
-        navigation.navigate("TabTwo")
+        navigation.navigate("TabThree")
         await AsyncStorage.setItem(logskey, JSON.stringify(newLog));
       } else {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -183,7 +183,7 @@ export default function ModalAddNoteScreen({ navigation }) {
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     setLog("");
-                    navigation.navigate("TabTwo")
+                    navigation.navigate("TabThree")
                   }}>
                   <Text style={{fontWeight: "bold"}}>
                     Cancel

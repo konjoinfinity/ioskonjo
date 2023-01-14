@@ -61,7 +61,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
       setLog("");
       setLogs(filtered);
       setEditlog("")
-      await AsyncStorage.setItem(logskey, JSON.stringify(filtered), () => {navigation.navigate("TabTwo")});
+      await AsyncStorage.setItem(logskey, JSON.stringify(filtered), () => {navigation.navigate("TabThree")});
     } catch (error) {
       console.log(error);
 
@@ -80,7 +80,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
       setWeather("") 
       setCompanions("") 
       setOccasion("")
-      await AsyncStorage.setItem(logskey, JSON.stringify(editlogs), () => {navigation.navigate("TabTwo")});
+      await AsyncStorage.setItem(logskey, JSON.stringify(editlogs), () => {navigation.navigate("TabThree")});
     } catch (error) {
       console.log(error);
     }
@@ -238,7 +238,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                     setEditlog("");
-                    navigation.navigate("TabTwo")}}>
+                    navigation.navigate("TabThree")}}>
                   <Text style={{fontWeight: "bold"}}>
                     Cancel
                   </Text>
