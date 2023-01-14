@@ -43,6 +43,7 @@ export function Card({navigation, cardData, border}){
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
+             {cardData.dateFound !== "" ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
             </TouchableOpacity>
         )
     }
@@ -109,7 +110,7 @@ export default function Home({navigation}) {
                 </View>
                 {cards.length !== 0 ?<Title title={cards[116].kind} color={colorScheme === 'dark' ? cards[116].backgroundColor : "#000000"} /> : ("")}
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
-                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 115 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key > 115 && cardData.key < 133 ? <Card key={cardData.key} cardData={cardData} navigation={navigation} /> : (""))) : ("")}               
                 </View>
             </ScrollView>
         );
