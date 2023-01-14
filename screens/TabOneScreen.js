@@ -11,11 +11,10 @@ import { CheckBox } from '@ui-kitten/components';
 AnimatableView = Animatable.createAnimatableComponent(View);
 var width;
 var height;
-// const foundkey = "found";
 const storagekey = "storage";
 
-export function Card({navigation, cardData, border, db}){
-  const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = React.useState(initialCheck); return { checked };};
+export function Card({navigation, cardData, border}){
+  const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = useState(initialCheck); return { checked };};
   const successCheckboxState = useCheckboxState();
 
         return (
@@ -31,7 +30,7 @@ export function Card({navigation, cardData, border, db}){
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 2, marginTop: 2, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
-             {db && db.found === true ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
+            {cardData.dateFound !== "" ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
             style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
@@ -58,17 +57,18 @@ export function Title({title, color}){
 
 export default function Home({navigation}) {
     const [cards, setCards] = useState([]);
-    const [db, setDb] = useState([])
     let colorScheme = useColorScheme();
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            setCards(snowData);
-            getDb();
+          AsyncStorage.getItem(storagekey, (error, result) => {
+            result !== null && result !== "[]" && result !== undefined ? setCards(JSON.parse(result)) : console.log("DB not loaded")
+            console.log("DB loaded")
           });
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        })
           return unsubscribe;
-      }, [navigation, db])
+      }, [navigation])
 
       useEffect(() => {
         const unsubscribe = navigation.addListener('blur', () => {
@@ -77,26 +77,11 @@ export default function Home({navigation}) {
         return unsubscribe;
       }, [navigation]);
 
-      const getDb = async() => {
-      try {
-        await AsyncStorage.getItem(storagekey, (error, result) => {
-          result !== null && result !== "[]" && result !== undefined ? 
-          setDb(JSON.parse(result)) : console.log("DB not loaded");
-        });
-      } catch (error) {
-        console.log(error);
-      }
-      console.log("DB loaded")
-      // setTimeout(() => {
-      //   console.log(db)
-      // }, 100)
-    }
-
         return(
             <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
                 {cards.length !== 0 ? <Title title={cards[0].kind} color={colorScheme === 'dark' ? cards[0].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
-                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} db={db} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               
+                {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               
                 </View>
                 {cards.length !== 0 ?<Title title={cards[23].kind} color={colorScheme === 'dark' ? cards[23].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
