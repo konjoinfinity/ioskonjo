@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { useEffect, useState } from 'react';
 import { Platform, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Text, View, useColorScheme } from 'react-native';
-import { TextInput } from "@react-native-material/core";
 import * as Haptics from 'expo-haptics';
 import snowData from '../constants/snowData';
 import { useNavigation } from '@react-navigation/native';
@@ -61,7 +60,6 @@ export default function TabFourScreen() {
       <Input autoFocus={true} textAlign="center" variant="outlined" textAlignVertical="center" textStyle={{color: colors.text}}
       style={{ width: Dimensions.get('window').width * 0.95,  alignSelf: "center", marginBottom: Platform.OS == "ios" ? Dimensions.get('window').width * 0.7 : 0, backgroundColor: colorScheme === "dark" ? colors.border : colors.background}} 
       placeholder='❅❆❄ Which snow? ❅❆❄' name="search" id="search" onChangeText={handleChange} ref={(input) => { textInput = input; }}/>
-      {/* <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} /> */}
     </View>
   );
 }
