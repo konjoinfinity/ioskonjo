@@ -73,7 +73,7 @@ useEffect(() => {
 return (
     <View>
         <View>
-        <View style={{height: Dimensions.get("window").height * 0.79}}>
+        <View style={{height: Dimensions.get("window").height > 1000 ? Dimensions.get("window").height * 0.89 : Dimensions.get("window").height * 0.79}}>
         <TouchableOpacity
               style={{position: 'absolute',
               bottom: 20,

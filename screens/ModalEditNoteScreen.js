@@ -213,8 +213,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
-                height: Dimensions.get("window").width * 0.12,
-                width: Dimensions.get("window").width * 0.24,
+                padding: 15,
                 margin: 5}}
                   onPress={() => {confirmDelete(logselected)}}>
                   <Text style={{fontWeight: "bold"}}>
@@ -232,8 +231,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
-                height: Dimensions.get("window").width * 0.12,
-                width: Dimensions.get("window").width * 0.24,
+                padding: 15,
                 margin: 5}}
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -254,8 +252,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'row',
-                height: Dimensions.get("window").width * 0.12,
-                width: Dimensions.get("window").width * 0.24,
+                padding: 15,
                 margin: 5}}
                   onPress={() => editLog(position)}>
                   <Text style={{fontWeight: "bold"}}>
@@ -285,7 +282,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   input: {
-    width: Dimensions.get('window').width * 0.95,
+    width: Dimensions.get('window').width * 0.8,
     padding: 5
   }
 });

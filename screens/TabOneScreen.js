@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import { Ionicons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CheckBox } from '@ui-kitten/components';
+import * as Device from 'expo-device';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 var width;
@@ -20,8 +21,8 @@ export function Card({navigation, cardData, border}){
         return (
             Platform.OS == "ios" ? 
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
-            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
-            height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width < 800 ? Dimensions.get('window').width * 0.33 : 200, 
+            height: Dimensions.get('window').width < 800 ? Dimensions.get('window').width * 0.33 : 200, margin: 0.5, opacity: 0.9, 
             borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
@@ -50,7 +51,7 @@ export function Card({navigation, cardData, border}){
 
 export function Title({title, color}){
     return (
-        <View style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').width * 0.2, margin: 0.5}}>
+        <View style={{ padding: 5, margin: 5}}>
         <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.04, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
         </View>
         )
