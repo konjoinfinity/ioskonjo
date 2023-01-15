@@ -15,10 +15,15 @@ let cardSearch = "";
 
 export function Card({title, color, copy}){
   return (
-      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.3, height: Dimensions.get('window').width * 0.2, opacity: 0.9, alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "row"}}>
+    Platform.OS == "ios" ?
+      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.35, height: Dimensions.get('window').width * 0.35, opacity: 0.9, alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "row"}}>
        <Text style={{ fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{title}</Text>
        <Text style={{ fontSize: Dimensions.get('window').height * 0.015 }}>{copy}</Text>
-      </View>
+      </View>:
+      <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.3, height: Dimensions.get('window').width * 0.2, opacity: 0.9, alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "row"}}>
+<Text style={{ fontSize: Dimensions.get('window').height * 0.03, fontWeight: "bold"}}>{title}</Text>
+<Text style={{ fontSize: Dimensions.get('window').height * 0.015 }}>{copy}</Text>
+</View>
   )
 }
 
