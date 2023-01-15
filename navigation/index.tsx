@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { useEffect } from 'react';
 import { ColorSchemeName, Pressable, Text, Platform, View, Dimensions } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -17,6 +16,7 @@ import TabFourScreen from '../screens/TabFourScreen';
 import ModalEditNoteScreen from '../screens/ModalEditNoteScreen';
 import ModalAddNoteScreen from '../screens/ModalAddNoteScreen';
 import TabTwoScreen from "../screens/TabTwoScreen"
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (

@@ -17,7 +17,7 @@ const storagekey = "storage";
 export function Card({navigation, cardData, border}){
   const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = useState(initialCheck); return { checked };};
   const successCheckboxState = useCheckboxState();
-
+  
         return (
             Platform.OS == "ios" ? 
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
@@ -28,21 +28,22 @@ export function Card({navigation, cardData, border}){
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>
              </View>
+
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
              <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 2, marginTop: 2, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
              </View>
             {cardData.dateFound !== "" ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
-            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width * 0.33, 
-            height: Dimensions.get('window').width * 0.33, margin: 0.5, opacity: 0.9, 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').height < 900 ? Dimensions.get('window').width * 0.33 : 150, 
+            height: Dimensions.get('window').height < 900 ? Dimensions.get('window').width * 0.33 : 150, margin: 0.5, opacity: 0.9, 
             borderStyle: "solid", borderColor: "gray", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.acronymn}</Text>
              </View>
              <View style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
-             <Text style={{ fontSize: Dimensions.get('window').height * 0.02, fontWeight: "bold", padding: 5, marginTop: 5, alignSelf: "center", textAlign: "center" }}>{cardData.title}</Text>
+             <Text style={{ fontSize: Dimensions.get('window').height * 0.018, padding: 5, marginTop: 5, alignSelf: "center", textAlign: "center", fontWeight: "bold" }}>{cardData.title}</Text>
              </View>
              {cardData.dateFound !== "" ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
             </TouchableOpacity>
@@ -52,7 +53,9 @@ export function Card({navigation, cardData, border}){
 export function Title({title, color}){
     return (
         <View style={{ padding: 5, margin: 5}}>
-        <Text style={{ color: color, fontSize: Dimensions.get('window').height * 0.04, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>
+          {Platform.OS == "ios" ?
+        <Text style={{ color: color, fontSize: 30, fontStyle: "italic", padding: 10, alignSelf: "center" }}>{title}</Text>:
+<Text style={{ color: color, fontSize: 25, fontStyle: "italic", padding: 10 }}>{title}</Text>}
         </View>
         )
     }
