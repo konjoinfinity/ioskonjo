@@ -49,8 +49,6 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
   const { colors } = useTheme();
-  console.log(Dimensions.get('window').width)
-  console.log(Dimensions.get('window').height)
 
   return (
     <BottomTab.Navigator

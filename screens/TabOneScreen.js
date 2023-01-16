@@ -10,20 +10,18 @@ import { CheckBox } from '@ui-kitten/components';
 import * as Device from 'expo-device';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
-var width;
-var height;
 const storagekey = "storage";
 
 export function Card({navigation, cardData, border}){
   const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = useState(initialCheck); return { checked };};
   const successCheckboxState = useCheckboxState();
-  
+
 
         return (
             Platform.OS == "ios" ? 
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
-            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width < 768 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, 
-            height: Dimensions.get('window').width < 768 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, margin: 0.5, opacity: 0.9, 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width < 744 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, 
+            height: Dimensions.get('window').width < 744 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, margin: 0.5, opacity: 0.9, 
             borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
@@ -83,7 +81,7 @@ export default function Home({navigation}) {
       }, [navigation]);
 
         return(
-            <ScrollView style={{ flex: 1 }}  onLayout={(event) => {width, height = event.nativeEvent.layout}}>
+            <ScrollView style={{ flex: 1 }}>
                 {cards.length !== 0 ? <Title title={cards[0].kind} color={colorScheme === 'dark' ? cards[0].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               
@@ -124,14 +122,4 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
-    snowContainer: {
-      width: width,
-      height: height,
-      position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0,0,0,0.001)'
-    }
   });
