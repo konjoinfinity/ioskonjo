@@ -26,6 +26,7 @@ export default function ModalAddNoteScreen({ navigation, route }) {
   const [showDatePicker, setShowDatePicker] = useState(false)
   const { colors } = useTheme();
   let colorScheme = useColorScheme();
+  const [parentWidth, setParentWidth] = useState(0);
   
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) });
@@ -120,7 +121,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps='handled'>
+    <ScrollView keyboardShouldPersistTaps='handled'  onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}>
     <View style={styles.container}>
     {Platform.OS == "android" ?<TouchableOpacity
                 style={{backgroundColor: colors.primary,  
@@ -152,7 +153,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
       <Input
       ref={loginput}
       textStyle={{color: colors.text}}
-      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95 }]}
       status='info'
       placeholder="Notes"
                 value={log}
@@ -161,7 +162,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
               />
               <Input
               textStyle={{color: colors.text}}
-              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
               status='info'
               placeholder="Location"
                 value={location}
@@ -169,7 +170,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 blurOnSubmit={false}
               />
                <Input
-               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
                textStyle={{color: colors.text}}
                status='info'
                placeholder="Weather"
@@ -178,7 +179,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 blurOnSubmit={false}
               />
               <Input
-              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
               status='info'
               textStyle={{color: colors.text}}
               placeholder="Companions"
@@ -187,7 +188,7 @@ setDate(new Date(logselected.dateCreated) !== "" ? new Date(logselected.dateCrea
                 blurOnSubmit={false}
               />
                <Input
-               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background }]}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95 }]}
                status='info'
                placeholder="Occasion"
                textStyle={{color: colors.text}}
@@ -282,7 +283,6 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   input: {
-    width: Dimensions.get('window').width * 0.8,
     padding: 5
   }
 });

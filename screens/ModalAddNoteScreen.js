@@ -23,7 +23,9 @@ export default function ModalAddNoteScreen({ navigation }) {
   const { colors } = useTheme();
   const [showDatePicker, setShowDatePicker] = useState(false)
   let colorScheme = useColorScheme();
-  
+  const [parentWidth, setParentWidth] = useState(0);
+
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -79,11 +81,12 @@ export default function ModalAddNoteScreen({ navigation }) {
   }
 
   const onDateChange = (selectedDate) => {
-    setDate(new Date(selectedDate));
+    const currentDate = selectedDate;
+    setDate(new Date(currentDate));
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps='handled'>
+    <ScrollView keyboardShouldPersistTaps='handled' onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}>
     <View style={styles.container}>
     {Platform.OS == "android" ?<TouchableOpacity
                 style={{backgroundColor: colors.primary,  
@@ -114,7 +117,7 @@ export default function ModalAddNoteScreen({ navigation }) {
      : ("")}
       <Input
       ref={loginput}
-      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+      style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
       status='info'
       textStyle={{color: colors.text}}
                 placeholder="Notes"
@@ -124,7 +127,7 @@ export default function ModalAddNoteScreen({ navigation }) {
               />
               <Input
               textStyle={{color: colors.text}}
-              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
               status='info'
                 placeholder="Location"
                 value={location}
@@ -133,7 +136,7 @@ export default function ModalAddNoteScreen({ navigation }) {
               />
                <Input
                textStyle={{color: colors.text}}
-               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
                status='info'
                 placeholder="Weather"
                 value={weather}
@@ -142,7 +145,7 @@ export default function ModalAddNoteScreen({ navigation }) {
               />
               <Input
               textStyle={{color: colors.text}}
-              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+              style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
               status='info'
                 placeholder="Companions"
                 value={companions}
@@ -151,7 +154,7 @@ export default function ModalAddNoteScreen({ navigation }) {
               />
                <Input
                textStyle={{color: colors.text}}
-               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background}]}
+               style={[styles.input, {backgroundColor: colorScheme === "dark" ? colors.border : colors.background, width: parentWidth * 0.95}]}
                status='info'
                 placeholder="Occasion"
                 value={occasion}
@@ -228,7 +231,6 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   input: {
-    width: Dimensions.get('window').width * 0.8,
     padding: 5,
   }
 });

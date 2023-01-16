@@ -52,11 +52,13 @@ export default function Snow(props) {
     if (!isInside(width, height)) {
       reset(width);
     }
-
-    viewRef.setNativeProps({
-      top: thisy,
-      left: thisx,
-    });
+    
+    if(viewRef !== null) {
+      viewRef.setNativeProps({
+        top: thisy,
+        left: thisx,
+      });
+    }
   }
 
   const isInside = (width, height) => {

@@ -18,11 +18,12 @@ export function Card({navigation, cardData, border}){
   const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = useState(initialCheck); return { checked };};
   const successCheckboxState = useCheckboxState();
   
+
         return (
             Platform.OS == "ios" ? 
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
-            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width < 800 ? Dimensions.get('window').width * 0.33 : 200, 
-            height: Dimensions.get('window').width < 800 ? Dimensions.get('window').width * 0.33 : 200, margin: 0.5, opacity: 0.9, 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').width < 768 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, 
+            height: Dimensions.get('window').width < 768 ? Dimensions.get('window').width * 0.33 : Dimensions.get('window').width * 0.19, margin: 0.5, opacity: 0.9, 
             borderStyle: border === false ? "solid" : "", borderColor: border === false ? "gray" : "", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 
@@ -35,8 +36,8 @@ export function Card({navigation, cardData, border}){
             {cardData.dateFound !== "" ? <CheckBox style={{position: 'absolute', bottom: 5, right: 5}} status='success' {...successCheckboxState}></CheckBox> : ("")}
             </TouchableOpacity>:
             <TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: cardData})} 
-            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').height < 900 ? Dimensions.get('window').width * 0.33 : 150, 
-            height: Dimensions.get('window').height < 900 ? Dimensions.get('window').width * 0.33 : 150, margin: 0.5, opacity: 0.9, 
+            style={{backgroundColor: cardData.backgroundColor, width: Dimensions.get('window').height < 641 ? Dimensions.get('window').width * 0.33 : 150, 
+            height: Dimensions.get('window').height < 641 ? Dimensions.get('window').width * 0.33 : 150, margin: 0.5, opacity: 0.9, 
             borderStyle: "solid", borderColor: "gray", borderWidth: border === false ? 1 : 0}}>
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"space-between", padding: 5}}>
              <Text style={{fontSize: Dimensions.get('window').height * 0.025, fontWeight: "bold"}}>{cardData.anum}</Text> 

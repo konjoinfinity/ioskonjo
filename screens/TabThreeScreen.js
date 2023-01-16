@@ -25,7 +25,6 @@ let colorScheme = useColorScheme();
 const { colors } = useTheme();
 var spinValue = new Animated.Value(0);
 
-
 Animated.loop(
   Animated.timing(
     spinValue,
@@ -177,8 +176,8 @@ return (
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'row',
-            height: Dimensions.get("window").width * 0.12,
-            width: Dimensions.get("window").width * 0.12}}
+            height: Dimensions.get("window").height > 1000 ? Dimensions.get("window").width * 0.06 : Dimensions.get("window").width * 0.12,
+            width: Dimensions.get("window").height > 1000 ? Dimensions.get("window").width * 0.06 : Dimensions.get("window").width * 0.12}}
               onPress={() => {
                 navigation.navigate("ModalEditNote", {number: id, loggy: log})}}>
               <Icon
