@@ -10,8 +10,8 @@ const ANGLE_SEED = 100;
 const ANGLE_DIVISOR = 10000;
 const INCREMENT_LOWER = 2;
 const INCREMENT_UPPER = 4;
-const FLAKE_SIZE_LOWER = 2;
-const FLAKE_SIZE_UPPER = 5;
+const FLAKE_SIZE_LOWER = 3;
+const FLAKE_SIZE_UPPER = 6;
 
 export default function Snow(props) {
 
@@ -108,6 +108,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     width: 100,
     height: 100,
-    borderRadius: 50
+    borderRadius: 50,
+    borderColor: "#000000",
+    borderWidth: 1
   },
 });
