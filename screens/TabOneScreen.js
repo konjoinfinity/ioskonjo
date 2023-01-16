@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ScrollView, StyleSheet, useColorScheme, Platform, ImageBackground } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
-import snowData from '../constants/snowData';
 import * as Animatable from 'react-native-animatable';
-import { Ionicons } from '@expo/vector-icons'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CheckBox } from '@ui-kitten/components';
-import * as Device from 'expo-device';
+import AnimatedSnowOne from './AnimatedSnowOne';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 const storagekey = "storage";
@@ -15,7 +13,6 @@ const storagekey = "storage";
 export function Card({navigation, cardData, border}){
   const useCheckboxState = (initialCheck = true) => { const [checked, setChecked] = useState(initialCheck); return { checked };};
   const successCheckboxState = useCheckboxState();
-
 
         return (
             Platform.OS == "ios" ? 
@@ -82,6 +79,7 @@ export default function Home({navigation}) {
 
         return(
             <ScrollView style={{ flex: 1 }}>
+              <AnimatedSnowOne style={{position: "absolute", height: Dimensions.get("window").height, width: Dimensions.get("window").width }} />
                 {cards.length !== 0 ? <Title title={cards[0].kind} color={colorScheme === 'dark' ? cards[0].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
                 {cards.length !== 0 ? cards.map((cardData) => (cardData.key < 23 ? <AnimatableView key={cardData.key} animation="bounceInDown" delay={cardData.key * 100} duration={2000}><Card key={cardData.key} cardData={cardData} navigation={navigation} border={colorScheme === 'dark' ? true : false} /></AnimatableView> : (""))) : ("")}               

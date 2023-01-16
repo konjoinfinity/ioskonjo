@@ -7,6 +7,7 @@ import * as Haptics from "expo-haptics";
 import { Card, Text } from '@ui-kitten/components';
 import * as Animatable from 'react-native-animatable';
 import { useTheme } from '@react-navigation/native';
+import AnimatedSnowThree from './AnimatedSnowThree';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 const logskey = "logs";
@@ -71,6 +72,7 @@ useEffect(() => {
 
 return (
     <View>
+      <AnimatedSnowThree style={{position: "absolute", height: Dimensions.get("window").height, width: Dimensions.get("window").width }} />
         <View>
         <View style={{height: Dimensions.get("window").height > 1000 ? Dimensions.get("window").height * 0.89 : Dimensions.get("window").height * 0.79}}>
         <TouchableOpacity

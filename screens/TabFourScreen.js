@@ -8,6 +8,7 @@ import snowWeather from '../constants/snowWeather';
 import * as Animatable from 'react-native-animatable';
 import { Input } from '@ui-kitten/components';
 import { useTheme } from '@react-navigation/native';
+import AnimatedSnowFour from './AnimatedSnowFour';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 let textInput;
@@ -56,6 +57,7 @@ export default function TabFourScreen() {
 
   return (
     <View style={styles.container}>
+      <AnimatedSnowFour style={{position: "absolute", height: Dimensions.get("window").height, width: Dimensions.get("window").width }} />
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
       <ScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={{ height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width * 1, alignItems: "center", justifyContent:"center", display: "flex", flexDirection: "row", flexWrap: "wrap"}}>{search.length !== 0 && cardSearch.length < 20 ? cardSearch.map((card) => 
       (<TouchableOpacity onPress={() => navigation.navigate('Modal', {cardData: card})}style={{backgroundColor: card.backgroundColor, width: Dimensions.get('window').width * 0.23, height: Dimensions.get('window').width * 0.18, margin: 0.5}} key={card.key}><Text style={{color: "black", fontSize: Dimensions.get('window').width * 0.03,  padding: 10, }}>{card.title}</Text></TouchableOpacity>)) : 
@@ -75,8 +77,6 @@ export default function TabFourScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 20,

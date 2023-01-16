@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions, ScrollView, useColorScheme } from 'react-native';
 import 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
-import snowWeather from '../constants/snowWeather';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CheckBox } from '@ui-kitten/components';
+import AnimatedSnowTwo from './AnimatedSnowTwo';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 const storagekey = "storage";
@@ -78,6 +78,7 @@ export default function TabTwoScreen({navigation}) {
 
         return(
             <ScrollView style={{ flex: 1 }}>
+                <AnimatedSnowTwo style={{position: "absolute", height: Dimensions.get("window").height, width: Dimensions.get("window").width }} />
                {cards.length !== 0 ? <Title title={cards[133].kind} color={colorScheme === 'dark' ? cards[133].backgroundColor : "#000000"} /> : ("")} 
                 <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center"}}>
                 {cards.length !== 0 && cards.map((cardData) => cardData.key > 132 && cardData.key < 147 ? 
