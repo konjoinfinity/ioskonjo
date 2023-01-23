@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Table of Snow",
-    "slug": "Table of Snow",
+    "slug": "TableofSnow",
     "version": "1.2.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -40,7 +40,7 @@
     },
     "extra": {
       "eas": {
-
+        "projectId": "5b4762c3-0ad8-4889-98fd-62c01466f8b8"
       }
     }
   }

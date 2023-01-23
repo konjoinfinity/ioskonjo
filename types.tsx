@@ -14,6 +14,7 @@ export type RootStackParamList = {
   ModalEditNote: undefined;
   InfoModal: undefined;
   Modal: undefined;
+  Table: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

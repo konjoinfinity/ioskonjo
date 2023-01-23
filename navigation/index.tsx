@@ -16,6 +16,7 @@ import TabFourScreen from '../screens/TabFourScreen';
 import ModalEditNoteScreen from '../screens/ModalEditNoteScreen';
 import ModalAddNoteScreen from '../screens/ModalAddNoteScreen';
 import TabTwoScreen from "../screens/TabTwoScreen"
+import Table from '../screens/Table';
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -36,6 +37,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} options={{ title: "Periodic Table of Snow©" }} />
+        <Stack.Screen name="Table" component={Table} options={{ title: "Periodic Table of Snow©", presentation: 'fullScreenModal' }} />
         <Stack.Screen name="InfoModal" component={InfoModalScreen} options={{ title: "Info" }} />
         <Stack.Screen name="ModalAddNote" component={ModalAddNoteScreen} options={{ title: "Add Note" }} />
         <Stack.Screen name="ModalEditNote" component={ModalEditNoteScreen} options={{ title: "Edit Note" }} />
@@ -75,6 +77,20 @@ function BottomTabNavigator() {
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Table')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name='table'
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginLeft: 15 }}
               />
             </Pressable>
           ),
