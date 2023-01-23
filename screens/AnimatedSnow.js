@@ -9,7 +9,7 @@ const {dimheight, dimwidth} = Dimensions.get('window');
 export function Card({title, color, copy}){
   return (
       <View style={{backgroundColor: color, width: Dimensions.get('window').width * 0.45, height: Dimensions.get('window').width * 0.45, margin: 0.5, opacity: 0.9, alignItems: "center", justifyContent: "center", display: "flex", flexDirection: "row"}}>
-       <Text style={{ fontSize: Dimensions.get('window').height * 0.05, fontWeight: "bold", alignSelf: "center" }}>{title}</Text>
+       <Text style={{ fontSize: Dimensions.get('window').height * 0.04, fontWeight: "bold", alignSelf: "center" }}>{title}</Text>
        <Text style={{ fontSize: Dimensions.get('window').height * 0.025, alignSelf: "center" }}>{copy}</Text>
       </View>
   )
