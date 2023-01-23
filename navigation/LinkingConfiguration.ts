@@ -34,7 +34,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       InfoModal: "infomodal",
       ModalAddNote: 'modaladdnote',
       ModalEditNote: 'modaleditnote',
-      Table: 'table'
+      // Table: 'table'
     },
   },
 };
