@@ -108,11 +108,11 @@ export default function ModalAddNoteScreen({ navigation }) {
                   </Text>
                 </TouchableOpacity>:("")}
     {Platform.OS == "android" && showDatePicker == true ? 
-    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    <DateTimePicker value={new Date(date)} display='calendar' style={{paddingTop: 10}} onChange={(event, value) => {
     setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
      : ("")}
      {Platform.OS == "ios" ? 
-    <DateTimePicker value={new Date(date)} display={Platform.OS == "android" ? "spinner" : "default"} style={{paddingTop: 10}} onChange={(event, value) => {
+    <DateTimePicker value={new Date(date)} display='default' style={{paddingTop: 10}} onChange={(event, value) => {
     setShowDatePicker(!showDatePicker); onDateChange(value); Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light) }}/>
      : ("")}
       <Input
