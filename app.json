@@ -2,12 +2,27 @@
   "expo": {
     "name": "Table of Snow",
     "slug": "TableofSnow",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#000000",
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.0"
+          }
+        }
+      ]
+    ],
     "splash": {
       "image": "./assets/images/snow.png",
       "resizeMode": "contain",
@@ -20,13 +35,13 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rsdesign.tableofsnow",
-      "buildNumber": "18",
+      "buildNumber": "19",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "versionCode": 18,
+      "versionCode": 19,
       "targetSdkVersion": "33",
       "deploymentTarget": {
         "android": {
