@@ -11,7 +11,10 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "distribution": "store",
+      "releaseChannel": "production"
+    }
   },
   "submit": {
     "production": {}
